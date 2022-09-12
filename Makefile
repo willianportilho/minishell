@@ -6,11 +6,11 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/12 18:58:06 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/12 19:08:03 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES =		                 \
+SOURCES =					\
 				minishell.c
 
 NAME =			minishell

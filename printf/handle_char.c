@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   handle_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/12 21:03:03 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/07/04 01:30:46 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/12 21:00:59 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../inc/ft_printf.h"
 
-# include "./libft.h"
-# include "./ft_printf.h"
+t_str	handle_char(va_list args, int *count, t_flags *flags)
+{
+	t_str	c;
+	char	temp[2];
 
-#endif
+	temp[0] = va_arg(args, int);
+	temp[1] = 0;
+	if (temp[0])
+		c.s = ft_strdup(temp);
+	else
+	{
+		c.s = (char *)malloc(sizeof(char) * 1);
+		c.s[0] = '\0';
+		flags->null = TRUE;
+	}
+	c.size = 1;
+	*count += c.size;
+	return (c);
+}

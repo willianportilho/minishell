@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/12 19:08:03 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/12 21:04:02 by ralves-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ VAL =			valgrind --leak-check=full --show-leak-kinds=all
 LIBFT =			./libft/libft.a
 
 LIB =			./libft
+PRINT =			./printf
 INC =			./inc
 
 SRC_PATH =		src/
@@ -61,6 +62,7 @@ ${OBJ_PATH}%.o:	${SRC_PATH}%.c
 
 ${LIBFT}:
 				@make -C ./libft
+				@make -C ./printf
 
 ac:				${NAME}
 				@make clean
@@ -69,6 +71,7 @@ ac:				${NAME}
 clean:		
 				@${RM_ALL} ${OBJ_PATH}
 				@make clean -C ./libft/
+				@make clean -C ./printf/
 				@echo "${CYAN}=================="
 				@echo "CLEAN COMPLETED!!!"
 				@echo "==================${RESET}"
@@ -77,6 +80,7 @@ clean:
 fclean:			clean
 				@${RM} ${NAME}
 				@make fclean -C ./libft/
+				@make fclean -C ./printf/
 				@echo "${CYAN}==================="
 				@echo "FCLEAN COMPLETED!!!"
 				@echo "===================${RESET}"

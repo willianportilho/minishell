@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   handle_ptr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/12 21:03:03 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/07/04 20:09:18 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/12 21:00:44 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../inc/ft_printf.h"
 
-# include "./libft.h"
-# include "./ft_printf.h"
+t_str	handle_ptr(va_list args, int *count, t_flags *flags)
+{
+	unsigned long int	ptr;
+	t_str				str;
+	void				*void_tmp;
 
-#endif
+	void_tmp = va_arg(args, void *);
+	ptr = ft_ptoi(void_tmp);
+	if (ptr == 0)
+	{
+		str.s = ft_strdup("(nil)");
+		str.size = 5;
+		flags->null = TRUE;
+	}
+	else
+	{
+		str.s = ft_uitohex(ptr);
+		str.size = ft_strlen(str.s);
+	}
+	*count += str.size;
+	return (str);
+}

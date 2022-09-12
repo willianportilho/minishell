@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strtilchr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/12 21:03:03 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/06/29 17:09:10 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/12 21:01:11 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../inc/ft_printf.h"
 
-# include "./libft.h"
-# include "./ft_printf.h"
+char	*ft_strtilchr(const char *s, int c)
+{
+	char	*new_str;
+	size_t	index;
 
-#endif
+	if (ft_strchr(s, c))
+		index = ft_strchr(s, c) - s;
+	else
+		return (ft_strdup(s));
+	new_str = ft_substr(s, 0, index);
+	return (new_str);
+}

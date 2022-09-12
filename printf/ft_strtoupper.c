@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_strtoupper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/12 21:03:03 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/07/01 17:56:20 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/12 21:01:07 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../inc/ft_printf.h"
 
-# include "./libft.h"
-# include "./ft_printf.h"
+char	*ft_strtoupper(char *s)
+{
+	int	index;
 
-#endif
+	index = 0;
+	while (s[index])
+	{
+		if (ft_isalpha(s[index]))
+			s[index] = ft_toupper(s[index]);
+		index++;
+	}
+	return (s);
+}

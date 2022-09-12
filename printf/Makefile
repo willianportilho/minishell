@@ -16,22 +16,22 @@ FLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -f
 
 .c.o:
-			cc ${FLAGS} -c $< -o ${<:.c=.o} -I.
+			@cc ${FLAGS} -c $< -o ${<:.c=.o} -I.
 
 $(NAME):	${OBJS} ${H_SRC}
-			mv ../libft/libft.a ./$(NAME)
-			ar -rcs $@ $^
-			mv ./$(NAME) ../libft/libft.a
+			@mv ../libft/libft.a ./$(NAME)
+			@ar -rcs $@ $^
+			@mv ./$(NAME) ../libft/libft.a
 
 all: 		${NAME}
 
 bonus:		${NAME}
 
 clean:
-			${RM} ${OBJS}
+			@${RM} ${OBJS}
 
 fclean:		clean
-			${RM} ${NAME}
+			@${RM} ${NAME}
 
 re:			fclean all
 

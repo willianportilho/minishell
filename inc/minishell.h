@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/13 19:17:03 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:57:35 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 /**
  * @brief List of tokens to help lexer and parser
+ * 
  * @param BACKSLASH \
  * @param COMMAND ls -a (example)
  * @param S_QUOTE '

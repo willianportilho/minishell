@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_msg_erro.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 17:11:39 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/13 19:07:56 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/13 18:53:57 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/13 19:07:15 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	main(int argc, char **argv)
+int	ft_msg_er(char *msg, int erro, int fd)
 {
-	if (argv && argc > 1)
-	{
-		ft_putstr_fd("Error. No arguments are necessary", STDOUT_FILENO);
-		return (EXIT_FAILURE);
-	}
-	minishell();
-	return (EXIT_SUCCESS);
+	ft_putstr_fd(msg, fd);
+	return (erro);
 }

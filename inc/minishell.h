@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/13 19:08:26 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/13 19:17:03 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ typedef enum e_tokens
  * signal trigger and others
  */
 int		ft_msg_er(char *msg, int erro, int fd);
+
+/**
+ * @brief start the prompt and REPL
+ * 
+ */
 void	minishell(void);
 
 #endif

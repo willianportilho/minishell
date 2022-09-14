@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/13 19:10:23 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/14 20:25:37 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,44 @@ static int	check_semicolon_and_backslash(char *buff)
 	return (EXIT_SUCCESS);
 }
 
+/*	D_QUOTE = 34,
+	DOLAR = 36,
+	S_QUOTE = 39,
+	SEMICOLON = 59,
+	I_REDIRECT = 60,
+	O_REDIRECT = 62,
+	BACKSLASH = 92,
+	PIPE = 124,
+	COMMAND = 666,
+	APP_O_REDIRECT = 667,
+	DELIMITER = 668,
+	NOT_EXPANDABLE = 669,
+	EXPANDABLE = 670*/
+
+
+
+void	lexer(t_tokens **tks, char **str)
+{
+	(void)tks;
+	char	**tks_aux;
+	int i;
+
+	i = 0;
+	clean_space(*str);
+	add_space(str);
+	tks_aux = ft_split(*str, SPACE);
+	while (tks_aux[i])
+	{
+		ft_str_swap_chr(&tks_aux[i], TEMP_VALUE, SPACE);
+		i++;		
+	}
+
+}
+
 void	minishell(void)
 {
-	char	*buff;
+	char		*buff;
+	t_tokens	*tokens;
 
 	while (TRUE)
 	{
@@ -53,5 +88,9 @@ void	minishell(void)
 		}
 		if (check_semicolon_and_backslash(buff))
 			continue ;
+		else
+		{
+			lexer(&tokens, &buff);
+		}
 	}
 }

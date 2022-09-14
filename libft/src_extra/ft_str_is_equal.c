@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_str_is_equal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 17:11:39 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/14 01:12:14 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/14 19:18:37 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/14 19:18:41 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/libft.h"
 
-int	main(int argc, char **argv)
+int	ft_str_is_equal(char *str_1, char *str_2)
 {
-	if (argv && argc > 1)
+	if (ft_strlen(str_1) != ft_strlen(str_2))
+		return (0);
+	while (*str_1)
 	{
-		ft_putstr_fd("Error. No arguments are necessary", STDOUT_FILENO);
-		return (EXIT_FAILURE);
+		if (*str_1 != *str_2)
+			return (0);
+		str_1++;
+		str_2++;
 	}
-	minishell();
-	return (EXIT_SUCCESS);
+	return (1);
 }

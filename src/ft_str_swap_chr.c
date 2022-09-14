@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_str_swap_chr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 17:11:39 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/14 01:12:14 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/14 20:08:18 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/14 20:10:08 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	main(int argc, char **argv)
+void    ft_str_swap_chr(char **str, char old, char new)
 {
-	if (argv && argc > 1)
-	{
-		ft_putstr_fd("Error. No arguments are necessary", STDOUT_FILENO);
-		return (EXIT_FAILURE);
-	}
-	minishell();
-	return (EXIT_SUCCESS);
+    int i;
+
+    i = 0;
+    while ((*str)[i])
+    {
+        if ((*str)[i] == old)
+            (*str)[i] = new;
+        i++;
+    }
 }

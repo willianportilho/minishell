@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 20:58:58 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/12 17:18:48 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/14 19:18:59 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,7 @@ char		*line_to_send(char *actual);
 char		*ft_strjoin_alt(char *s1, char *s2);
 int			check_break(char *actual);
 
-int			ft_printf(const char *s, ...);
-void		ft_print_c(char c);
-void		ft_print_p(size_t n);
-void		ft_print_x_lower(unsigned int n);
-void		ft_print_x_upper(unsigned int n);
-void		ft_print_u(unsigned int n);
-void		ft_print_d_i(int n);
-void		ft_print_s(char *s);
-void		ft_pre_c(int n, int *i, int *len);
-void		ft_pre_p(size_t n, int *i, int *len);
-void		ft_pre_x_lower(unsigned int n, int *i, int *len);
-void		ft_pre_x_upper(unsigned int n, int *i, int *len);
-void		ft_pre_u(unsigned int n, int *i, int *len);
-void		ft_pre_d_i(int n, int *i, int *len);
-void		ft_pre_s(char *s, int *i, int *len);
+char	*ft_str_insert_free(char *str, char chr, int index);
+int		ft_str_is_equal(char *str_1, char *str_2);
 
 #endif

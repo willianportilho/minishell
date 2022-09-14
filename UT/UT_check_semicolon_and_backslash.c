@@ -1,12 +1,12 @@
 #include "../inc/minishell.h"
 
-int	ft_msg_er(char *msg, int erro, int fd)
+static int	ft_msg_er_test(char *msg, int erro, int fd)
 {
 	ft_putstr_fd(msg, fd);
 	return (erro);
 }
 
-static int	check_semicolon_and_backslash(char *buff)
+static int	check_semicolon_and_backslash_test(char *buff)
 {
 	int		i;
 	t_bool	btwn_s_quotes;
@@ -27,10 +27,10 @@ static int	check_semicolon_and_backslash(char *buff)
 			btwn_s_quotes = FALSE;
 		if ((buff[i] == SEMICOLON || buff[i] == BACKSLASH)
 			&& !btwn_d_quotes && !btwn_s_quotes)
-			return (ft_msg_er("invalid ; or \\\n", EXIT_FAILURE, STDOUT_FILENO));
+			return (ft_msg_er_test("invalid ; or \\\n", EXIT_FAILURE, STDOUT_FILENO));
 	}
 	if (btwn_d_quotes || btwn_s_quotes)
-		return (ft_msg_er("unclosed quotes\n", EXIT_FAILURE, STDOUT_FILENO));
+		return (ft_msg_er_test("unclosed quotes\n", EXIT_FAILURE, STDOUT_FILENO));
 	return (EXIT_SUCCESS);
 }
 

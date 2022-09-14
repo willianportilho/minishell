@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/12 20:35:21 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/14 19:21:26 by ralves-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,9 @@ SOURCES	=										\
 						ft_lstdelone.c			\
 						ft_lstclear.c			\
 						ft_lstiter.c			\
-						ft_lstmap.c
+						ft_lstmap.c				\
+						ft_str_insert_free.c	\
+						ft_str_is_equal.c
 
 SOURCES_EXTRA =									\
 						ft_atol.c

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/15 19:06:18 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:28:32 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <signal.h>
 
 # define TEMP_VALUE	1
 
@@ -68,6 +69,12 @@ enum e_tokens
 	NOT_EXPANDABLE = 669,
 	EXPANDABLE = 670,
 };
+
+/**
+ * @brief manipulate signals (ctrl c, ctrl \) in main function
+ * 
+ */
+void	signal_main(void);
 
 /**
  * @brief Print an msg to a given fd and give an erro return

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/15 20:22:28 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:29:19 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ void	minishell(void)
 		{
 			if (*buff != '\0')
 				add_history(buff);
+		}
+		else
+		{
+			ft_printf(" exit\n");
+			exit (EXIT_SUCCESS);
 		}
 		if (check_semicolon_and_backslash(buff))
 			continue ;

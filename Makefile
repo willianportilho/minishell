@@ -6,13 +6,13 @@
 #    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/15 15:01:18 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/15 20:30:06 by ralves-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES =		minishell.c	main.c ft_msg_erro.c handle_spaces.c \
 				ft_str_swap_chr.c ft_lstadd_back_t.c ft_lstnew_t.c \
-				lexer.c \
+				lexer.c signals.c \
 
 NAME =			minishell
 

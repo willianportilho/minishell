@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:02:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/14 19:18:44 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/15 15:46:56 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ char	*ft_str_insert_free(char *str, char chr, int index)
 		if (i_ns == index)
 			new_str[i_ns] = chr;
 		else
-        {
+		{
 			new_str[i_ns] = str[i_s];
-            i_s++;
-        }
+			i_s++;
+		}
 		i_ns++;
 	}
-    new_str[i_ns] = '\0';
-    return (free(str), new_str);
+	new_str[i_ns] = '\0';
+	return (free(str), new_str);
 }

@@ -53,4 +53,10 @@ int main (void)
 
     a = ft_strdup("|<<as'<\"<'da<'<s'd\"<\"asd");
     check(a, " |  << as'<\"<'da < '<s'd\"<\"asd");
+
+    // a = ft_strdup("<<<");
+    // check(a, "<<<");
+
+    // a = ft_strdup("<<<<");
+    // check(a, "<<<< ");
 }

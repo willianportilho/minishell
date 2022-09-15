@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_swap_chr.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd_back_t.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:08:18 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/15 15:45:44 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/15 14:41:20 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/15 14:43:19 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_str_swap_chr(char **str, char old, char new)
+static t_tokens	*ft_lstlast_t(t_tokens *lst)
 {
-	int	i;
+	t_tokens	*aux_lst;
 
-	i = 0;
-	while ((*str)[i])
+	aux_lst = lst;
+	if (!lst)
+		return (lst);
+	while (aux_lst->next)
+		aux_lst = aux_lst->next;
+	return (aux_lst);
+}
+
+void	ft_lstadd_back_t(t_tokens **lst, t_tokens *new)
+{
+	t_tokens	*aux;
+
+	if (!new)
+		return ;
+	if (*lst == NULL)
+		(*lst) = new;
+	else
 	{
-		if ((*str)[i] == old)
-			(*str)[i] = new;
-		i++;
+		aux = ft_lstlast_t(*lst);
+		aux->next = new;
 	}
 }

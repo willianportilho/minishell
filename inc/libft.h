@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 20:58:58 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/14 19:18:59 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/14 22:34:21 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,25 @@ char		*line_to_send(char *actual);
 char		*ft_strjoin_alt(char *s1, char *s2);
 int			check_break(char *actual);
 
-char	*ft_str_insert_free(char *str, char chr, int index);
-int		ft_str_is_equal(char *str_1, char *str_2);
+/**
+ * @brief create a new string wich is the copy of the given str
+ * but insert a new char in the defined index. Before the return,
+ * this function will free the str pointer.
+ * 
+ * @param str str to be copied
+ * @param chr new char to be added
+ * @param index index to insert the new char
+ * @return char* the new string
+ */
+char		*ft_str_insert_free(char *str, char chr, int index);
+
+/**
+ * @brief Check if the str_1 and str_2 have the same content and size.
+ * 
+ * @param str_1 first string
+ * @param str_2 string to compare with the first one
+ * @return int 1 if equals, 0 if different.
+ */
+int			ft_str_is_equal(char *str_1, char *str_2);
 
 #endif

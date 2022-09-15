@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 22:50:42 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/12 18:31:29 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/14 22:41:09 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	count_lines(char const *s, char c)
 			while ((*s != c) && (*s))
 				s++;
 			if (*s == '\0')
-					s--;
+				s--;
 		}
 		s++;
 	}

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_swap_chr.c                                  :+:      :+:    :+:   */
+/*   ft_lstnew_t.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:08:18 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/15 15:45:44 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/15 14:41:34 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/15 14:41:35 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_str_swap_chr(char **str, char old, char new)
+t_tokens	*ft_lstnew_t(char *str)
 {
-	int	i;
+	t_tokens	*n;
 
-	i = 0;
-	while ((*str)[i])
-	{
-		if ((*str)[i] == old)
-			(*str)[i] = new;
-		i++;
-	}
+	n = malloc(sizeof(t_tokens));
+	if (n == NULL)
+		return (NULL);
+	(*n).str = str;
+	n->next = NULL;
+	return (n);
 }

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/14 20:12:16 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/15 15:47:08 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_tokens
 {
 	char			*str;
 	int				token;
+	t_bool			error;
 	struct s_tokens	*next;
 }					t_tokens;
 
@@ -77,7 +78,7 @@ enum e_tokens
  * @return int the return can be used as exit_status, as boolean,
  * signal trigger and others
  */
-int		ft_msg_er(char *msg, int erro, int fd);
+int			ft_msg_er(char *msg, int erro, int fd);
 /**
  * @brief Iterates through some string address and swap the
  * indicated old character by the new one
@@ -86,26 +87,28 @@ int		ft_msg_er(char *msg, int erro, int fd);
  * @param old character of the string to be switched
  * @param new character to be added
  */
-void    ft_str_swap_chr(char **str, char old, char new);
+void		ft_str_swap_chr(char **str, char old, char new);
 
 /**
  * @brief start the prompt and REPL
  * 
  */
-void	minishell(void);
+void		minishell(void);
 /**
  * @brief Under construction
  * 
  * @param tks 
  * @param str 
  */
-void	lexer(t_tokens **tks, char **str);
-
+void		lexer(t_tokens **tks, char **str);
 
 /* ---------------------------------------------------------------------*\
 |	handle_spaces.c														 |
 \* ---------------------------------------------------------------------*/
-void	clean_space(char *str);
-void	add_space(char **str);
+void		clean_space(char *str);
+void		add_space(char **str);
+
+void		ft_lstadd_back_t(t_tokens **lst, t_tokens *new);
+t_tokens	*ft_lstnew_t(char *str);
 
 #endif

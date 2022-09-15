@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/15 19:07:05 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:51:54 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ typedef enum e_tokens
 	APP_O_REDIRECT = 667,
 	DELIMITER = 668,
 }	t_tokens;
+
+/**
+ * @brief manipulate signals (ctrl c, ctrl \) in main function
+ * 
+ */
+void	signal_main(void);
 
 /**
  * @brief Print an msg to a given fd and give an erro return

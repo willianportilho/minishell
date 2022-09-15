@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 17:11:39 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/15 19:41:08 by wportilh         ###   ########.fr       */
+/*   Created: 2022/09/15 19:39:58 by wportilh          #+#    #+#             */
+/*   Updated: 2022/09/15 19:41:51 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	main(int argc, char **argv)
+static void	handle_sigint(int sig)
 {
-	signal_main();
-	if (argv && argc > 1)
-	{
-		ft_putstr_fd("Error. No arguments are necessary", STDOUT_FILENO);
-		return (EXIT_FAILURE);
-	}
-	minishell();
-	return (EXIT_SUCCESS);
+	(void)sig;
+	ft_putchar_fd('\n', 2);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
+
+void	signal_main(void)
+{
+	struct sigaction	sigint;
+	struct sigaction	sigquit;
+
+	sigint.sa_handler = &handle_sigint;
+	sigint.sa_flags = 0;
+	sigquit.sa_handler = SIG_IGN;
+	sigquit.sa_flags = 0;
+	sigaction(SIGINT, &sigint, NULL);
+	sigaction(SIGQUIT, &sigquit, NULL);
 }

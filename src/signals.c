@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 19:39:58 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/15 19:41:51 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:23:37 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ static void	handle_sigint(int sig)
 
 void	signal_main(void)
 {
-	struct sigaction	sigint;
-	struct sigaction	sigquit;
-
-	sigint.sa_handler = &handle_sigint;
-	sigint.sa_flags = 0;
-	sigquit.sa_handler = SIG_IGN;
-	sigquit.sa_flags = 0;
-	sigaction(SIGINT, &sigint, NULL);
-	sigaction(SIGQUIT, &sigquit, NULL);
+	signal(SIGINT, &handle_sigint);
+	signal(SIGQUIT, SIG_IGN);
 }

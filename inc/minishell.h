@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/15 15:47:08 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:06:18 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ typedef struct s_tokens
 /**
  * @brief List of tokens to help lexer and parser
  * 
- * @param BACKSLASH \
+ * @param B_SLASH \
  * @param COMMAND ls -a (example)
  * @param S_QUOTE '
  * @param D_QUOTE "
- * @param SEMICOLON ;
+ * @param S_COLON ;
  * @param PIPE |
  * @param I_REDIRECT <
  * @param O_REDIRECT >
@@ -57,10 +57,10 @@ enum e_tokens
 	D_QUOTE = 34,
 	DOLAR = 36,
 	S_QUOTE = 39,
-	SEMICOLON = 59,
+	S_COLON = 59,
 	I_REDIRECT = 60,
 	O_REDIRECT = 62,
-	BACKSLASH = 92,
+	B_SLASH = 92,
 	PIPE = 124,
 	COMMAND = 666,
 	APP_O_REDIRECT = 667,

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/13 20:57:35 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:01:08 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ typedef enum e_tokens
 	D_QUOTE = 34,
 	DOLAR = 36,
 	S_QUOTE = 39,
-	SEMICOLON = 59,
+	S_COLON = 59,
 	I_REDIRECT = 60,
 	O_REDIRECT = 62,
-	BACKSLASH = 92,
+	B_SLASH = 92,
 	PIPE = 124,
 	COMMAND = 666,
 	APP_O_REDIRECT = 667,

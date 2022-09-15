@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/13 19:10:23 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:01:24 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,28 @@
 static int	check_semicolon_and_backslash(char *buff)
 {
 	int		i;
-	t_bool	btwn_s_quotes;
-	t_bool	btwn_d_quotes;
+	t_bool	bt_s_qt;
+	t_bool	bt_d_qt;
 
-	btwn_s_quotes = FALSE;
-	btwn_d_quotes = FALSE;
+	if (!buff)
+		return (EXIT_SUCCESS);
+	bt_s_qt = FALSE;
+	bt_d_qt = FALSE;
 	i = -1;
 	while (buff[++i])
 	{
-		if (buff[i] == D_QUOTE && !btwn_d_quotes && !btwn_s_quotes)
-			btwn_d_quotes = TRUE;
-		else if (buff[i] == D_QUOTE && btwn_d_quotes)
-			btwn_d_quotes = FALSE;
-		else if (buff[i] == S_QUOTE && !btwn_s_quotes && !btwn_d_quotes)
-			btwn_s_quotes = TRUE;
-		else if (buff[i] == S_QUOTE && btwn_s_quotes)
-			btwn_s_quotes = FALSE;
-		if ((buff[i] == SEMICOLON || buff[i] == BACKSLASH)
-			&& !btwn_d_quotes && !btwn_s_quotes)
+		if (buff[i] == D_QUOTE && !bt_d_qt && !bt_s_qt)
+			bt_d_qt = TRUE;
+		else if (buff[i] == D_QUOTE && bt_d_qt)
+			bt_d_qt = FALSE;
+		else if (buff[i] == S_QUOTE && !bt_s_qt && !bt_d_qt)
+			bt_s_qt = TRUE;
+		else if (buff[i] == S_QUOTE && bt_s_qt)
+			bt_s_qt = FALSE;
+		if ((buff[i] == S_COLON || buff[i] == B_SLASH) && !bt_d_qt && !bt_s_qt)
 			return (ft_msg_er("invalid ; or \\\n", EXIT_FAILURE, STDOUT_FILENO));
 	}
-	if (btwn_d_quotes || btwn_s_quotes)
+	if (bt_d_qt || bt_s_qt)
 		return (ft_msg_er("unclosed quotes\n", EXIT_FAILURE, STDOUT_FILENO));
 	return (EXIT_SUCCESS);
 }

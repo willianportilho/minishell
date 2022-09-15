@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/15 19:05:12 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:22:28 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ void	minishell(void)
 	while (TRUE)
 	{
 		buff = readline(">>");
-		if (buff != NULL && *buff != '\0')
+		if (buff != NULL)
 		{
-			add_history(buff);
+			if (*buff != '\0')
+				add_history(buff);
 		}
 		if (check_semicolon_and_backslash(buff))
 			continue ;

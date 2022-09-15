@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/15 19:01:24 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:11:13 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,15 @@ void	minishell(void)
 	while (TRUE)
 	{
 		buff = readline(">>");
-		if (buff != NULL && *buff != '\0')
+		if (buff != NULL)
 		{
-			add_history(buff);
+			if (*buff != '\0')
+				add_history(buff);
+		}
+		else
+		{
+			ft_printf(" exit\n");
+			exit (EXIT_SUCCESS);
 		}
 		if (check_semicolon_and_backslash(buff))
 			continue ;

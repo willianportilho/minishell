@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/15 20:36:54 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/18 19:39:40 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,46 @@ static void	fill_lst_content(t_tokens **tks, char **aux)
 	}
 }
 
+void	easy_parsing(t_tokens *tks, t_table *tb)
+{
+	t_table	*aux;
+
+	aux = tb;
+	aux->cmd = ft_strdup("");
+	if (tks->token == I_REDIRECT)
+	{
+		aux->in_red = TRUE;
+		tks = tks->next;
+		aux->in_file = tks->str;
+		tks = tks->next;
+	}
+	if (tks->token == O_REDIRECT)
+	{
+		aux->out_red = TRUE;
+		tks = tks->next;
+		aux->out_file = tks->str;
+		tks = tks->next;
+	}
+	while (tks->token != PIPE)
+	{
+		aux->cmd = ft_strjoin(aux->cmd, tks->str);
+		aux->cmd = ft_strjoin(aux->cmd, " ");
+		tks = tks->next;
+	}
+	if (tks->token == PIPE)
+	{
+		aux->next = malloc(sizeof(t_table));
+		aux = aux->next;
+		aux = NULL;
+		tks = tks->next;
+	}
+}
+
 void	lexer(t_tokens **tks, char **str)
 {
 	char	**tks_aux;
 
+	g_table = malloc(sizeof(t_table));
 	if (!ft_strlen(*str))
 		return ;
 	clean_space(*str);
@@ -65,4 +101,8 @@ void	lexer(t_tokens **tks, char **str)
 	free(*str);
 	fill_lst_content(tks, tks_aux);
 	lst_tokenizer(tks);
+	easy_parsing(*tks, g_table);
+	ft_printf("infile = %s\n", g_table->in_file);
+	ft_printf("outfile = %s\n", g_table->out_file);
+	ft_printf("command = %s\n", g_table->cmd);
 }

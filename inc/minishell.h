@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/15 20:28:32 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/18 19:32:23 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ typedef struct s_tokens
 	t_bool			error;
 	struct s_tokens	*next;
 }					t_tokens;
+
+typedef struct s_table
+{
+	char			*cmd;
+	char			**path;
+	t_bool			in_red;
+	t_bool			out_red;
+	char			*in_file;
+	int				infile_fd;
+	char			*out_file;
+	int				outfile_fd;
+	struct s_table	*next;
+}					t_table;
 
 /**
  * @brief List of tokens to help lexer and parser
@@ -74,7 +87,7 @@ enum e_tokens
  * @brief manipulate signals (ctrl c, ctrl \) in main function
  * 
  */
-void	signal_main(void);
+void		signal_main(void);
 
 /**
  * @brief Print an msg to a given fd and give an erro return
@@ -86,6 +99,7 @@ void	signal_main(void);
  * signal trigger and others
  */
 int			ft_msg_er(char *msg, int erro, int fd);
+
 /**
  * @brief Iterates through some string address and swap the
  * indicated old character by the new one
@@ -117,5 +131,7 @@ void		add_space(char **str);
 
 void		ft_lstadd_back_t(t_tokens **lst, t_tokens *new);
 t_tokens	*ft_lstnew_t(char *str);
+
+t_table	*g_table;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 22:09:52 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:30:27 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,28 +129,4 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 			get_path((*tab)->envp, &aux_tab, 0);
 		}
 	}
-	//testes
-	/*
-	int i;
-	int j;
-	
-	j = 0;
-	while ((*tab))
-	{
-		j++;
-		ft_printf("\n==== TABELA %d ====\n", j);
-		ft_printf("infile = %s\n", (*tab)->in_file);
-		ft_printf("infile_fd = %d\n", (*tab)->infile_fd);
-		ft_printf("outfile = %s\n", (*tab)->out_file);
-		ft_printf("outfile_fd = %d\n", (*tab)->outfile_fd);
-		ft_printf("command = %s\n", (*tab)->cmd);
-		i = -1;
-		while ((*tab)->path[++i])
-			ft_printf("path[%d] = %s\n", i, (*tab)->path[i]);
-		i = -1;
-		while ((*tab)->cmd_line[++i])
-			ft_printf("cmd line[%d] = %s\n", i, (*tab)->cmd_line[i]);
-		(*tab) = (*tab)->next;
-	}
-	*/
 }

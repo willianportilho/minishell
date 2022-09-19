@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 20:40:55 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:09:23 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	easy_parsing(t_tokens **tks, t_table *tab)
 	}
 	while ((*tks) && (*tks)->token != PIPE)
 	{
-		tab->cmd = ft_strjoin(tab->cmd, (*tks)->str);
-		tab->cmd = ft_strjoin(tab->cmd, " ");
+		tab->cmd = ft_strjoin_free(tab->cmd, (*tks)->str);
+		tab->cmd = ft_strjoin_free(tab->cmd, " ");
 		(*tks) = (*tks)->next;
 	}
 	clean_space(tab->cmd);
@@ -100,7 +100,7 @@ void	complete_path_with_command(t_table *tab)
 
 	i = -1;
 	while (tab->path[++i])
-		tab->path[i] = ft_strjoin(tab->path[i], tab->cmd_line[0]);
+		tab->path[i] = ft_strjoin_free(tab->path[i], tab->cmd_line[0]);
 }
 
 void	lexer(t_tokens **tks, char **str, t_table **tab)

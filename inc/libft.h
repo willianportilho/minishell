@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 20:58:58 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/14 22:34:21 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:01:46 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,14 @@ char		*ft_str_insert_free(char *str, char chr, int index);
  * @return int 1 if equals, 0 if different.
  */
 int			ft_str_is_equal(char *str_1, char *str_2);
+
+/**
+ * @brief strjoin that frees the first argment (s1)
+ * 
+ * @param s1 argment that will be freed
+ * @param s2 
+ * @return char* new string result of concat of s1 n s2
+ */
+char	*ft_strjoin_free(char *s1, char const *s2);
 
 #endif

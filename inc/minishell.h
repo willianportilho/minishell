@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/19 17:50:51 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:08:29 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,22 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <sys/wait.h>
+# include <fcntl.h>
 
 # define TEMP_VALUE	1
+
+typedef struct s_pipex
+{
+	int	**pipes;
+	int	*pid;
+	int	exit;
+	int	check;
+	int	i;
+	int	amount_cmd;
+	int	tmpin;
+	int	tmpout;
+}		t_pipex;
 
 typedef struct s_envp
 {
@@ -85,6 +99,8 @@ enum e_tokens
 	NOT_EXPANDABLE = 669,
 	EXPANDABLE = 670,
 };
+
+void		pre_executor(t_table **tab);
 
 /**
  * @brief manipulate signals (ctrl c, ctrl \) in main function

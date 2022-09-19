@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 18:18:58 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:40:55 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 			get_path((*tab)->envp, &aux_tab, 0);
 		}
 	}
-}
+
 	//testes
 	/*
 	int i;
@@ -139,7 +139,9 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 		j++;
 		ft_printf("\n==== TABELA %d ====\n", j);
 		ft_printf("infile = %s\n", (*tab)->in_file);
+		ft_printf("infile_fd = %d\n", (*tab)->infile_fd);
 		ft_printf("outfile = %s\n", (*tab)->out_file);
+		ft_printf("outfile_fd = %d\n", (*tab)->outfile_fd);
 		ft_printf("command = %s\n", (*tab)->cmd);
 		i = -1;
 		while ((*tab)->path[++i])
@@ -150,3 +152,4 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 		(*tab) = (*tab)->next;
 	}
 	*/
+}

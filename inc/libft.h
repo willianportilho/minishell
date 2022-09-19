@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 20:58:58 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/19 21:01:46 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:16:20 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,12 @@ int			ft_str_is_equal(char *str_1, char *str_2);
  * @return char* new string result of concat of s1 n s2
  */
 char	*ft_strjoin_free(char *s1, char const *s2);
+
+/**
+ * @brief Free an entire array (index and base)
+ * 
+ * @param array array to be freed
+ */
+void    ft_free_array(char **array);
 
 #endif

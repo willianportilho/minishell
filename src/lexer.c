@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 21:09:23 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:24:39 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	fill_lst_content(t_tokens **tks, char **aux)
 			ft_lstadd_back_t(tks, ft_lstnew_t(aux[i]));
 		i++;
 	}
+	ft_free_array(aux);
 }
 
 void	easy_parsing(t_tokens **tks, t_table *tab)

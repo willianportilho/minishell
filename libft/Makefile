@@ -6,7 +6,7 @@
 #    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/19 21:02:39 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/19 21:16:36 by ralves-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,8 @@ SOURCES	=										\
 						ft_str_insert_free.c	\
 						ft_str_is_equal.c		\
 						ft_strjoin_free.c		\
+						ft_free_array.c			\
+
 
 SOURCES_EXTRA =									\
 						ft_atol.c

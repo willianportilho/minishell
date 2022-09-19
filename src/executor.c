@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/19 20:10:36 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:23:05 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,14 @@ static int	executer(t_table **tab)
 	//	ft_printf("clean\n");
 	//	process_clean(&cmd_path, &cmd_arg);
 	//}
-	if (execve((*tab)->path[3], (*tab)->cmd_line, (*tab)->envp) == -1)
-		perror("pipex: exec:");
+	int i = -1;
+	while ((*tab)->path[++i])
+	{
+		if (execve((*tab)->path[i], (*tab)->cmd_line, (*tab)->envp) == -1)
+			perror("pipex: exec:");
+	}
 	//process_clean(&cmd_path, &cmd_arg);
-	//ft_printf("clean\n");
+	perror("DEU RUIM VÉI");
 	exit(EXIT_FAILURE);
 }
 

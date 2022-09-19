@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 18:57:08 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:21:01 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 	}
 
 	//testes
-	int i;
+	/*int i;
 	int j;
 	
 	j = 0;
@@ -150,4 +150,5 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 			ft_printf("cmd line[%d] = %s\n", i, (*tab)->cmd_line[i]);
 		(*tab) = (*tab)->next;
 	}
+	*/
 }

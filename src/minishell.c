@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 19:16:22 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:18:48 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void	minishell(t_table **tab)
 		{
 			lexer(&tokens, &buff, tab);
 		}
-		pre_executor(tab);
+		executor(tab);
 	}
 }

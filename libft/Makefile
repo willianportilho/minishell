@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/14 19:21:26 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/19 23:21:00 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,12 +56,14 @@ SOURCES	=										\
 						ft_lstdelone.c			\
 						ft_lstclear.c			\
 						ft_lstiter.c			\
-						ft_lstmap.c				\
-						ft_str_insert_free.c	\
-						ft_str_is_equal.c
+						ft_lstmap.c
 
 SOURCES_EXTRA =									\
-						ft_atol.c
+						ft_atol.c               \
+						ft_str_insert_free.c	\
+						ft_str_is_equal.c       \
+						ft_free_int_array.c     \
+						ft_free_vector.c
 
 NAME =					libft.a
 
@@ -93,7 +95,7 @@ WHITE =					\033[37m
 RESET =					\033[0m
 
 ${NAME}:				${OBJS} ${OBJS_EXTRA}
-						@${CREATE} ${NAME} ${OBJS}
+						@${CREATE} ${NAME} ${OBJS} ${OBJS_EXTRA}
 						@echo "${CYAN}================="
 						@echo "LIBFT COMPILED!!!"
 						@echo "=================${RESET}"

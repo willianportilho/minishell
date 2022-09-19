@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 20:58:58 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/14 22:34:21 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:48:23 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,19 @@ char		*ft_str_insert_free(char *str, char chr, int index);
  * @return int 1 if equals, 0 if different.
  */
 int			ft_str_is_equal(char *str_1, char *str_2);
+
+/**
+ * @brief Cleans an interger array
+ * 
+ * @param array address of the integer array
+ */
+void		ft_free_int_array(int ***array);
+
+/**
+ * @brief Cleans an interger array
+ * 
+ * @param array address of the vector
+ */
+void		ft_free_vector(int **array);
 
 #endif

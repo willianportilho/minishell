@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/19 20:08:29 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:19:04 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ enum e_tokens
 	EXPANDABLE = 670,
 };
 
-void		pre_executor(t_table **tab);
+void		executor(t_table **tab);
 
 /**
  * @brief manipulate signals (ctrl c, ctrl \) in main function

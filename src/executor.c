@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/19 20:23:05 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 00:32:30 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+void	clean_alloc(t_pipex *pipex)
+{
+	ft_free_int_array(&pipex->pipes);
+	ft_free_vector(&pipex->pid);
+}
 
 static void	close_pipes(t_pipex *pipex)
 {
@@ -24,7 +30,7 @@ static void	close_pipes(t_pipex *pipex)
 	}
 }
 
-static int	executer(t_table **tab)
+static int	execute(t_table **tab)
 {
 	//char	*cmd_path;
 	//char	**cmd_arg;
@@ -40,10 +46,10 @@ static int	executer(t_table **tab)
 	while ((*tab)->path[++i])
 	{
 		if (execve((*tab)->path[i], (*tab)->cmd_line, (*tab)->envp) == -1)
-			perror("pipex: exec:");
+			continue;
 	}
+	perror("pipex: exec:");
 	//process_clean(&cmd_path, &cmd_arg);
-	perror("DEU RUIM VÉI");
 	exit(EXIT_FAILURE);
 }
 
@@ -62,15 +68,15 @@ static void	child(t_table **tab, t_pipex *pipex)
 			dup2(pipex->pipes[pipex->i][1], STDOUT_FILENO);
 		if ((*tab)->infile_fd == -1)
 		{
-			ft_printf("clean\n");
+			clean_alloc(pipex);
 			exit (EXIT_FAILURE);
 		}
 	}
-	if ((*tab)->out_red == 0)
+	if ((*tab)->out_red)
 	{
 		if ((*tab)->outfile_fd == -1)
 		{
-			ft_printf("clean\n");
+			clean_alloc(pipex);
 			exit(EXIT_FAILURE);
 		}
 		if (((*tab)->in_red != 0) && (pipex->amount_cmd > 1))
@@ -79,7 +85,7 @@ static void	child(t_table **tab, t_pipex *pipex)
 		close((*tab)->outfile_fd);
 	}
 	close_pipes(pipex);
-	executer(tab);
+	execute(tab);
 }
 
 void	ft_pipex(t_table **tab, t_pipex *pipex)
@@ -123,7 +129,7 @@ static void	alloc_resources(t_pipex *pipex)
 	pipex->pipes[pipex->amount_cmd] = NULL;
 }
 
-void	pre_executor(t_table **tab)
+void	executor(t_table **tab)
 {
 	t_pipex	pipex;
 
@@ -139,4 +145,5 @@ void	pre_executor(t_table **tab)
 		ft_printf("outfile: colocar erro depois e limpar memória\n");
 	alloc_resources(&pipex);
 	ft_pipex(tab, &pipex);
+	clean_alloc(&pipex);
 }

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 18:11:37 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:18:58 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,8 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 	}
 }
 	//testes
-	/*int i;
+	/*
+	int i;
 	int j;
 	
 	j = 0;

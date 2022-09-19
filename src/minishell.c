@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 14:36:39 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:16:22 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void	minishell(t_table **tab)
 		{
 			lexer(&tokens, &buff, tab);
 		}
+		pre_executor(tab);
 	}
 }

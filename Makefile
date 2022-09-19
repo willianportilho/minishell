@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/15 20:30:06 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/19 20:02:22 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES =		minishell.c	main.c ft_msg_erro.c handle_spaces.c \
 				ft_str_swap_chr.c ft_lstadd_back_t.c ft_lstnew_t.c \
-				lexer.c signals.c \
+				lexer.c signals.c executor.c\
 
 NAME =			minishell
 

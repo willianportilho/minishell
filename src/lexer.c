@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 18:11:37 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:57:08 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,9 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 			get_path((*tab)->envp, &aux_tab, 0);
 		}
 	}
-}
+
 	//testes
-	/*int i;
+	int i;
 	int j;
 	
 	j = 0;
@@ -138,7 +138,9 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 		j++;
 		ft_printf("\n==== TABELA %d ====\n", j);
 		ft_printf("infile = %s\n", (*tab)->in_file);
+		ft_printf("infile_fd = %d\n", (*tab)->infile_fd);
 		ft_printf("outfile = %s\n", (*tab)->out_file);
+		ft_printf("outfile_fd = %d\n", (*tab)->outfile_fd);
 		ft_printf("command = %s\n", (*tab)->cmd);
 		i = -1;
 		while ((*tab)->path[++i])
@@ -148,4 +150,4 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 			ft_printf("cmd line[%d] = %s\n", i, (*tab)->cmd_line[i]);
 		(*tab) = (*tab)->next;
 	}
-	*/
+}

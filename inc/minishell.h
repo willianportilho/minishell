@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/18 19:32:23 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:50:51 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ typedef struct s_tokens
 typedef struct s_table
 {
 	char			*cmd;
+	char			**cmd_line;
 	char			**path;
+	char			**envp;
+	t_bool			pipe;
 	t_bool			in_red;
 	t_bool			out_red;
 	char			*in_file;
@@ -114,14 +117,15 @@ void		ft_str_swap_chr(char **str, char old, char new);
  * @brief start the prompt and REPL
  * 
  */
-void		minishell(void);
+void		minishell(t_table **tab);
+
 /**
  * @brief Under construction
  * 
  * @param tks 
  * @param str 
  */
-void		lexer(t_tokens **tks, char **str);
+void		lexer(t_tokens **tks, char **str, t_table **tab);
 
 /* ---------------------------------------------------------------------*\
 |	handle_spaces.c														 |
@@ -129,9 +133,9 @@ void		lexer(t_tokens **tks, char **str);
 void		clean_space(char *str);
 void		add_space(char **str);
 
+void		get_path(char **envp, t_table **p, int i);
+
 void		ft_lstadd_back_t(t_tokens **lst, t_tokens *new);
 t_tokens	*ft_lstnew_t(char *str);
-
-t_table	*g_table;
 
 #endif

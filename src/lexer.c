@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/18 19:39:40 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:11:37 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,46 +53,61 @@ static void	fill_lst_content(t_tokens **tks, char **aux)
 	}
 }
 
-void	easy_parsing(t_tokens *tks, t_table *tb)
+void	easy_parsing(t_tokens **tks, t_table *tab)
 {
-	t_table	*aux;
-
-	aux = tb;
-	aux->cmd = ft_strdup("");
-	if (tks->token == I_REDIRECT)
+	tab->pipe = FALSE;
+	tab->cmd = ft_strdup("");
+	if ((*tks)->token == I_REDIRECT)
 	{
-		aux->in_red = TRUE;
-		tks = tks->next;
-		aux->in_file = tks->str;
-		tks = tks->next;
+		tab->in_red = TRUE;
+		(*tks) = (*tks)->next;
+		tab->in_file = (*tks)->str;
+		(*tks) = (*tks)->next;
 	}
-	if (tks->token == O_REDIRECT)
+	if ((*tks)->token == O_REDIRECT)
 	{
-		aux->out_red = TRUE;
-		tks = tks->next;
-		aux->out_file = tks->str;
-		tks = tks->next;
+		tab->out_red = TRUE;
+		(*tks) = (*tks)->next;
+		tab->out_file = (*tks)->str;
+		(*tks) = (*tks)->next;
 	}
-	while (tks->token != PIPE)
+	while ((*tks) && (*tks)->token != PIPE)
 	{
-		aux->cmd = ft_strjoin(aux->cmd, tks->str);
-		aux->cmd = ft_strjoin(aux->cmd, " ");
-		tks = tks->next;
+		tab->cmd = ft_strjoin(tab->cmd, (*tks)->str);
+		tab->cmd = ft_strjoin(tab->cmd, " ");
+		(*tks) = (*tks)->next;
 	}
-	if (tks->token == PIPE)
+	clean_space(tab->cmd);
+	tab->cmd_line = ft_split(tab->cmd, ' ');
+	int i = -1;
+	ft_str_swap_chr(&tab->cmd, TEMP_VALUE, SPACE);
+	while (tab->cmd_line[++i])
+		ft_str_swap_chr(&tab->cmd_line[i], TEMP_VALUE, SPACE);
+	if ((*tks) && (*tks)->token == PIPE)
 	{
-		aux->next = malloc(sizeof(t_table));
-		aux = aux->next;
-		aux = NULL;
-		tks = tks->next;
+		tab->pipe = TRUE;
+		tab->next = malloc(sizeof(tab));
 	}
+	if ((*tks))
+		(*tks) = (*tks)->next;
+	else
+		tab->next = NULL;
 }
 
-void	lexer(t_tokens **tks, char **str)
+void	complete_path_with_command(t_table *tab)
+{
+	int		i;
+
+	i = -1;
+	while (tab->path[++i])
+		tab->path[i] = ft_strjoin(tab->path[i], tab->cmd_line[0]);
+}
+
+void	lexer(t_tokens **tks, char **str, t_table **tab)
 {
 	char	**tks_aux;
+	t_table	*aux_tab;
 
-	g_table = malloc(sizeof(t_table));
 	if (!ft_strlen(*str))
 		return ;
 	clean_space(*str);
@@ -101,8 +116,36 @@ void	lexer(t_tokens **tks, char **str)
 	free(*str);
 	fill_lst_content(tks, tks_aux);
 	lst_tokenizer(tks);
-	easy_parsing(*tks, g_table);
-	ft_printf("infile = %s\n", g_table->in_file);
-	ft_printf("outfile = %s\n", g_table->out_file);
-	ft_printf("command = %s\n", g_table->cmd);
+	aux_tab = *tab;
+	while (*tks)
+	{
+		easy_parsing(tks, aux_tab);
+		complete_path_with_command(aux_tab);
+		if (*tks)
+		{
+			aux_tab = aux_tab->next;
+			get_path((*tab)->envp, &aux_tab, 0);
+		}
+	}
 }
+	//testes
+	/*int i;
+	int j;
+	
+	j = 0;
+	while ((*tab))
+	{
+		j++;
+		ft_printf("\n==== TABELA %d ====\n", j);
+		ft_printf("infile = %s\n", (*tab)->in_file);
+		ft_printf("outfile = %s\n", (*tab)->out_file);
+		ft_printf("command = %s\n", (*tab)->cmd);
+		i = -1;
+		while ((*tab)->path[++i])
+			ft_printf("path[%d] = %s\n", i, (*tab)->path[i]);
+		i = -1;
+		while ((*tab)->cmd_line[++i])
+			ft_printf("cmd line[%d] = %s\n", i, (*tab)->cmd_line[i]);
+		(*tab) = (*tab)->next;
+	}
+	*/

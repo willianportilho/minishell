@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/15 20:29:19 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 14:36:39 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	check_semicolon_and_backslash(char *buff)
 	return (EXIT_SUCCESS);
 }
 
-void	minishell(void)
+void	minishell(t_table **tab)
 {
 	char		*buff;
 	t_tokens	*tokens;
@@ -63,7 +63,7 @@ void	minishell(void)
 			continue ;
 		else
 		{
-			lexer(&tokens, &buff);
+			lexer(&tokens, &buff, tab);
 		}
 	}
 }

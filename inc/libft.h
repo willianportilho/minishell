@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 20:58:58 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/19 21:16:20 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:09:20 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,14 @@ char	*ft_strjoin_free(char *s1, char const *s2);
  * @param array array to be freed
  */
 void    ft_free_array(char **array);
+
+/**
+ * @brief same as ft_split but free the s param
+ * 
+ * @param s param to be freed
+ * @param c 
+ * @return char** 
+ */
+char	**ft_split_free(char *s, char c);
 
 #endif

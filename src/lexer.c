@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 22:03:25 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:09:52 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,7 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 		return ;
 	clean_space(*str);
 	add_space(str);
-	tks_aux = ft_split(*str, SPACE);
-	free(*str);
+	tks_aux = ft_split_free(*str, SPACE);
 	fill_lst_content(tks, tks_aux);
 	lst_tokenizer(tks);
 	aux_tab = *tab;

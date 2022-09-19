@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/19 23:21:00 by wportilh         ###   ########.fr        #
+#    Created: 2022/09/20 00:41:26 by wportilh          #+#    #+#              #
+#    Updated: 2022/09/20 00:42:15 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,12 @@ SOURCES_EXTRA =									\
 						ft_str_insert_free.c	\
 						ft_str_is_equal.c       \
 						ft_free_int_array.c     \
-						ft_free_vector.c
+						ft_free_vector.c        \
+						ft_str_insert_free.c	\
+						ft_str_is_equal.c		\
+						ft_strjoin_free.c		\
+						ft_free_array.c			\
+						ft_split_free.c
 
 NAME =					libft.a
 

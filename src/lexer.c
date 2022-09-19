@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 20:21:01 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:30:27 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	fill_lst_content(t_tokens **tks, char **aux)
 			ft_lstadd_back_t(tks, ft_lstnew_t(aux[i]));
 		i++;
 	}
+	ft_free_array(aux);
 }
 
 void	easy_parsing(t_tokens **tks, t_table *tab)
@@ -60,22 +61,22 @@ void	easy_parsing(t_tokens **tks, t_table *tab)
 	if ((*tks)->token == I_REDIRECT)
 	{
 		tab->in_red = TRUE;
-		(*tks) = (*tks)->next;
-		tab->in_file = (*tks)->str;
-		(*tks) = (*tks)->next;
+		ft_lstfoward_free_t(tks);
+		tab->in_file = ft_strdup((*tks)->str);
+		ft_lstfoward_free_t(tks);
 	}
 	if ((*tks)->token == O_REDIRECT)
 	{
 		tab->out_red = TRUE;
-		(*tks) = (*tks)->next;
-		tab->out_file = (*tks)->str;
-		(*tks) = (*tks)->next;
+		ft_lstfoward_free_t(tks);
+		tab->out_file = ft_strdup((*tks)->str);
+		ft_lstfoward_free_t(tks);
 	}
 	while ((*tks) && (*tks)->token != PIPE)
 	{
-		tab->cmd = ft_strjoin(tab->cmd, (*tks)->str);
-		tab->cmd = ft_strjoin(tab->cmd, " ");
-		(*tks) = (*tks)->next;
+		tab->cmd = ft_strjoin_free(tab->cmd, (*tks)->str);
+		tab->cmd = ft_strjoin_free(tab->cmd, " ");
+		ft_lstfoward_free_t(tks);
 	}
 	clean_space(tab->cmd);
 	tab->cmd_line = ft_split(tab->cmd, ' ');
@@ -89,7 +90,9 @@ void	easy_parsing(t_tokens **tks, t_table *tab)
 		tab->next = malloc(sizeof(tab));
 	}
 	if ((*tks))
-		(*tks) = (*tks)->next;
+	{	
+		ft_lstfoward_free_t(tks);
+	}
 	else
 		tab->next = NULL;
 }
@@ -100,7 +103,7 @@ void	complete_path_with_command(t_table *tab)
 
 	i = -1;
 	while (tab->path[++i])
-		tab->path[i] = ft_strjoin(tab->path[i], tab->cmd_line[0]);
+		tab->path[i] = ft_strjoin_free(tab->path[i], tab->cmd_line[0]);
 }
 
 void	lexer(t_tokens **tks, char **str, t_table **tab)
@@ -112,8 +115,7 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 		return ;
 	clean_space(*str);
 	add_space(str);
-	tks_aux = ft_split(*str, SPACE);
-	free(*str);
+	tks_aux = ft_split_free(*str, SPACE);
 	fill_lst_content(tks, tks_aux);
 	lst_tokenizer(tks);
 	aux_tab = *tab;
@@ -127,28 +129,4 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 			get_path((*tab)->envp, &aux_tab, 0);
 		}
 	}
-
-	//testes
-	/*int i;
-	int j;
-	
-	j = 0;
-	while ((*tab))
-	{
-		j++;
-		ft_printf("\n==== TABELA %d ====\n", j);
-		ft_printf("infile = %s\n", (*tab)->in_file);
-		ft_printf("infile_fd = %d\n", (*tab)->infile_fd);
-		ft_printf("outfile = %s\n", (*tab)->out_file);
-		ft_printf("outfile_fd = %d\n", (*tab)->outfile_fd);
-		ft_printf("command = %s\n", (*tab)->cmd);
-		i = -1;
-		while ((*tab)->path[++i])
-			ft_printf("path[%d] = %s\n", i, (*tab)->path[i]);
-		i = -1;
-		while ((*tab)->cmd_line[++i])
-			ft_printf("cmd line[%d] = %s\n", i, (*tab)->cmd_line[i]);
-		(*tab) = (*tab)->next;
-	}
-	*/
 }

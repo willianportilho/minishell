@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 17:11:39 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/19 14:49:53 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:00:16 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ void	get_path(char **envp, t_table **p, int i)
 	(*p)->path = (char **)malloc((i + 1) * sizeof(*temp));
 	(*p)->path[i] = NULL;
 	while (i--)
-	{
-		(*p)->path[i] = ft_strjoin(temp[i], "/");
-		free(temp[i]);
-	}
+		(*p)->path[i] = ft_strjoin_free(temp[i], "/");
 	free(temp);
 	(*p)->envp = envp;
 }

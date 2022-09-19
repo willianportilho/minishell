@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_t.c                                      :+:      :+:    :+:   */
+/*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 14:41:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 21:23:07 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/19 21:14:20 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/19 21:15:47 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/libft.h"
 
-t_tokens	*ft_lstnew_t(char *str)
+void    ft_free_array(char **array)
 {
-	t_tokens	*n;
+	int	i;
 
-	n = malloc(sizeof(t_tokens));
-	if (n == NULL)
-		return (NULL);
-	(*n).str = ft_strdup(str);
-	n->next = NULL;
-	return (n);
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
 }

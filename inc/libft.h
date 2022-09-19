@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 20:58:58 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/19 22:48:23 by wportilh         ###   ########.fr       */
+/*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
+/*   Updated: 2022/09/20 00:40:41 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ char		*ft_str_insert_free(char *str, char chr, int index);
 int			ft_str_is_equal(char *str_1, char *str_2);
 
 /**
+<<<<<<< HEAD
  * @brief Cleans an interger array
  * 
  * @param array address of the integer array
@@ -111,5 +112,30 @@ void		ft_free_int_array(int ***array);
  * @param array address of the vector
  */
 void		ft_free_vector(int **array);
+
+/**
+ * @brief strjoin that frees the first argment (s1)
+ * 
+ * @param s1 argment that will be freed
+ * @param s2 
+ * @return char* new string result of concat of s1 n s2
+ */
+char	*ft_strjoin_free(char *s1, char const *s2);
+
+/**
+ * @brief Free an entire array (index and base)
+ * 
+ * @param array array to be freed
+ */
+void    ft_free_array(char **array);
+
+/**
+ * @brief same as ft_split but free the s param
+ * 
+ * @param s param to be freed
+ * @param c 
+ * @return char** 
+ */
+char	**ft_split_free(char *s, char c);
 
 #endif

@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_t.c                                      :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 14:41:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 21:23:07 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/04/11 02:03:38 by wportilh          #+#    #+#             */
+/*   Updated: 2022/09/19 20:59:24 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/libft.h"
 
-t_tokens	*ft_lstnew_t(char *str)
+char	*ft_strjoin_free(char *s1, char const *s2)
 {
-	t_tokens	*n;
+	int		i;
+	int		j;
+	char	*ptr;
 
-	n = malloc(sizeof(t_tokens));
-	if (n == NULL)
+	i = 0;
+	j = 0;
+	ptr = (char *)malloc((ft_strlen((char *)s1) + ft_strlen((char *)s2)) + 1);
+	if (!ptr)
 		return (NULL);
-	(*n).str = ft_strdup(str);
-	n->next = NULL;
-	return (n);
+	while (s1[i])
+	{
+		ptr[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		ptr[i] = s2[j];
+		i++;
+		j++;
+	}
+	ptr[i] = '\0';
+	free(s1);
+	return (ptr);
 }

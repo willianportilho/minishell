@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 00:32:30 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/20 00:55:30 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,4 +146,9 @@ void	executor(t_table **tab)
 	alloc_resources(&pipex);
 	ft_pipex(tab, &pipex);
 	clean_alloc(&pipex);
+	if ((*tab)->next)
+	{
+		*tab = (*tab)->next;
+		executor(tab);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 21:24:39 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:03:25 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,22 @@ void	easy_parsing(t_tokens **tks, t_table *tab)
 	if ((*tks)->token == I_REDIRECT)
 	{
 		tab->in_red = TRUE;
-		(*tks) = (*tks)->next;
-		tab->in_file = (*tks)->str;
-		(*tks) = (*tks)->next;
+		ft_lstfoward_free_t(tks);
+		tab->in_file = ft_strdup((*tks)->str);
+		ft_lstfoward_free_t(tks);
 	}
 	if ((*tks)->token == O_REDIRECT)
 	{
 		tab->out_red = TRUE;
-		(*tks) = (*tks)->next;
-		tab->out_file = (*tks)->str;
-		(*tks) = (*tks)->next;
+		ft_lstfoward_free_t(tks);
+		tab->out_file = ft_strdup((*tks)->str);
+		ft_lstfoward_free_t(tks);
 	}
 	while ((*tks) && (*tks)->token != PIPE)
 	{
 		tab->cmd = ft_strjoin_free(tab->cmd, (*tks)->str);
 		tab->cmd = ft_strjoin_free(tab->cmd, " ");
-		(*tks) = (*tks)->next;
+		ft_lstfoward_free_t(tks);
 	}
 	clean_space(tab->cmd);
 	tab->cmd_line = ft_split(tab->cmd, ' ');
@@ -90,7 +90,9 @@ void	easy_parsing(t_tokens **tks, t_table *tab)
 		tab->next = malloc(sizeof(tab));
 	}
 	if ((*tks))
-		(*tks) = (*tks)->next;
+	{	
+		ft_lstfoward_free_t(tks);
+	}
 	else
 		tab->next = NULL;
 }
@@ -128,7 +130,6 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 			get_path((*tab)->envp, &aux_tab, 0);
 		}
 	}
-
 	//testes
 	/*
 	int i;

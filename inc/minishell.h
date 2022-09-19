@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/19 20:08:29 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:59:26 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,10 @@ void		add_space(char **str);
 
 void		get_path(char **envp, t_table **p, int i);
 
+/* ---------------------------------------------------------------------*\
+|	handle lists														 |
+\* ---------------------------------------------------------------------*/
+void		ft_lstfoward_free_t(t_tokens **lst);
 void		ft_lstadd_back_t(t_tokens **lst, t_tokens *new);
 t_tokens	*ft_lstnew_t(char *str);
 

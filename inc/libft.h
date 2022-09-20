@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 13:55:52 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:27:04 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,6 @@ char		**ft_split_free(char *s, char c);
  * @param set 
  * @return char* 
  */
-char	*ft_strtrim_free(char *s1, char const *set);
+char		*ft_strtrim_free(char *s1, char const *set);
 
 #endif

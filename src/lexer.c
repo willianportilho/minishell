@@ -6,34 +6,11 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/20 14:53:44 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:26:37 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-static void	TESTE_print_tab(t_table **tab)
-{
-	t_table	*aux;
-	int contador_tabela = 0;
-	int i = -1;
-	aux = *tab;
-
-	while (aux)
-	{
-		contador_tabela++;
-		ft_printf("==== TABELA %d ====\n", contador_tabela);
-		ft_printf("cmd = %s\n", aux->cmd);
-		ft_printf("in_file = %s\n", aux->in_file);
-		ft_printf("out_file = %s\n", aux->out_file);
-		while (aux->path[++i])
-			ft_printf("path[%d] = %s\n", i, aux->path[i]);
-		i = -1;
-		while (aux->cmd_line[++i])
-			ft_printf("cmd_line[%d] = %s\n", i, aux->cmd_line[i]);
-		aux = aux->next;
-	}
-}
 
 static void	lst_tokenizer(t_tokens **tks)
 {
@@ -77,21 +54,25 @@ static void	fill_lst_content(t_tokens **tks, char **aux)
 	ft_free_array(aux);
 }
 
-void	complete_path_with_command(t_table *tab)
+void	create_cmd_line_and_path(t_table *tab)
 {
 	int		i;
 
 	i = -1;
+	clean_space(tab->cmd);
+	tab->cmd_line = ft_split(tab->cmd, ' ');
+	ft_str_swap_chr(&tab->cmd, TEMP_VALUE, SPACE);
+	while (tab->cmd_line[++i])
+		ft_str_swap_chr(&tab->cmd_line[i], TEMP_VALUE, SPACE);
+	i = -1;
 	while (tab->path[++i])
 		tab->path[i] = ft_strjoin_free(tab->path[i], tab->cmd_line[0]);
-	
 }
 
 void	lexer(t_tokens **tks, char **str, t_table **tab)
 {
 	char	**tks_aux;
 	t_table	*aux_tab;
-	int i = -1;
 
 	if (!ft_strlen(*str))
 		return ;
@@ -107,12 +88,7 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 		aux_tab->cmd = ft_strdup("");
 		while (!aux_tab->pipe && (*tks))
 			parser(tks, aux_tab);
-		clean_space(aux_tab->cmd);
-		aux_tab->cmd_line = ft_split(aux_tab->cmd, ' ');
-		ft_str_swap_chr(&aux_tab->cmd, TEMP_VALUE, SPACE);
-		while (aux_tab->cmd_line[++i])
-			ft_str_swap_chr(&aux_tab->cmd_line[i], TEMP_VALUE, SPACE);
-		complete_path_with_command(aux_tab);
+		create_cmd_line_and_path(aux_tab);
 		if (*tks)
 		{
 			aux_tab = aux_tab->next;

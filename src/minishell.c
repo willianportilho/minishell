@@ -6,13 +6,13 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/20 14:16:55 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:24:38 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void reset_tab(t_table **tab)
+static void	reset_tab(t_table **tab)
 {
 	t_table	*aux;
 	t_table	*temp;
@@ -82,13 +82,8 @@ void	minishell(t_table **tab)
 			ft_printf(" exit\n");
 			exit (EXIT_SUCCESS);
 		}
-		if (check_semicolon_and_backslash(buff))
-			continue ;
-		else
-		{
+		if (!check_semicolon_and_backslash(buff))
 			lexer(&tokens, &buff, tab);
-		}
-		//TESTE_print_tab(tab);
 		executor(tab);
 		reset_tab(tab);
 	}

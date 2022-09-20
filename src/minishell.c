@@ -6,34 +6,11 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/20 13:54:19 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 14:16:55 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-static void	TESTE_print_tab(t_table **tab)
-{
-	t_table	*aux;
-	int contador_tabela = 0;
-	int i = -1;
-	aux = *tab;
-
-	while (aux)
-	{
-		contador_tabela++;
-		ft_printf("==== TABELA %d ====\n", contador_tabela);
-		ft_printf("cmd = %s\n", aux->cmd);
-		ft_printf("in_file = %s\n", aux->in_file);
-		ft_printf("out_file = %s\n", aux->out_file);
-		while (aux->path[++i])
-			ft_printf("path[%d] = %s\n", i, aux->path[i]);
-		i = -1;
-		while (aux->cmd_line[++i])
-			ft_printf("cmd_line[%d] = %s\n", i, aux->cmd_line[i]);
-		aux = aux->next;
-	}
-}
 
 static void reset_tab(t_table **tab)
 {
@@ -111,7 +88,7 @@ void	minishell(t_table **tab)
 		{
 			lexer(&tokens, &buff, tab);
 		}
-		TESTE_print_tab(tab);
+		//TESTE_print_tab(tab);
 		executor(tab);
 		reset_tab(tab);
 	}

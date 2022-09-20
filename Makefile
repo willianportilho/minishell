@@ -6,19 +6,21 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/20 16:05:53 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/21 00:15:19 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES =		minishell.c	main.c ft_msg_erro.c handle_spaces.c \
-				ft_str_swap_chr.c ft_lstadd_back_t.c ft_lstnew_t.c \
-				lexer.c signals.c executor.c ft_lstfoward_free_t.c \
-				parser.c	\
+SOURCES =		minishell.c	main.c signals.c		
+LEXER =			lexer.c handle_spaces.c
+LIST =			ft_lstadd_back_t.c ft_lstnew_t.c ft_lstfoward_free_t.c
+PARSER =		parser.c
+EXECUTOR =		exec_clean.c pipe.c redirects.c executor.c
 
 NAME =			minishell
 
 CC =			cc
 CFLAGS =		-g3 -Wall -Wextra -Werror
+READ_LINE =		-lreadline #-lft
 RM =			rm -f
 RM_ALL =		rm -rf
 
@@ -31,9 +33,19 @@ PRINT =			./printf
 INC =			./inc
 
 SRC_PATH =		src/
+SRC_EXEC =		src/executor/
+SRC_LEXER =		src/lexer/
+SRC_PARSER =	src/parser/
+SRC_LIST =		src/list/
+
 OBJ_PATH =		obj/
 
 SRCS =			${addprefix ${SRC_PATH}, ${SOURCES}}
+
+OBJS_EXEC =		${addprefix ${OBJ_PATH}, ${EXECUTOR:.c=.o}}
+OBJS_LEXER =	${addprefix ${OBJ_PATH}, ${LEXER:.c=.o}}
+OBJS_PARSER =	${addprefix ${OBJ_PATH}, ${PARSER:.c=.o}}
+OBJS_LIST =		${addprefix ${OBJ_PATH}, ${LIST:.c=.o}}
 OBJS =			${addprefix ${OBJ_PATH}, ${SOURCES:.c=.o}}
 
 ITALIC =		\033[3m
@@ -49,14 +61,30 @@ RESET =			\033[0m
 
 all:			${NAME}
 
-${NAME}:		${LIBFT} ${OBJS}
+${NAME}:		${LIBFT} ${OBJS} ${OBJS_EXEC} ${OBJS_PARSER} ${OBJS_LEXER} ${OBJS_LIST}
 				@echo "${CYAN}=========="
 				@echo "OBJS OK!!!"
 				@echo "=========="
-				@${CC} -lreadline ${OBJS} ${LIBFT} -o ${NAME}
+				@${CC} ${READ_LINE} ${OBJS} ${OBJS_EXEC} ${OBJS_PARSER} ${OBJS_LEXER} ${OBJS_LIST} ${LIBFT} -o ${NAME}
 				@echo "============================"
 				@echo "MINISHELL PROGRAM CREATED!!!"
 				@echo "============================${RESET}"
+
+${OBJ_PATH}%.o:	${SRC_EXEC}%.c
+				@mkdir -p obj
+				@${CC} ${CFLAGS} -c $< -o $@
+
+${OBJ_PATH}%.o:	${SRC_LIST}%.c
+				@mkdir -p obj
+				@${CC} ${CFLAGS} -c $< -o $@
+
+${OBJ_PATH}%.o:	${SRC_PARSER}%.c
+				@mkdir -p obj
+				@${CC} ${CFLAGS} -c $< -o $@
+
+${OBJ_PATH}%.o:	${SRC_LEXER}%.c
+				@mkdir -p obj
+				@${CC} ${CFLAGS} -c $< -o $@
 
 ${OBJ_PATH}%.o:	${SRC_PATH}%.c
 				@mkdir -p obj
@@ -94,6 +122,6 @@ re:				fclean all
 				@echo "===============${RESET}"
 
 norm:
-				norminette ${SRCS} ${LIB} ${PRINT} ${INC}
+				norminette ${SRCS} ${LIB} ${INC}
 
 .PHONY:			all clean fclean re norm ac

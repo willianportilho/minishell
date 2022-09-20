@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/20 00:41:26 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/20 13:55:17 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/20 22:57:30 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,9 @@ SOURCES_EXTRA =									\
 						ft_strjoin_free.c		\
 						ft_free_array.c			\
 						ft_split_free.c			\
-						ft_strtrim_free.c
+						ft_strtrim_free.c       \
+						ft_msg_erro.c           \
+						ft_str_swap_chr.c
 
 NAME =					libft.a
 

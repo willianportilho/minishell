@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_t.c                                      :+:      :+:    :+:   */
+/*   ft_msg_erro.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 14:41:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 21:23:07 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/13 18:53:57 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/20 22:54:51 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/libft.h"
 
-t_tokens	*ft_lstnew_t(char *str)
+int	ft_msg_er(char *msg, int erro, int fd)
 {
-	t_tokens	*n;
-
-	n = malloc(sizeof(t_tokens));
-	if (n == NULL)
-		return (NULL);
-	(*n).str = ft_strdup(str);
-	n->next = NULL;
-	return (n);
+	ft_putstr_fd(msg, fd);
+	return (erro);
 }

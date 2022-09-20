@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 16:36:50 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/20 22:56:41 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_table
 	t_bool			pipe;
 	t_bool			in_red;
 	t_bool			out_red;
+	t_bool			in_delimiter;
+	t_bool			out_append;
 	char			*in_file;
 	int				infile_fd;
 	char			*out_file;
@@ -101,8 +103,6 @@ enum e_tokens
 	EXPANDABLE = 670,
 };
 
-void		executor(t_table **tab);
-
 /**
  * @brief manipulate signals (ctrl c, ctrl \) in main function
  * 
@@ -110,31 +110,10 @@ void		executor(t_table **tab);
 void		signal_main(void);
 
 /**
- * @brief Print an msg to a given fd and give an erro return
- * 
- * @param msg Msg to be printed
- * @param erro Erro to be returned
- * @param fd FD where msg will be printed
- * @return int the return can be used as exit_status, as boolean,
- * signal trigger and others
- */
-int			ft_msg_er(char *msg, int erro, int fd);
-
-/**
- * @brief Iterates through some string address and swap the
- * indicated old character by the new one
- * 
- * @param str pointer to a string
- * @param old character of the string to be switched
- * @param new character to be added
- */
-void		ft_str_swap_chr(char **str, char old, char new);
-
-/**
  * @brief start the prompt and REPL
  * 
  */
-void		minishell(t_table **tab);
+void		minishell(t_table **tab, char **envp);
 
 /**
  * @brief Under construction at lexer.c
@@ -142,7 +121,7 @@ void		minishell(t_table **tab);
  * @param tks 
  * @param str 
  */
-void		lexer(t_tokens **tks, char **str, t_table **tab);
+void		lexer(t_tokens **tks, char **str, t_table **tab, char **envp);
 
 /**
  * @brief under construction at parser.c
@@ -152,12 +131,19 @@ void		lexer(t_tokens **tks, char **str, t_table **tab);
  */
 void		parser(t_tokens **tks, t_table *tab);
 
+/**
+ * @brief init variables next and envp of the table node
+ * 
+ * @param tab t table struct to be initialized
+ */
+void		simple_init(t_table *tab);
+
 /* ---------------------------------------------------------------------*\
 |	handle_spaces.c														 |
 \* ---------------------------------------------------------------------*/
 void		clean_space(char *str);
 void		add_space(char **str);
-void		get_path(char **envp, t_table **p, int i);
+void		get_path(char **envp, t_table *p, int i);
 
 /* ---------------------------------------------------------------------*\
 |	handle lists														 |
@@ -165,5 +151,18 @@ void		get_path(char **envp, t_table **p, int i);
 void		ft_lstfoward_free_t(t_tokens **lst);
 void		ft_lstadd_back_t(t_tokens **lst, t_tokens *new);
 t_tokens	*ft_lstnew_t(char *str);
+
+/* ---------------------------------------------------------------------*\
+|	executor														 |
+\* ---------------------------------------------------------------------*/
+void		wait_processes(t_exec *exec);
+void		initialize_pipes(t_exec *exec);
+void		alloc_resources(t_exec *exec);
+void		initialize_files(t_table **tab);
+void		close_pipes(t_exec *exec);
+void		clean_alloc(t_exec *exec);
+void		check_infile(t_table **tab, t_exec *exec);
+void		check_outfile(t_table **tab, t_exec *exec);
+void		executor(t_table **tab);
 
 #endif

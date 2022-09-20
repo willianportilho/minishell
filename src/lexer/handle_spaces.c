@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_spaces.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:57:49 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/15 15:43:56 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 23:42:48 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 /**
  * @brief Checar entrada triplicada

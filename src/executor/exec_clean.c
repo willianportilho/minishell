@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstfoward_free_t.c                              :+:      :+:    :+:   */
+/*   exec_clean.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 21:49:50 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/20 13:14:19 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/20 22:39:09 by wportilh          #+#    #+#             */
+/*   Updated: 2022/09/20 23:42:31 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
-void	ft_lstfoward_free_t(t_tokens **lst)
+void	clean_alloc(t_exec *exec)
 {
-	t_tokens	*temp;
-
-	if (!(*lst))
-		return ;
-	temp = (*lst)->next;
-	free((*lst)->str);
-	free (*lst);
-	*lst = temp;
+	ft_free_int_array(&exec->pipes);
+	ft_free_vector(&exec->pid);
 }

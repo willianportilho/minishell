@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array.c                                    :+:      :+:    :+:   */
+/*   ft_lstfoward_free_t.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 21:14:20 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/20 22:51:19 by wportilh         ###   ########.fr       */
+/*   Created: 2022/09/19 21:49:50 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/20 23:43:10 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/libft.h"
+#include "../../inc/minishell.h"
 
-void	ft_free_array(char **array)
+void	ft_lstfoward_free_t(t_tokens **lst)
 {
-	int	i;
+	t_tokens	*temp;
 
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
+	if (!(*lst))
+		return ;
+	temp = (*lst)->next;
+	free((*lst)->str);
+	free (*lst);
+	*lst = temp;
 }

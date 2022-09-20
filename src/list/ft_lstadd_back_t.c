@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back_t.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:41:20 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/15 14:43:19 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 23:43:07 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 static t_tokens	*ft_lstlast_t(t_tokens *lst)
 {

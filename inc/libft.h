@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 16:27:04 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 22:56:50 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,26 @@ char		**ft_split_free(char *s, char c);
  * @return char* 
  */
 char		*ft_strtrim_free(char *s1, char const *set);
+
+/**
+ * @brief Iterates through some string address and swap the
+ * indicated old character by the new one
+ * 
+ * @param str pointer to a string
+ * @param old character of the string to be switched
+ * @param new character to be added
+ */
+void		ft_str_swap_chr(char **str, char old, char new);
+
+/**
+ * @brief Print an msg to a given fd and give an erro return
+ * 
+ * @param msg Msg to be printed
+ * @param erro Erro to be returned
+ * @param fd FD where msg will be printed
+ * @return int the return can be used as exit_status, as boolean,
+ * signal trigger and others
+ */
+int			ft_msg_er(char *msg, int erro, int fd);
 
 #endif

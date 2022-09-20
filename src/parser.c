@@ -6,11 +6,43 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/20 16:35:41 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:15:43 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+void	simple_init(t_table *tab)
+{
+	tab->next = NULL;
+	tab->envp = NULL;
+}
+
+void	get_path(char **envp, t_table *p, int i)
+{
+	char	**temp;
+
+	temp = NULL;
+	while (envp[i])
+	{
+		if (ft_strnstr(envp[i], "PATH=", 5))
+		{
+			temp = ft_split(envp[i] + 5, ':');
+			break ;
+		}
+		i++;
+	}
+	if (temp == NULL)
+		ft_msg_er("PATH not found", 0, 2);
+	i = 0;
+	while (temp[i])
+		i++;
+	p->path = (char **)malloc((i + 1) * sizeof(*temp));
+	p->path[i] = NULL;
+	while (i--)
+		p->path[i] = ft_strjoin_free(temp[i], "/");
+	free(temp);
+}
 
 static int	is_something_that_i_didnt_named_yet(int tk)
 {
@@ -45,12 +77,6 @@ void	parser(t_tokens **tks, t_table *tab)
 	if ((*tks) && (*tks)->token == PIPE)
 	{
 		tab->pipe = TRUE;
-		tab->next = malloc(sizeof(tab));
 		ft_lstfoward_free_t(tks);
-	}
-	if (!(*tks))
-	{
-		tab->next = NULL;
-		(*tks) = NULL;
 	}
 }

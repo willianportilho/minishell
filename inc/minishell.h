@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 13:17:19 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:18:27 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void		ft_str_swap_chr(char **str, char old, char new);
  * @brief start the prompt and REPL
  * 
  */
-void		minishell(t_table **tab);
+void		minishell(t_table **tab, char **envp);
 
 /**
  * @brief Under construction at lexer.c
@@ -142,7 +142,7 @@ void		minishell(t_table **tab);
  * @param tks 
  * @param str 
  */
-void		lexer(t_tokens **tks, char **str, t_table **tab);
+void		lexer(t_tokens **tks, char **str, t_table **tab, char **envp);
 
 /**
  * @brief under construction at parser.c
@@ -152,12 +152,19 @@ void		lexer(t_tokens **tks, char **str, t_table **tab);
  */
 void		parser(t_tokens **tks, t_table *tab);
 
+/**
+ * @brief init variables next and envp of the table node
+ * 
+ * @param tab t table struct to be initialized
+ */
+void		simple_init(t_table *tab);
+
 /* ---------------------------------------------------------------------*\
 |	handle_spaces.c														 |
 \* ---------------------------------------------------------------------*/
 void		clean_space(char *str);
 void		add_space(char **str);
-void		get_path(char **envp, t_table **p, int i);
+void		get_path(char **envp, t_table *p, int i);
 
 /* ---------------------------------------------------------------------*\
 |	handle lists														 |

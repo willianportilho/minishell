@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/20 16:26:37 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:29:47 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,29 @@ void	create_cmd_line_and_path(t_table *tab)
 	i = -1;
 	while (tab->path[++i])
 		tab->path[i] = ft_strjoin_free(tab->path[i], tab->cmd_line[0]);
+}
+
+static void	TESTE_print_tab(t_table **tab)
+{
+	t_table	*aux;
+	int contador_tabela = 0;
+	int i = -1;
+	aux = *tab;
+
+	while (aux)
+	{
+		contador_tabela++;
+		ft_printf("==== TABELA %d ====\n", contador_tabela);
+		ft_printf("cmd = %s\n", aux->cmd);
+		ft_printf("in_file = %s\n", aux->in_file);
+		ft_printf("out_file = %s\n", aux->out_file);
+		while (aux->path[++i])
+			ft_printf("path[%d] = %s\n", i, aux->path[i]);
+		i = -1;
+		while (aux->cmd_line[++i])
+			ft_printf("cmd_line[%d] = %s\n", i, aux->cmd_line[i]);
+		aux = aux->next;
+	}
 }
 
 void	lexer(t_tokens **tks, char **str, t_table **tab)

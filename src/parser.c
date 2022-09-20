@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/20 16:19:10 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:35:41 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	parser(t_tokens **tks, t_table *tab)
 	int	i;
 
 	i = -1;
-	if ((*tks)->token == I_REDIRECT)
+	if ((*tks) && (*tks)->token == I_REDIRECT)
 		is_redirect(tks, &tab->in_red, &tab->in_file);
-	if ((*tks)->token == O_REDIRECT)
+	if ((*tks) && (*tks)->token == O_REDIRECT)
 		is_redirect(tks, &tab->out_red, &tab->out_file);
 	while ((*tks) && is_something_that_i_didnt_named_yet((*tks)->token))
 	{
@@ -49,5 +49,8 @@ void	parser(t_tokens **tks, t_table *tab)
 		ft_lstfoward_free_t(tks);
 	}
 	if (!(*tks))
+	{
 		tab->next = NULL;
+		(*tks) = NULL;
+	}
 }

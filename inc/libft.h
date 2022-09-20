@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 00:40:41 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/20 13:15:21 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,14 +120,14 @@ void		ft_free_vector(int **array);
  * @param s2 
  * @return char* new string result of concat of s1 n s2
  */
-char	*ft_strjoin_free(char *s1, char const *s2);
+char		*ft_strjoin_free(char *s1, char const *s2);
 
 /**
  * @brief Free an entire array (index and base)
  * 
  * @param array array to be freed
  */
-void    ft_free_array(char **array);
+void		ft_free_array(char **array);
 
 /**
  * @brief same as ft_split but free the s param
@@ -136,6 +136,6 @@ void    ft_free_array(char **array);
  * @param c 
  * @return char** 
  */
-char	**ft_split_free(char *s, char c);
+char		**ft_split_free(char *s, char c);
 
 #endif

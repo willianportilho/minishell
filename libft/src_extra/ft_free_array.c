@@ -6,13 +6,13 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 21:14:20 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 21:15:47 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 13:13:11 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
 
-void    ft_free_array(char **array)
+void	ft_free_array(char **array)
 {
 	int	i;
 

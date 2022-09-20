@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 22:08:21 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/19 22:08:43 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 13:12:52 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,6 @@ char	**ft_split_free(char *s, char c)
 		put_value(s, c, matrix);
 	else
 		return (NULL);
-    free(s);
+	free(s);
 	return (matrix);
 }

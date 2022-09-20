@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 00:36:57 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/20 13:17:19 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_table
 	char			**cmd_line;
 	char			**path;
 	char			**envp;
+	t_bool			path_done;
 	t_bool			pipe;
 	t_bool			in_red;
 	t_bool			out_red;
@@ -136,19 +137,26 @@ void		ft_str_swap_chr(char **str, char old, char new);
 void		minishell(t_table **tab);
 
 /**
- * @brief Under construction
+ * @brief Under construction at lexer.c
  * 
  * @param tks 
  * @param str 
  */
 void		lexer(t_tokens **tks, char **str, t_table **tab);
 
+/**
+ * @brief under construction at parser.c
+ * 
+ * @param tks 
+ * @param tab 
+ */
+void		parser(t_tokens **tks, t_table *tab);
+
 /* ---------------------------------------------------------------------*\
 |	handle_spaces.c														 |
 \* ---------------------------------------------------------------------*/
 void		clean_space(char *str);
 void		add_space(char **str);
-
 void		get_path(char **envp, t_table **p, int i);
 
 /* ---------------------------------------------------------------------*\

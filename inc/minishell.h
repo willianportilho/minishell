@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 13:17:19 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:36:50 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 
 # define TEMP_VALUE	1
 
-typedef struct s_pipex
+typedef struct s_exec
 {
-	int	**pipes;
-	int	*pid;
-	int	exit;
-	int	check;
-	int	i;
-	int	amount_cmd;
-	int	tmpin;
-	int	tmpout;
-}		t_pipex;
+	int				**pipes;
+	int				*pid;
+	int				exit;
+	int				check;
+	int				i;
+	int				amount_cmd;
+	int				tmpin;
+	int				tmpout;
+}		t_exec;
 
 typedef struct s_envp
 {

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/20 20:15:43 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 21:36:27 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	get_path(char **envp, t_table *p, int i)
 
 static int	is_something_that_i_didnt_named_yet(int tk)
 {
-	if (tk != I_REDIRECT && tk != O_REDIRECT && tk != PIPE)
+	if (tk != I_REDIRECT && tk != O_REDIRECT && tk != PIPE
+		&& tk != DELIMITER && tk != APP_O_REDIRECT)
 		return (1);
 	return (0);
 }
@@ -68,6 +69,10 @@ void	parser(t_tokens **tks, t_table *tab)
 		is_redirect(tks, &tab->in_red, &tab->in_file);
 	if ((*tks) && (*tks)->token == O_REDIRECT)
 		is_redirect(tks, &tab->out_red, &tab->out_file);
+	if ((*tks) && (*tks)->token == DELIMITER)
+		is_redirect(tks, &tab->in_delimiter, &tab->out_file);
+	if ((*tks) && (*tks)->token == APP_O_REDIRECT)
+		is_redirect(tks, &tab->out_append, &tab->out_file);
 	while ((*tks) && is_something_that_i_didnt_named_yet((*tks)->token))
 	{
 		tab->cmd = ft_strjoin_free(tab->cmd, (*tks)->str);

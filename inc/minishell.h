@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 20:18:27 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 21:09:06 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_table
 	t_bool			pipe;
 	t_bool			in_red;
 	t_bool			out_red;
+	t_bool			in_delimiter;
+	t_bool			out_append;
 	char			*in_file;
 	int				infile_fd;
 	char			*out_file;

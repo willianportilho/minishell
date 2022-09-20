@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/20 20:16:03 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/20 21:36:50 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void	false_all(t_table *tab)
 	tab->out_red = FALSE;
 	tab->outfile_fd = -1;
 	tab->path_done = FALSE;
+	tab->out_append = FALSE;
+	tab->in_delimiter = FALSE;
 }
 
 void	lexer(t_tokens **tks, char **str, t_table **tab, char **envp)

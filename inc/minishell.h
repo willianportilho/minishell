@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 22:56:41 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/21 20:47:02 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,14 @@ void		parser(t_tokens **tks, t_table *tab);
  * @param tab t table struct to be initialized
  */
 void		simple_init(t_table *tab);
+
+/**
+ * @brief deal with heredoc tokens. Under construct at heredoc.c
+ * 
+ * @param tks 
+ * @param tab 
+ */
+void		heredoc(t_tokens **tks, t_table **tab);
 
 /* ---------------------------------------------------------------------*\
 |	handle_spaces.c														 |

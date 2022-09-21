@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/21 00:15:19 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/21 20:45:52 by ralves-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES =		minishell.c	main.c signals.c		
+SOURCES =		minishell.c	main.c signals.c heredoc.c		
 LEXER =			lexer.c handle_spaces.c
 LIST =			ft_lstadd_back_t.c ft_lstnew_t.c ft_lstfoward_free_t.c
 PARSER =		parser.c

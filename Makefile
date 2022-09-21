@@ -6,7 +6,7 @@
 #    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/21 23:31:02 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/21 23:33:01 by ralves-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,13 +62,13 @@ RESET =			\033[0m
 all:			${NAME}
 
 ${NAME}:		${LIBFT} ${OBJS} ${OBJS_EXEC} ${OBJS_PARSER} ${OBJS_LEXER} ${OBJS_LIST}
-				@echo "${CYAN}=========="
-				@echo "OBJS OK!!!"
-				@echo "=========="
+				@echo "${CYAN}--------------------------"
+				@echo "         objs ok!"
+				@echo "--------------------------"
 				@${CC} ${READ_LINE} ${OBJS} ${OBJS_EXEC} ${OBJS_PARSER} ${OBJS_LEXER} ${OBJS_LIST} ${LIBFT} -o ${NAME}
-				@echo "============================"
-				@echo "MINISHELL PROGRAM CREATED!!!"
-				@echo "============================${RESET}"
+				@echo "--------------------------"
+				@echo "minishell program created!"
+				@echo "--------------------------${RESET}"
 
 ${OBJ_PATH}%.o:	${SRC_EXEC}%.c
 				@mkdir -p obj
@@ -94,34 +94,28 @@ ${LIBFT}:
 				@make -C ./libft
 				@make -C ./printf
 
-ac:				${NAME}
-				@make clean
-				clear
-
 clean:		
 				@${RM_ALL} ${OBJ_PATH}
 				@make clean -C ./libft/
 				@make clean -C ./printf/
-				@echo "${CYAN}=================="
-				@echo "CLEAN COMPLETED!!!"
-				@echo "==================${RESET}"
-				@sleep 1
+				@echo "${CYAN}--------------------------"
+				@echo "     clean completed!"
+				@echo "--------------------------${RESET}"
 
 fclean:			clean
 				@${RM} ${NAME}
 				@make fclean -C ./libft/
 				@make fclean -C ./printf/
-				@echo "${CYAN}==================="
-				@echo "FCLEAN COMPLETED!!!"
-				@echo "===================${RESET}"
-				@sleep 1
+				@echo "${CYAN}--------------------------"
+				@echo "    fclean completed!"
+				@echo "--------------------------${RESET}"
 
 re:				fclean all
-				@echo "${CYAN}==============="
-				@echo "RE COMPLETED!!!"
-				@echo "===============${RESET}"
+				@echo "${CYAN}--------------------------"
+				@echo "      re completed!"
+				@echo "--------------------------${RESET}"
 
 norm:
 				norminette ${SRCS} ${LIB} ${INC}
 
-.PHONY:			all clean fclean re norm ac
+.PHONY:			all clean fclean re norm

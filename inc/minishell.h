@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/21 22:52:02 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/21 23:32:44 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,13 @@
 
 typedef struct s_exec
 {
+	int				amount_cmd;
 	int				**pipes;
 	int				*pid;
 	int				exit;
 	int				check;
+	int				pos;
 	int				i;
-	int				amount_cmd;
-	int				tmpin;
-	int				tmpout;
 }		t_exec;
 
 typedef struct s_envp

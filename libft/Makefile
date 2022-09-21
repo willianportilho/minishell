@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/20 00:41:26 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/20 22:57:30 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/21 03:56:30 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,9 +104,9 @@ RESET =					\033[0m
 
 ${NAME}:				${OBJS} ${OBJS_EXTRA}
 						@${CREATE} ${NAME} ${OBJS} ${OBJS_EXTRA}
-						@echo "${CYAN}================="
-						@echo "LIBFT COMPILED!!!"
-						@echo "=================${RESET}"
+						@echo "${CYAN}--------------------------"
+						@echo "     libft compiled!"
+						@echo "--------------------------${RESET}"
 
 ${OBJ_PATH}%.o:			${SRC_PATH}%.c
 						@mkdir -p obj

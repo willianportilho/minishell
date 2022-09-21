@@ -6,37 +6,49 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 23:46:03 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/21 03:40:00 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static int	validate_path(t_table **tab)
+static void	validate_path(t_table **tab, t_exec *exec)
 {
-	int		i;
-
-	i = -1;
-	while ((*tab)->path[++i])
+	exec->pos = -1;
+	exec->check = TRUE;
+	while ((*tab)->path[++exec->pos])
 	{
-		if (access((*tab)->path[i], F_OK) == 0)
-			return (i);
+		if (access((*tab)->path[exec->pos], F_OK) == 0)
+			return ;
 	}
-	return (-1);
+	if (access((*tab)->cmd_line[0], F_OK) == 0)
+	{
+		exec->check = FALSE;
+		return ;
+	}
+	exec->pos = -1;
 }
 
 static int	execute(t_table **tab, t_exec *exec)
 {
-	int	i;
-
-	i = validate_path(tab);
-	if (i == -1)
+	validate_path(tab, exec);
+	if (exec->pos == -1)
 	{
+		ft_putstr_fd("Comando não encontrado\n", 2);
 		clean_alloc(exec);
 		exit(127);
 	}
-	if (execve((*tab)->path[i], (*tab)->cmd_line, (*tab)->envp) == -1)
-		perror("exec: exec:");
+	if (exec->check == TRUE)
+	{
+		if (execve((*tab)->path[exec->pos], \
+		(*tab)->cmd_line, (*tab)->envp) == -1)
+			perror("exec: exec:");
+	}
+	else
+	{
+		if (execve((*tab)->cmd_line[0], (*tab)->cmd_line, (*tab)->envp) == -1)
+			perror("exec: exec:");
+	}
 	clean_alloc(exec);
 	exit(EXIT_FAILURE);
 }

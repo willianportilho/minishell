@@ -6,7 +6,7 @@
 #    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/21 20:45:52 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/21 23:31:02 by ralves-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SRC_LIST =		src/list/
 
 OBJ_PATH =		obj/
 
-SRCS =			${addprefix ${SRC_PATH}, ${SOURCES}}
+SRCS =			src/
 
 OBJS_EXEC =		${addprefix ${OBJ_PATH}, ${EXECUTOR:.c=.o}}
 OBJS_LEXER =	${addprefix ${OBJ_PATH}, ${LEXER:.c=.o}}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/21 23:32:44 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 00:12:01 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,5 +173,10 @@ void		clean_alloc(t_exec *exec);
 void		check_infile(t_table **tab, t_exec *exec);
 void		check_outfile(t_table **tab, t_exec *exec);
 void		executor(t_table **tab);
+
+/* ---------------------------------------------------------------------*\
+|	builtin														 |
+\* ---------------------------------------------------------------------*/
+void		echo(t_table **tab);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 13:44:01 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:41:19 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void		lexer(t_tokens **tks, char **str, t_table **tab, char **envp);
  * @param tks 
  * @param tab 
  */
-void		parser(t_tokens **tks, t_table *tab);
+void		parser(t_tokens **tks, t_table *tab, char **envp);
 
 /**
  * @brief init variables next and envp of the table node
@@ -147,14 +147,6 @@ void		parser(t_tokens **tks, t_table *tab);
  * @param tab t table struct to be initialized
  */
 void		simple_init(t_table *tab);
-
-/**
- * @brief deal with heredoc tokens. Under construct at heredoc.c
- * 
- * @param tks 
- * @param tab 
- */
-void		heredoc(t_tokens **tks, t_table **tab);
 
 void		check_heredoc(void);
 
@@ -171,6 +163,7 @@ void		get_path(char **envp, t_table *p, int i);
 void		ft_lstfoward_free_t(t_tokens **lst);
 void		ft_lstadd_back_t(t_tokens **lst, t_tokens *new);
 t_tokens	*ft_lstnew_t(char *str);
+void		ft_lstclear_t(t_table **tab);
 
 /* ---------------------------------------------------------------------*\
 |	t_table lists														 |
@@ -193,7 +186,7 @@ void		executor(t_table **tab);
 void		handle_sigint(int sig);
 void		handle_sigint_heredoc(int sing);
 
-void		heredoc_caller(t_tokens **tks, t_table **tab);
+void		heredoc_caller(t_tokens **tks, t_table **tab, char **envp);
 /* ---------------------------------------------------------------------*\
 |	builtin														 |
 \* ---------------------------------------------------------------------*/

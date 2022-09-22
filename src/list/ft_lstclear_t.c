@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   ft_lstclear_t.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 19:39:58 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 14:34:16 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/22 13:58:26 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/22 14:34:26 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
-void	handle_sigint(int sig)
+void	ft_lstclear_t(t_table **tab)
 {
-	(void)sig;
-	if (global()->test)
-	{
-		ft_putstr_fd("\n", 1);
-		rl_replace_line("", 0);
-		exit(-1);
-	}
-	else
-	{
-		ft_putchar_fd('\n', STDOUT_FILENO);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-}
+	t_table	*aux;
+	t_table	*temp;
 
-void	signal_main(void)
-{
-	signal(SIGINT, &handle_sigint);
-	signal(SIGQUIT, SIG_IGN);
+	aux = *tab;
+	while (aux)
+	{
+		temp = aux->next;
+		free(aux);
+		aux = temp;
+	}
+	tab = NULL;
 }

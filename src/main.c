@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 17:11:39 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 02:47:09 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:34:10 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_test	*global(void)
 {
 	static t_test	test;
-	
+
 	return (&test);
 }
 

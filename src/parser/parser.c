@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 03:01:33 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:54:50 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	is_redirect(t_tokens **tks, t_bool *boolean, char **file)
 	ft_lstfoward_free_t(tks);
 }
 
-void	parser(t_tokens **tks, t_table *tab)
+void	parser(t_tokens **tks, t_table *tab, char **envp)
 {
 	int	i;
 
@@ -70,7 +70,7 @@ void	parser(t_tokens **tks, t_table *tab)
 	if ((*tks) && (*tks)->token == O_REDIRECT)
 		is_redirect(tks, &tab->out_red, &tab->out_file);
 	if ((*tks) && (*tks)->token == DELIMITER)
-		heredoc_caller(tks, &tab);
+		heredoc_caller(tks, &tab, envp);
 	if ((*tks) && (*tks)->token == APP_O_REDIRECT)
 		is_redirect(tks, &tab->out_append, &tab->out_file);
 	while ((*tks) && is_something_that_i_didnt_named_yet((*tks)->token))

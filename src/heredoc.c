@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:47:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 03:53:46 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:50:37 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,50 +33,55 @@ void	check_heredoc(void)
 	}
 }
 
-void	heredoc(t_tokens **tks, t_table **tab)
+static void	heredoc_loop(t_tokens **tks)
 {
 	char	*buf;
 
-	(*tab)->in_delimiter = TRUE;
-	global()->test = TRUE;
-	global()->fd_global = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	signal(SIGINT, &handle_sigint_heredoc);
-	while ((*tab)->in_delimiter && global()->test)
+	while (global()->test)
 	{
-		buf = readline(">");
+		if (global()->test)
+			buf = readline(">");
 		if (buf == NULL)
 		{
-			ft_printf("%s (wanted `%s')\n", HDERRO , (*tks)->str);
-			(*tab)->in_delimiter = FALSE;
+			ft_printf("%s (wanted `%s')\n", HDERRO, (*tks)->str);
+			global()->test = FALSE;
 			break ;
 		}
 		if (ft_str_is_equal(buf, (*tks)->str))
 		{
-			(*tab)->in_delimiter = FALSE;
+			global()->test = FALSE;
 			break ;
 		}
-		write(global()->fd_global, buf, ft_strlen(buf));
+		ft_putstr_fd(buf, global()->fd_global);
 		ft_putstr_fd("\n", global()->fd_global);
 	}
+}
+
+static void	heredoc(t_tokens **tks)
+{
+	int		fd;
+
+	global()->test = TRUE;
+	fd = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	global()->fd_global = fd;
+	heredoc_loop(tks);
 	close(global()->fd_global);
 	exit(0);
 }
 
-void	heredoc_caller(t_tokens **tks, t_table **tab)
+void	heredoc_caller(t_tokens **tks, t_table **tab, char **envp)
 {
 	int	parent;
-	int	vai_rolar_essa_merda;
+	int	socorro;
 
 	ft_lstfoward_free_t(tks);
 	parent = fork();
 	if (!parent)
-	{
-		heredoc(tks, tab);
-	}
+		heredoc(tks);
 	else
 	{
-		waitpid(parent, &vai_rolar_essa_merda, 0);
-		if (!vai_rolar_essa_merda)
+		waitpid(parent, &socorro, 0);
+		if (!socorro)
 		{
 			(*tab)->in_file = ft_strdup(".heredoc");
 			(*tab)->in_red = TRUE;
@@ -84,6 +89,11 @@ void	heredoc_caller(t_tokens **tks, t_table **tab)
 			global()->test = FALSE;
 			ft_lstfoward_free_t(tks);
 		}
-		(*tab)->heredoc_error = TRUE;
+		else
+		{
+			ft_lstclear_t(tab);
+			*tab = malloc(sizeof(t_table));
+			minishell(tab, envp);
+		}
 	}
 }

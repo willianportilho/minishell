@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_equal.c                                  :+:      :+:    :+:   */
+/*   ft_lstclear_t.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 19:18:37 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 02:14:47 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/22 13:58:26 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/22 14:34:26 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/libft.h"
+#include "../../inc/minishell.h"
 
-int	ft_str_is_equal(char *str_1, char *str_2)
+void	ft_lstclear_t(t_table **tab)
 {
-	if (str_1 == NULL || str_2 == NULL)
-		return (0);
-	if (ft_strlen(str_1) != ft_strlen(str_2))
-		return (0);
-	while (*str_1)
+	t_table	*aux;
+	t_table	*temp;
+
+	aux = *tab;
+	while (aux)
 	{
-		if (*str_1 != *str_2)
-			return (0);
-		str_1++;
-		str_2++;
+		temp = aux->next;
+		free(aux);
+		aux = temp;
 	}
-	return (1);
+	tab = NULL;
 }

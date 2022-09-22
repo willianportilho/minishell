@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:47:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/21 23:25:53 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:10:32 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,65 @@ void	check_heredoc(void)
 	}
 }
 
-void	heredoc(t_tokens **tks, t_table **tab)
+static void	heredoc_loop(t_tokens **tks)
 {
 	char	*buf;
-	char	*delimiter;
 
-	(*tab)->in_delimiter = TRUE;
-	(*tab)->infile_fd = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	(*tab)->in_file = ft_strdup(".heredoc");
-	ft_lstfoward_free_t(tks);
-	(*tab)->in_red = TRUE;
-	delimiter = ft_strdup((*tks)->str);
-	ft_lstfoward_free_t(tks);
-	while ((*tab)->in_delimiter)
+	while (global()->test)
 	{
-		buf = readline(">");
-		if (ft_str_is_equal(buf, delimiter))
+		if (global()->test)
+			buf = readline(">");
+		if (buf == NULL)
 		{
-			(*tab)->in_delimiter = FALSE;
+			ft_printf("%s (wanted `%s')\n", HDERRO, (*tks)->str);
+			global()->test = FALSE;
 			break ;
 		}
-		write((*tab)->infile_fd, buf, ft_strlen(buf));
-		ft_putstr_fd("\n", (*tab)->infile_fd);
+		if (ft_str_is_equal(buf, (*tks)->str))
+		{
+			global()->test = FALSE;
+			break ;
+		}
+		ft_putstr_fd(buf, global()->fd_global);
+		ft_putstr_fd("\n", global()->fd_global);
 	}
-	close((*tab)->infile_fd);
+}
+
+static void	heredoc(t_tokens **tks)
+{
+	int		fd;
+
+	global()->test = TRUE;
+	fd = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	global()->fd_global = fd;
+	heredoc_loop(tks);
+	close(global()->fd_global);
+	exit(0);
+}
+
+void	heredoc_caller(t_tokens **tks, t_table **tab, char **envp)
+{
+	int	parent;
+	int	socorro;
+
+	ft_lstfoward_free_t(tks);
+	parent = fork();
+	if (!parent)
+		heredoc(tks);
+	else
+	{
+		wait(&socorro);
+		if (!socorro)
+		{
+			(*tab)->in_file = ft_strdup(".heredoc");
+			(*tab)->in_red = TRUE;
+			ft_lstfoward_free_t(tks);
+		}
+		else
+		{
+			ft_lstclear_t(tab);
+			*tab = malloc(sizeof(t_table));
+			minishell(tab, envp);
+		}
+	}
 }

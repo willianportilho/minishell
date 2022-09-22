@@ -6,13 +6,13 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/22 01:27:29 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/22 02:31:03 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES =		minishell.c	main.c signals.c heredoc.c
 LEXER =			lexer.c handle_spaces.c
-LIST =			ft_lstadd_back_t.c ft_lstnew_t.c ft_lstfoward_free_t.c
+LIST =			ft_lstadd_back_t.c ft_lstnew_t.c ft_lstfoward_free_t.c ft_lstsize_tab.c
 PARSER =		parser.c
 EXECUTOR =		exec_clean.c pipe.c redirects.c executor.c
 BUILT_IN =		echo.c

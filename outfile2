@@ -1,0 +1,11 @@
+SOURCES =		minishell.c	main.c signals.c heredoc.c
+				@echo "minishell program created!"
+				@make -C ./libft
+				@make -C ./printf
+				@make clean -C ./libft/
+				@make clean -C ./printf/
+				@echo "     clean completed!"
+				@make fclean -C ./libft/
+				@make fclean -C ./printf/
+				@echo "    fclean completed!"
+.PHONY:			all clean fclean re norm

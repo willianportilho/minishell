@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 00:12:01 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 02:30:45 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,11 @@ void		get_path(char **envp, t_table *p, int i);
 void		ft_lstfoward_free_t(t_tokens **lst);
 void		ft_lstadd_back_t(t_tokens **lst, t_tokens *new);
 t_tokens	*ft_lstnew_t(char *str);
+
+/* ---------------------------------------------------------------------*\
+|	t_table lists														 |
+\* ---------------------------------------------------------------------*/
+int			ft_lstsize_tab(t_table *lst);
 
 /* ---------------------------------------------------------------------*\
 |	executor														 |

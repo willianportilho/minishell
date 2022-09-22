@@ -41,12 +41,12 @@ static int	execute(t_table **tab, t_exec *exec)
 	{
 		if (execve((*tab)->path[exec->pos], \
 		(*tab)->cmd_line, (*tab)->envp) == -1)
-			perror("exec: exec:");
+			perror("minishell: exec:");
 	}
 	else
 	{
 		if (execve((*tab)->cmd_line[0], (*tab)->cmd_line, (*tab)->envp) == -1)
-			perror("exec: exec:");
+			perror("minishell: exec:");
 	}
 	clean_alloc(exec);
 	exit(EXIT_FAILURE);

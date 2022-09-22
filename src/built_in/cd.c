@@ -6,18 +6,19 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 06:16:35 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 19:07:19 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 19:54:00 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	cd(t_table **tab, char **envp)
+static char	*get_home(char **envp)
 {
 	int		i;
 	char	*home_expanded;
 
 	i = -1;
+	home_expanded = NULL;
 	while (envp[++i])
 	{
 		if (ft_strnstr(envp[i], "HOME=", 5))
@@ -26,6 +27,14 @@ void	cd(t_table **tab, char **envp)
 			break ;
 		}
 	}
+	return (home_expanded);
+}
+
+void	cd(t_table **tab, char **envp)
+{
+	char	*home;
+
+	home = get_home(envp);
 	if (ft_str_is_equal((*tab)->cmd_line[0], "cd"))
 	{
 		if (ft_array_str_len((*tab)->cmd_line) > 2)
@@ -34,9 +43,15 @@ void	cd(t_table **tab, char **envp)
 			return ;
 		}
 		if ((*tab)->cmd_line[1])
-			chdir((*tab)->cmd_line[1]);
+		{
+			if (chdir((*tab)->cmd_line[1]))
+				built_in_error(tab);
+		}
 		else
-			chdir(home_expanded);
-		free(home_expanded);
+		{
+			if (chdir(home))
+				built_in_error(tab);
+		}
+		free(home);
 	}
 }

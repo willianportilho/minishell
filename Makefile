@@ -16,7 +16,7 @@ LIST =			ft_lstadd_back_t.c ft_lstnew_t.c ft_lstfoward_free_t.c ft_lstsize_tab.c
 				ft_lstclear_t.c
 PARSER =		parser.c
 EXECUTOR =		exec_clean.c pipe.c redirects.c executor.c exec_error.c
-BUILT_IN =		is_built_in.c echo.c cd.c
+BUILT_IN =		is_built_in.c echo.c cd.c built_in_error.c
 
 NAME =			minishell
 

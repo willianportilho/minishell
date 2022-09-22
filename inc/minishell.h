@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 19:08:24 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 19:58:17 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 
 # define TEMP_VALUE	1
 # define HDERRO	"bash: warning: here-document delimited by end-of-file"
+
+typedef struct s_built
+{
+	char	*OLPWD;
+	char	*PWD;
+}			t_built;
 
 typedef struct s_st
 {
@@ -194,5 +200,6 @@ void		heredoc_caller(t_tokens **tks, t_table **tab, char **envp);
 void		is_built_in(t_table **tab);
 void		echo(t_table **tab);
 void		cd(t_table **tab, char **envp);
+void		built_in_error(t_table **tab);
 
 #endif

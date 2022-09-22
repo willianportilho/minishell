@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 19:39:58 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 14:34:16 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:10:39 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	handle_sigint(int sig)
 	(void)sig;
 	if (global()->test)
 	{
-		ft_putstr_fd("\n", 1);
+		ft_putchar_fd('\n', STDOUT_FILENO);
 		rl_replace_line("", 0);
 		exit(-1);
 	}

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:47:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 14:50:37 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:10:32 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,11 @@ void	heredoc_caller(t_tokens **tks, t_table **tab, char **envp)
 		heredoc(tks);
 	else
 	{
-		waitpid(parent, &socorro, 0);
+		wait(&socorro);
 		if (!socorro)
 		{
 			(*tab)->in_file = ft_strdup(".heredoc");
 			(*tab)->in_red = TRUE;
-			global()->heredoc = FALSE;
-			global()->test = FALSE;
 			ft_lstfoward_free_t(tks);
 		}
 		else

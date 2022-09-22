@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 02:47:18 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:54:44 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	minishell(t_table **tab, char **envp)
 	char		*buff;
 	t_tokens	*tokens;
 
+	global()->test = FALSE;
 	while (TRUE)
 	{
 		signal_main();

@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 02:30:45 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 05:14:36 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,10 +178,5 @@ void		clean_alloc(t_exec *exec);
 void		check_infile(t_table **tab, t_exec *exec);
 void		check_outfile(t_table **tab, t_exec *exec);
 void		executor(t_table **tab);
-
-/* ---------------------------------------------------------------------*\
-|	builtin														 |
-\* ---------------------------------------------------------------------*/
-void		echo(t_table **tab);
 
 #endif

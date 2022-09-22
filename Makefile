@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/22 02:31:03 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/22 05:15:10 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ LEXER =			lexer.c handle_spaces.c
 LIST =			ft_lstadd_back_t.c ft_lstnew_t.c ft_lstfoward_free_t.c ft_lstsize_tab.c
 PARSER =		parser.c
 EXECUTOR =		exec_clean.c pipe.c redirects.c executor.c
-BUILT_IN =		echo.c
 
 NAME =			minishell
 
@@ -38,13 +37,11 @@ SRC_EXEC =		src/executor/
 SRC_LEXER =		src/lexer/
 SRC_PARSER =	src/parser/
 SRC_LIST =		src/list/
-SRC_BUILT_IN =	src/built_in/
 
 OBJ_PATH =		obj/
 
 SRCS =			src/
 
-OBJS_BUILT_IN =	${addprefix ${OBJ_PATH}, ${BUILT_IN:.c=.o}}
 OBJS_EXEC =		${addprefix ${OBJ_PATH}, ${EXECUTOR:.c=.o}}
 OBJS_LEXER =	${addprefix ${OBJ_PATH}, ${LEXER:.c=.o}}
 OBJS_PARSER =	${addprefix ${OBJ_PATH}, ${PARSER:.c=.o}}
@@ -64,18 +61,14 @@ RESET =			\033[0m
 
 all:			${NAME}
 
-${NAME}:		${LIBFT} ${OBJS} ${OBJS_EXEC} ${OBJS_PARSER} ${OBJS_LEXER} ${OBJS_LIST} ${OBJS_BUILT_IN}
+${NAME}:		${LIBFT} ${OBJS} ${OBJS_EXEC} ${OBJS_PARSER} ${OBJS_LEXER} ${OBJS_LIST}
 				@echo "${CYAN}--------------------------"
 				@echo "         objs ok!"
 				@echo "--------------------------"
-				@${CC} ${READ_LINE} ${OBJS} ${OBJS_EXEC} ${OBJS_PARSER} ${OBJS_LEXER} ${OBJS_LIST} ${OBJS_BUILT_IN} ${LIBFT} -o ${NAME}
+				@${CC} ${READ_LINE} ${OBJS} ${OBJS_EXEC} ${OBJS_PARSER} ${OBJS_LEXER} ${OBJS_LIST} ${LIBFT} -o ${NAME}
 				@echo "--------------------------"
 				@echo "minishell program created!"
 				@echo "--------------------------${RESET}"
-
-${OBJ_PATH}%.o:	${SRC_BUILT_IN}%.c
-				@mkdir -p obj
-				@${CC} ${CFLAGS} -c $< -o $@
 
 ${OBJ_PATH}%.o:	${SRC_EXEC}%.c
 				@mkdir -p obj

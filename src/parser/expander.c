@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 21:28:59 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 00:11:38 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,18 @@ char	*simple_expander(char *variable)
 }
 
 // Remove only the first and last charactere
-static void	simple_trim(char **str)
+static void	simple_trim(char **str, char c)
 {
 	char	*new_str;
+	char	**temp;
+	int		i;
 
-	new_str = ft_substr(*str, 1, (ft_strlen(*str) - 2));
+	i = -1;
+	temp = ft_split(*str, c);
+	new_str = ft_strdup("");
+	while (temp[++i])
+		new_str = ft_strjoin_free(new_str, temp[i]);
+	free(temp);
 	free(*str);
 	*str = new_str;
 }
@@ -54,7 +61,7 @@ static void	expand_dolars(char **str)
 static void	handle_double_quote(t_tokens **t)
 {
 	if (!ft_strchr((*t)->str, DOLAR) && !ft_str_is_equal((*t)->str, "\""))
-		simple_trim(&(*t)->str);
+		simple_trim(&(*t)->str, D_QUOTE);
 	else
 	{
 		free((*t)->str);
@@ -69,12 +76,12 @@ static void	handle_double_quote(t_tokens **t)
 
 void	expand(t_tokens **t)
 {
-	if ((*t)->token == S_QUOTE)
+	if (ft_strchr((*t)->str, S_QUOTE))
 	{
-		simple_trim(&(*t)->str);
+		simple_trim(&(*t)->str, S_QUOTE);
 		ft_str_swap_chr(&(*t)->str, SPACE, TEMP_SHILD);
 	}
-	else if ((*t)->token == D_QUOTE)
+	else if (ft_strchr((*t)->str, D_QUOTE))
 		handle_double_quote(t);
 	else
 	{

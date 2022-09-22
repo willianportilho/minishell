@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 21:25:53 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 23:47:46 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,5 +188,6 @@ int			ft_strlen_til_chr(char *str, char chr);
 
 int			ft_array_str_len(char **array);
 char		**ft_array_join_free(char **a, char *new_str);
+int			ft_count_c_in_str(char *str, char chr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:57:49 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 20:00:46 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 00:03:42 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void	add_space(char **str)
 		if ((*str)[i] == D_QUOTE || (*str)[i] == S_QUOTE)
 		{
 			quote_type = (*str)[i];
-			*str = ft_str_insert_free(*str, SPACE, i);
-			i += 2;
 			while ((*str)[i] && (*str)[i] != quote_type)
 				i++;
 		}

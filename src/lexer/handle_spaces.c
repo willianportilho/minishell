@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   handle_spaces.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:57:49 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/20 23:42:48 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 20:00:46 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+static void	add_space_before_dolar(char **str)
+{
+	int	i;
+
+	i = 0;
+	while ((*str)[i])
+	{
+		if ((*str)[i] == S_QUOTE)
+		{
+			i++;
+			while ((*str)[i] && (*str)[i] != S_QUOTE)
+				i++;
+		}
+		else if ((*str)[i] == DOLAR)
+		{
+			*str = ft_str_insert_free(*str, SPACE, i);
+			i++;
+		}
+		i++;
+	}
+}
 
 /**
  * @brief Checar entrada triplicada
@@ -61,6 +83,7 @@ void	add_space(char **str)
 			check_double(str, &i, (*str)[i]);
 		i++;
 	}
+	add_space_before_dolar(str);
 }
 
 void	clean_space(char *str)

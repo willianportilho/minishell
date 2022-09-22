@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 17:02:24 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:55:38 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ void	create_cmd_line_and_path(t_table *tab)
 	tab->cmd_line = ft_split(tab->cmd, ' ');
 	ft_str_swap_chr(&tab->cmd, TEMP_VALUE, SPACE);
 	while (tab->cmd_line[++i])
+	{
 		ft_str_swap_chr(&tab->cmd_line[i], TEMP_VALUE, SPACE);
+		ft_str_swap_chr(&tab->cmd_line[i], TEMP_SHILD, SPACE);
+	}
 	i = -1;
 	while (tab->path[++i])
 		tab->path[i] = ft_strjoin_free(tab->path[i], tab->cmd_line[0]);

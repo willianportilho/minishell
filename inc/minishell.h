@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 16:18:09 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:44:04 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 
 # define TEMP_VALUE	1
+# define TEMP_SHILD 2
 # define HDERRO	"bash: warning: here-document delimited by end-of-file"
 
 typedef struct s_st
@@ -30,6 +31,7 @@ typedef struct s_st
 	t_bool	test;
 	t_bool	heredoc;
 	int		fd_global;
+	char	**envp;
 }			t_test;
 
 typedef struct s_exec
@@ -185,5 +187,7 @@ void		heredoc_caller(t_tokens **tks, t_table **tab, char **envp);
 \* ---------------------------------------------------------------------*/
 void		is_built_in(t_table **tab);
 void		echo(t_table **tab);
+
+void		expand(t_tokens **tks, char **envp);
 
 #endif

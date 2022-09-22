@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 22:56:50 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:24:21 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,5 +167,7 @@ void		ft_str_swap_chr(char **str, char old, char new);
  * signal trigger and others
  */
 int			ft_msg_er(char *msg, int erro, int fd);
+
+char    	**ft_array_dup(char **array);
 
 #endif

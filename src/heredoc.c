@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:47:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/21 23:25:53 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 02:22:07 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ void	heredoc(t_tokens **tks, t_table **tab)
 	while ((*tab)->in_delimiter)
 	{
 		buf = readline(">");
+		if (buf == NULL)
+		{
+			ft_printf("%s (wanted `%s')\n", HDERRO ,delimiter);
+			(*tab)->in_delimiter = FALSE;
+			break ;
+		}
 		if (ft_str_is_equal(buf, delimiter))
 		{
 			(*tab)->in_delimiter = FALSE;

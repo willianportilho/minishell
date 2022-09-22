@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:18:37 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/14 19:18:41 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 02:14:47 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	ft_str_is_equal(char *str_1, char *str_2)
 {
+	if (str_1 == NULL || str_2 == NULL)
+		return (0);
 	if (ft_strlen(str_1) != ft_strlen(str_2))
 		return (0);
 	while (*str_1)

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/21 23:32:44 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 02:21:30 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 
 # define TEMP_VALUE	1
+# define HDERRO	"bash: warning: here-document delimited by end-of-file"
 
 typedef struct s_exec
 {

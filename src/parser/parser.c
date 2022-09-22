@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 18:09:43 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 21:18:50 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	parser(t_tokens **tks, t_table *tab, char **envp)
 		is_redirect(tks, &tab->out_append, &tab->out_file);
 	while ((*tks) && is_something_that_i_didnt_named_yet((*tks)->token))
 	{
-		expand(tks, envp);
+		expand(tks);
 		tab->cmd = ft_strjoin_free(tab->cmd, (*tks)->str);
 		tab->cmd = ft_strjoin_free(tab->cmd, " ");
 		ft_lstfoward_free_t(tks);

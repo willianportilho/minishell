@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:41:35 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 19:33:03 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 21:25:39 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strlen_til_chr(char *str, char chr)
 {
-	int counter;
+	int	counter;
 
 	counter = 0;
 	if (!str)
@@ -23,5 +23,5 @@ int	ft_strlen_til_chr(char *str, char chr)
 		counter++;
 	if (!str[counter] && chr)
 		return (-1);
-	return (counter);	
+	return (counter);
 }

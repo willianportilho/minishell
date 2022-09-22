@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 18:44:04 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 21:18:34 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,6 @@ void		heredoc_caller(t_tokens **tks, t_table **tab, char **envp);
 void		is_built_in(t_table **tab);
 void		echo(t_table **tab);
 
-void		expand(t_tokens **tks, char **envp);
+void		expand(t_tokens **tks);
 
 #endif

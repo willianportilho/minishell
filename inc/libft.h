@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 17:54:06 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 21:25:53 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ int			ft_msg_er(char *msg, int erro, int fd);
  * @return char** a new array created with malloc with the same
  * values as the array
  */
-char    	**ft_array_dup(char **array);
+char		**ft_array_dup(char **array);
 
 /**
  * @brief Counts how many characteres the str have before find the chr

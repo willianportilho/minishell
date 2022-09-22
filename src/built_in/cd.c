@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 06:16:35 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 18:33:40 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 19:07:19 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	cd(t_table **tab, char **envp)
 {
-	int 	i = 0;
+	int		i;
 	char	*home_expanded;
 
-	while (envp[i])
-    {
-        if (ft_strnstr(envp[i], "HOME=", 5))
-        {
-            home_expanded = ft_strdup(envp[i] + 5);
-            break ;
-        }
-        i++;
-    }
+	i = -1;
+	while (envp[++i])
+	{
+		if (ft_strnstr(envp[i], "HOME=", 5))
+		{
+			home_expanded = ft_strdup(envp[i] + 5);
+			break ;
+		}
+	}
 	if (ft_str_is_equal((*tab)->cmd_line[0], "cd"))
 	{
 		if (ft_array_str_len((*tab)->cmd_line) > 2)

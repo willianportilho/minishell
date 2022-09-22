@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 05:34:45 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 05:54:34 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void	child(t_table **tab, t_exec *exec)
 	check_infile(tab, exec);
 	check_outfile(tab, exec);
 	close_pipes(exec);
+	is_built_in(tab);
 	execute(tab, exec);
 }
 

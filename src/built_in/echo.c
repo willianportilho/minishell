@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 00:08:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 05:30:36 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 05:52:26 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void	echo(t_table **tab)
 	}
 	else
 		ft_printf("\n");
+	exit(0);
 }

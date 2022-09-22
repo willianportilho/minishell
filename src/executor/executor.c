@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/21 03:40:00 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 05:54:34 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,46 +55,47 @@ static int	execute(t_table **tab, t_exec *exec)
 
 static void	child(t_table **tab, t_exec *exec)
 {
+	if ((exec->i == 0) && (exec->amount_cmd > 1) && (((*tab)->out_red) == 0))
+		dup2(exec->pipes[exec->i][1], STDOUT_FILENO);
 	if ((exec->i < exec->amount_cmd - 1) && (exec->i != 0))
 	{
 		dup2(exec->pipes[exec->i - 1][0], STDIN_FILENO);
 		dup2(exec->pipes[exec->i][1], STDOUT_FILENO);
 	}
+	else if ((exec->i == exec->amount_cmd - 1) && (exec->i != 0))
+		dup2(exec->pipes[exec->i - 1][0], STDIN_FILENO);
 	check_infile(tab, exec);
 	check_outfile(tab, exec);
 	close_pipes(exec);
+	is_built_in(tab);
 	execute(tab, exec);
 }
 
 static void	initialize_childs(t_table **tab, t_exec *exec)
 {
-	exec->i = -1;
-	while (++exec->i < exec->amount_cmd)
-	{
-		exec->pid[exec->i] = fork();
-		if (exec->pid[exec->i] == -1)
-			ft_printf("fork: colocar erro depois e limpar memória\n");
-		if (exec->pid[exec->i] == 0)
-			child(tab, exec);
-	}
+	exec->pid[exec->i] = fork();
+	if (exec->pid[exec->i] == -1)
+		ft_printf("fork: colocar erro depois e limpar memória\n");
+	if (exec->pid[exec->i] == 0)
+		child(tab, exec);
 }
 
 void	executor(t_table **tab)
 {
 	t_exec	exec;
 
+	exec.i = -1;
 	exec.exit = 0;
-	exec.amount_cmd = 1;
-	initialize_files(tab);
+	exec.amount_cmd = ft_lstsize_tab(*tab);
 	alloc_resources(&exec);
 	initialize_pipes(&exec);
-	initialize_childs(tab, &exec);
+	while (++exec.i < exec.amount_cmd)
+	{
+		initialize_files(tab);
+		initialize_childs(tab, &exec);
+		*tab = (*tab)->next;
+	}
 	close_pipes(&exec);
 	wait_processes(&exec);
 	clean_alloc(&exec);
-	if ((*tab)->next)
-	{
-		*tab = (*tab)->next;
-		executor(tab);
-	}
 }

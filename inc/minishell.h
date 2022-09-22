@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 03:51:14 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:44:01 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,11 @@ void		ft_lstadd_back_t(t_tokens **lst, t_tokens *new);
 t_tokens	*ft_lstnew_t(char *str);
 
 /* ---------------------------------------------------------------------*\
+|	t_table lists														 |
+\* ---------------------------------------------------------------------*/
+int			ft_lstsize_tab(t_table *lst);
+
+/* ---------------------------------------------------------------------*\
 |	executor														 |
 \* ---------------------------------------------------------------------*/
 void		wait_processes(t_exec *exec);
@@ -189,5 +194,10 @@ void		handle_sigint(int sig);
 void		handle_sigint_heredoc(int sing);
 
 void		heredoc_caller(t_tokens **tks, t_table **tab);
+/* ---------------------------------------------------------------------*\
+|	builtin														 |
+\* ---------------------------------------------------------------------*/
+void		is_built_in(t_table **tab);
+void		echo(t_table **tab);
 
 #endif

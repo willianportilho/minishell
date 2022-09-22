@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 21:24:13 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 21:28:59 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,22 @@ static void	expand_dolars(char **str)
 	*str = new_str;
 }
 
+static void	handle_double_quote(t_tokens **t)
+{
+	if (!ft_strchr((*t)->str, DOLAR) && !ft_str_is_equal((*t)->str, "\""))
+		simple_trim(&(*t)->str);
+	else
+	{
+		free((*t)->str);
+		(*t)->str = ft_strdup("");
+		ft_lstfoward_free_t(t);
+		(*t)->str = ft_substr((*t)->str, 0, ft_strlen((*t)->str) - 1);
+		if (ft_strchr((*t)->str, DOLAR))
+			expand_dolars(&(*t)->str);
+	}
+	ft_str_swap_chr(&(*t)->str, SPACE, TEMP_SHILD);
+}
+
 void	expand(t_tokens **t)
 {
 	if ((*t)->token == S_QUOTE)
@@ -58,21 +74,8 @@ void	expand(t_tokens **t)
 		simple_trim(&(*t)->str);
 		ft_str_swap_chr(&(*t)->str, SPACE, TEMP_SHILD);
 	}
-	if ((*t)->token == D_QUOTE)
-	{
-		if (!ft_strchr((*t)->str, DOLAR) && !ft_str_is_equal((*t)->str, "\""))
-			simple_trim(&(*t)->str);
-		else
-		{
-			free((*t)->str);
-			(*t)->str = ft_strdup("");
-			ft_lstfoward_free_t(t);
-			(*t)->str = ft_substr((*t)->str, 0, ft_strlen((*t)->str) - 1);
-			if (ft_strchr((*t)->str, DOLAR))
-				expand_dolars(&(*t)->str);
-		}
-		ft_str_swap_chr(&(*t)->str, SPACE, TEMP_SHILD);
-	}
+	else if ((*t)->token == D_QUOTE)
+		handle_double_quote(t);
 	else
 	{
 		if (ft_strchr((*t)->str, DOLAR))

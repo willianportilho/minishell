@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 05:55:26 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 06:18:52 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,5 +184,6 @@ void		executor(t_table **tab);
 \* ---------------------------------------------------------------------*/
 void		is_built_in(t_table **tab);
 void		echo(t_table **tab);
+void		cd(t_table **tab);
 
 #endif

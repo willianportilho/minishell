@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_built_in.c                                      :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 06:16:19 by wportilh         ###   ########.fr       */
+/*   Created: 2022/09/22 06:16:35 by wportilh          #+#    #+#             */
+/*   Updated: 2022/09/22 15:24:46 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	is_built_in(t_table **tab)
+void	cd(t_table **tab)
 {
-	if (ft_str_is_equal((*tab)->cmd_line[0], "echo"))
-		echo(tab);
+	char s[100];
+
 	if (ft_str_is_equal((*tab)->cmd_line[0], "cd"))
-		cd(tab);
+	{
+		ft_printf("%s\n", getcwd(s, 100));
+		chdir("");
+		ft_printf("%s\n", getcwd(s, 100));
+	}
+	exit(0);
 }

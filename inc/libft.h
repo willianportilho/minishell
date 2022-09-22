@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 16:43:20 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:54:06 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,9 @@ char    	**ft_array_dup(char **array);
  * @param chr chr to mark stop counting
  * @return int size. -1 if not found or str is NULL
  */
-int	ft_strlen_til_chr(char *str, char chr);
+int			ft_strlen_til_chr(char *str, char chr);
+
+int			ft_array_str_len(char **array);
+char		**ft_array_join_free(char **a, char *new_str);
 
 #endif

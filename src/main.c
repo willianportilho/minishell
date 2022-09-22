@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 17:11:39 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 17:43:59 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:59:19 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ t_test	*global(void)
 
 	return (&test);
 }
-
-
 
 int	main(int argc, char **argv, char **envp)
 {

@@ -6,7 +6,7 @@
 #    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/20 00:41:26 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/22 16:44:18 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/22 17:46:42 by ralves-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,10 @@ SOURCES_EXTRA =									\
 						ft_msg_erro.c           \
 						ft_str_swap_chr.c		\
 						ft_array_dup.c			\
-						ft_strlen_til_chr.c
+						ft_strlen_til_chr.c		\
+						ft_array_str_len.c		\
+						ft_array_join_free.c	\
+						
 
 NAME =					libft.a
 

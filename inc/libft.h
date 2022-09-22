@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 16:24:21 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:43:20 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,22 @@ void		ft_str_swap_chr(char **str, char old, char new);
  */
 int			ft_msg_er(char *msg, int erro, int fd);
 
+/**
+ * @brief malloc and create a new array of strings
+ * 
+ * @param array array to be duplicated
+ * @return char** a new array created with malloc with the same
+ * values as the array
+ */
 char    	**ft_array_dup(char **array);
+
+/**
+ * @brief Counts how many characteres the str have before find the chr
+ * 
+ * @param str str to be analyzed
+ * @param chr chr to mark stop counting
+ * @return int size. -1 if not found or str is NULL
+ */
+int	ft_strlen_til_chr(char *str, char chr);
 
 #endif

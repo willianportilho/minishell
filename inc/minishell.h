@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 02:21:30 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 03:51:14 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 # define TEMP_VALUE	1
 # define HDERRO	"bash: warning: here-document delimited by end-of-file"
 
+typedef struct s_st
+{
+	t_bool	test;
+	t_bool	heredoc;
+	int		fd_global;
+}			t_test;
+
 typedef struct s_exec
 {
 	int				amount_cmd;
@@ -34,7 +41,7 @@ typedef struct s_exec
 	int				check;
 	int				pos;
 	int				i;
-}		t_exec;
+}					t_exec;
 
 typedef struct s_envp
 {
@@ -57,6 +64,7 @@ typedef struct s_table
 	char			**cmd_line;
 	char			**path;
 	char			**envp;
+	t_bool			heredoc_error;
 	t_bool			path_done;
 	t_bool			pipe;
 	t_bool			in_red;
@@ -102,6 +110,8 @@ enum e_tokens
 	NOT_EXPANDABLE = 669,
 	EXPANDABLE = 670,
 };
+
+t_test		*global(void);
 
 /**
  * @brief manipulate signals (ctrl c, ctrl \) in main function
@@ -174,5 +184,10 @@ void		clean_alloc(t_exec *exec);
 void		check_infile(t_table **tab, t_exec *exec);
 void		check_outfile(t_table **tab, t_exec *exec);
 void		executor(t_table **tab);
+
+void		handle_sigint(int sig);
+void		handle_sigint_heredoc(int sing);
+
+void		heredoc_caller(t_tokens **tks, t_table **tab);
 
 #endif

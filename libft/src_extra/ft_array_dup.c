@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:19:40 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 16:23:17 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:24:21 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ char    **ft_array_dup(char **array)
 
     if (!(**array))
         return (NULL);
+    i = 0;
+    while (array[i])
+        i++;
+    new_array = (char **)malloc((i + 1) * sizeof(char *));
     i = -1;
-    new_array = malloc(sizeof(array));
     while (array[++i])
         new_array[i] = ft_strdup(array[i]);
     new_array[i] = NULL;

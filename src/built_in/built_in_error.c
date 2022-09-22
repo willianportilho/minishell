@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_in_error.c                                               :+:      :+:    :+:   */
+/*   built_in_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 06:16:35 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 19:54:00 by wportilh         ###   ########.fr       */
+/*   Created: 2022/09/22 21:27:56 by wportilh          #+#    #+#             */
+/*   Updated: 2022/09/22 21:28:48 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	built_in_error(t_table **tab)
+void	built_in_cd_error(t_table **tab)
 {
 	char	*str;
 

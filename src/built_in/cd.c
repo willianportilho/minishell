@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 06:16:35 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 19:54:00 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 21:29:36 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	cd(t_table **tab, char **envp)
 		if ((*tab)->cmd_line[1])
 		{
 			if (chdir((*tab)->cmd_line[1]))
-				built_in_error(tab);
+				built_in_cd_error(tab);
 		}
 		else
 		{
 			if (chdir(home))
-				built_in_error(tab);
+				built_in_cd_error(tab);
 		}
 		free(home);
 	}

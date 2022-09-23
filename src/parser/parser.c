@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/23 21:46:16 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/24 00:19:12 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@ void	get_path(t_table *p, int i)
 	while (global()->envp[i])
 	{
 		if (ft_strnstr(global()->envp[i], "PATH=", 5))
-		{
 			temp = ft_split(global()->envp[i] + 5, ':');
-			break ;
-		}
 		i++;
 	}
 	if (temp == NULL)
-		ft_msg_er("PATH not found", 0, 2);
+	{
+		temp = ft_create_blank_array();
+		p->path = ft_create_blank_array();
+		return ;
+	}
 	i = 0;
 	while (temp[i])
 		i++;

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/23 00:11:38 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 02:40:57 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,61 @@ char	*simple_expander(char *variable)
 	return (expanded);
 }
 
-// Remove only the first and last charactere
+static void	deal_with_a_very_complicated_thing_that_i_dont_even_fully_understand_yet(char **str, char *s, int count)
+{
+	int		i;
+	int		start; 
+	char	*new_str;
+	char	*temp;
+	int		size;
+
+	i = -1;
+	start = 0;
+	size = 0;
+	new_str = ft_strdup("");
+	while (s[++i] && count)
+	{
+		if (s[i] == DOLAR)
+		{
+			count--;
+			start = i;
+			new_str = ft_strjoin_free(new_str, ft_substr(s + size, 0, ft_strlen_til_chr(s + size, DOLAR)));
+			i++;
+			while (s[i] && s[i] != D_QUOTE && s[i] != SPACE && s[i] != DOLAR)
+				i++;
+			temp = ft_substr(s, start, i - start);
+			temp = simple_expander(temp + 1);
+			new_str = ft_strjoin_free(new_str, temp);
+			size = i;
+		}
+		if (s[i] == DOLAR)
+			i--;
+	}
+	if (s + i)
+		new_str = ft_strjoin_free(new_str, s + i - 1);
+	*str = ft_strjoin_free(*str, new_str);
+}
+
 static void	simple_trim(char **str, char c)
 {
 	char	*new_str;
 	char	**temp;
 	int		i;
+	int		n_dolars;
 
+	n_dolars = ft_count_c_in_str(*str, DOLAR);
 	i = -1;
 	temp = ft_split(*str, c);
 	new_str = ft_strdup("");
 	while (temp[++i])
-		new_str = ft_strjoin_free(new_str, temp[i]);
+	{
+		if (!ft_strchr(temp[i], DOLAR) && c == D_QUOTE)
+			new_str = ft_strjoin_free(new_str, temp[i]);
+		else if (c == D_QUOTE)
+			deal_with_a_very_complicated_thing_that_i_dont_even_fully_understand_yet(&new_str, temp[i], n_dolars);
+		else
+			new_str = ft_strjoin_free(new_str, temp[i]);
+	}
 	free(temp);
 	free(*str);
 	*str = new_str;
@@ -58,31 +101,15 @@ static void	expand_dolars(char **str)
 	*str = new_str;
 }
 
-static void	handle_double_quote(t_tokens **t)
-{
-	if (!ft_strchr((*t)->str, DOLAR) && !ft_str_is_equal((*t)->str, "\""))
-		simple_trim(&(*t)->str, D_QUOTE);
-	else
-	{
-		free((*t)->str);
-		(*t)->str = ft_strdup("");
-		ft_lstfoward_free_t(t);
-		(*t)->str = ft_substr((*t)->str, 0, ft_strlen((*t)->str) - 1);
-		if (ft_strchr((*t)->str, DOLAR))
-			expand_dolars(&(*t)->str);
-	}
-	ft_str_swap_chr(&(*t)->str, SPACE, TEMP_SHILD);
-}
-
 void	expand(t_tokens **t)
 {
-	if (ft_strchr((*t)->str, S_QUOTE))
+	if ((*t)->token == S_QUOTE)
 	{
 		simple_trim(&(*t)->str, S_QUOTE);
 		ft_str_swap_chr(&(*t)->str, SPACE, TEMP_SHILD);
 	}
-	else if (ft_strchr((*t)->str, D_QUOTE))
-		handle_double_quote(t);
+	else if ((*t)->token == D_QUOTE)
+		simple_trim(&(*t)->str, D_QUOTE);
 	else
 	{
 		if (ft_strchr((*t)->str, DOLAR))

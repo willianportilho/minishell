@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_array_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 22:54:46 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/23 23:11:07 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/23 23:07:42 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/23 23:10:22 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/libft.h"
+#include "../../inc/ft_printf.h"
 
-void	env(t_table **tab, t_exec *exec)
+void	ft_array_print(char **array)
 {
-	if (ft_array_str_len((*tab)->cmd_line) > 1)
-	{
-		ft_putstr_fd("minishell: env: this env take no options ", 2);
-		ft_putstr_fd("or arguments\n", 2);
+	int	i;
+
+	i = -1;
+	if (!array || !(*array))
 		return ;
-	}
-	else
-		ft_array_print(global()->envp);
-	if (exec->amount_cmd > 1)
-		exit(0);
+	while (array[++i])
+		ft_printf("%s\n", array[i]);
 }

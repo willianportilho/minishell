@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 21:51:18 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/23 22:39:08 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void		signal_main(void);
  * @brief start the prompt and REPL
  * 
  */
-void		minishell(t_table **tab, char **envp);
+void		minishell(t_table **tab);
 
 /**
  * @brief Under construction at lexer.c
@@ -139,7 +139,7 @@ void		minishell(t_table **tab, char **envp);
  * @param tks 
  * @param str 
  */
-void		lexer(t_tokens **tks, char **str, t_table **tab, char **envp);
+void		lexer(t_tokens **tks, char **str, t_table **tab);
 
 /**
  * @brief under construction at parser.c
@@ -147,7 +147,7 @@ void		lexer(t_tokens **tks, char **str, t_table **tab, char **envp);
  * @param tks 
  * @param tab 
  */
-void		parser(t_tokens **tks, t_table *tab, char **envp);
+void		parser(t_tokens **tks, t_table *tab);
 
 /**
  * @brief init variables next and envp of the table node
@@ -163,7 +163,7 @@ void		check_heredoc(void);
 \* ---------------------------------------------------------------------*/
 void		clean_space(char *str);
 void		add_space(char **str);
-void		get_path(char **envp, t_table *p, int i);
+void		get_path(t_table *p, int i);
 
 /* ---------------------------------------------------------------------*\
 |	handle lists														 |
@@ -190,25 +190,28 @@ void		clean_alloc(t_exec *exec);
 void		check_infile(t_table **tab, t_exec *exec);
 void		check_outfile(t_table **tab, t_exec *exec);
 void		cmd_error(t_table **tab, t_exec *exec);
-void		executor(t_table **tab, char **envp);
+void		executor(t_table **tab);
 
 void		handle_sigint(int sig);
 void		handle_sigint_heredoc(int sing);
 
-void		heredoc_caller(t_tokens **tks, t_table **tab, char **envp);
+void		heredoc_caller(t_tokens **tks, t_table **tab);
 
 /* ---------------------------------------------------------------------*\
 |	builtin														 |
 \* ---------------------------------------------------------------------*/
-void		is_built_in(t_table **tab, t_exec *exec, char **envp);
+void		is_built_in(t_table **tab, t_exec *exec);
 void		clean_exit(char *free_me);
 void		echo(t_table **tab, t_exec *exec);
-void		cd(t_table **tab, t_exec *exec, char **envp);
+void		cd(t_table **tab, t_exec *exec);
 void		pwd(t_table **tab, t_exec *exec);
 void		built_in_cd_error(t_table **tab, t_exec *exec);
 void		built_in_pwd_error(t_exec *exec);
 int			built_in_cmd(char *cmd);
 
 void		expand(t_tokens **tks);
+void		unset(t_table **tab, t_exec *exec);
+
+char		*simple_expander(char *variable);
 
 #endif

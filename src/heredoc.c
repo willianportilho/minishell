@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:47:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 15:10:32 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:39:22 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	heredoc(t_tokens **tks)
 	exit(0);
 }
 
-void	heredoc_caller(t_tokens **tks, t_table **tab, char **envp)
+void	heredoc_caller(t_tokens **tks, t_table **tab)
 {
 	int	parent;
 	int	socorro;
@@ -91,7 +91,7 @@ void	heredoc_caller(t_tokens **tks, t_table **tab, char **envp)
 		{
 			ft_lstclear_t(tab);
 			*tab = malloc(sizeof(t_table));
-			minishell(tab, envp);
+			minishell(tab);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/23 02:40:57 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 03:05:25 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ char	*simple_expander(char *variable)
 static void	deal_with_a_very_complicated_thing_that_i_dont_even_fully_understand_yet(char **str, char *s, int count)
 {
 	int		i;
-	int		start; 
+	int		start;
 	char	*new_str;
 	char	*temp;
 	int		size;
 
 	i = -1;
-	start = 0;
 	size = 0;
 	new_str = ft_strdup("");
 	while (s[++i] && count)

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 23:51:43 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:02:20 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,6 @@
 # define TEMP_DQUOT 3
 # define TEMP_SQUOT 4
 # define HDERRO	"bash: warning: here-document delimited by end-of-file"
-
-typedef struct s_st
-{
-	t_bool	test;
-	t_bool	heredoc;
-	int		fd_global;
-	char	**envp;
-}			t_test;
 
 typedef struct s_exec
 {
@@ -74,6 +66,15 @@ typedef struct s_table
 	int				outfile_fd;
 	struct s_table	*next;
 }					t_table;
+
+typedef struct s_st
+{
+	t_bool	test;
+	t_bool	heredoc;
+	int		fd_global;
+	char	**envp;
+	t_table	*tabble;
+}			t_test;
 
 /**
  * @brief List of tokens to help lexer and parser
@@ -191,5 +192,7 @@ void		is_built_in(t_table **tab);
 void		echo(t_table **tab);
 
 void		expand(t_tokens **tks);
+
+void		clean_exit(char *);
 
 #endif

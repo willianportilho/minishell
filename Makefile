@@ -6,11 +6,11 @@
 #    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/22 18:06:44 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/23 14:00:46 by ralves-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES =		minishell.c	main.c signals.c heredoc.c
+SOURCES =		minishell.c	main.c signals.c heredoc.c exit_minishell.c
 LEXER =			lexer.c handle_spaces.c
 LIST =			ft_lstadd_back_t.c ft_lstnew_t.c ft_lstfoward_free_t.c ft_lstsize_tab.c \
 				ft_lstclear_t.c
@@ -26,7 +26,7 @@ READ_LINE =		-lreadline #-lft
 RM =			rm -f
 RM_ALL =		rm -rf
 
-VAL =			valgrind --leak-check=full --show-leak-kinds=all
+VAL =			valgrind --leak-check=full --show-leak-kinds=all --suppressions=readline.supp
 
 LIBFT =			./libft/libft.a
 
@@ -125,5 +125,8 @@ re:				fclean all
 
 norm:
 				norminette ${SRCS} ${LIB} ${INC}
+
+val:	all
+		${VAL} ./minishell
 
 .PHONY:			all clean fclean re norm

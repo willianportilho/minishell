@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 17:11:39 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 19:37:29 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 13:57:30 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,14 @@ t_test	*global(void)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_table	*tab;
-	char	**my_envp;
-
-	my_envp = ft_array_dup(envp);
-	global()->envp = ft_array_dup(my_envp);
-	tab = malloc(sizeof(t_table));
-	simple_init(tab);
+	global()->envp = ft_array_dup(envp);
+	global()->tabble = malloc(sizeof(t_table));
+	simple_init(global()->tabble);
 	if (argv && argc > 1)
 	{
 		ft_putstr_fd("Error. No arguments are necessary", STDOUT_FILENO);
 		return (EXIT_FAILURE);
 	}
-	minishell(&tab, my_envp);
+	minishell(&global()->tabble, global()->envp);
 	return (EXIT_SUCCESS);
 }

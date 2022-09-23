@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 17:11:39 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 21:33:17 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 22:00:38 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int	main(int argc, char **argv, char **envp)
 		ft_putstr_fd("Error. No arguments are necessary", STDOUT_FILENO);
 		return (EXIT_FAILURE);
 	}
-	minishell(&global()->tabble, global()->envp);
+	minishell(&global()->tabble);
 	return (EXIT_SUCCESS);
 }

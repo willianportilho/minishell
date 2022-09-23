@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 14:54:44 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 04:14:10 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	minishell(t_table **tab, char **envp)
 		}
 		if (!check_semicolon_and_backslash(buff))
 			lexer(&tokens, &buff, tab, envp);
-		executor(tab);
+		executor(tab, envp);
 		reset_tab(tab);
 	}
 }

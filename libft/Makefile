@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/20 00:41:26 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/21 03:56:30 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/23 04:16:37 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,8 @@ SOURCES_EXTRA =									\
 						ft_split_free.c			\
 						ft_strtrim_free.c       \
 						ft_msg_erro.c           \
-						ft_str_swap_chr.c
+						ft_str_swap_chr.c       \
+						ft_array_str_len.c
 
 NAME =					libft.a
 

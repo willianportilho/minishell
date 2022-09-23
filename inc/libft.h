@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 22:56:50 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/23 04:13:21 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,5 +167,13 @@ void		ft_str_swap_chr(char **str, char old, char new);
  * signal trigger and others
  */
 int			ft_msg_er(char *msg, int erro, int fd);
+
+/**
+ * @brief counts the length of the array
+ * 
+ * @param array the array to be counted
+ * @return returns the length of the array
+ */
+int			ft_array_str_len(char **array);
 
 #endif

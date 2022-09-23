@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 05:54:34 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/23 04:39:44 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	execute(t_table **tab, t_exec *exec)
 	exit(EXIT_FAILURE);
 }
 
-static void	child(t_table **tab, t_exec *exec)
+static void	child(t_table **tab, t_exec *exec, char **envp)
 {
 	if ((exec->i == 0) && (exec->amount_cmd > 1) && (((*tab)->out_red) == 0))
 		dup2(exec->pipes[exec->i][1], STDOUT_FILENO);
@@ -67,32 +67,37 @@ static void	child(t_table **tab, t_exec *exec)
 	check_infile(tab, exec);
 	check_outfile(tab, exec);
 	close_pipes(exec);
-	is_built_in(tab);
+	if (envp)
+		;
+	if (exec->amount_cmd > 1)
+		is_built_in(tab, exec, envp);
 	execute(tab, exec);
 }
 
-static void	initialize_childs(t_table **tab, t_exec *exec)
+static void	initialize_childs(t_table **tab, t_exec *exec, char **envp)
 {
 	exec->pid[exec->i] = fork();
 	if (exec->pid[exec->i] == -1)
 		ft_printf("fork: colocar erro depois e limpar memória\n");
 	if (exec->pid[exec->i] == 0)
-		child(tab, exec);
+		child(tab, exec, envp);
 }
 
-void	executor(t_table **tab)
+void	executor(t_table **tab, char **envp)
 {
 	t_exec	exec;
 
 	exec.i = -1;
 	exec.exit = 0;
 	exec.amount_cmd = ft_lstsize_tab(*tab);
+	if (exec.amount_cmd == 1)
+		is_built_in(tab, &exec, envp);
 	alloc_resources(&exec);
 	initialize_pipes(&exec);
 	while (++exec.i < exec.amount_cmd)
 	{
 		initialize_files(tab);
-		initialize_childs(tab, &exec);
+		initialize_childs(tab, &exec, envp);
 		*tab = (*tab)->next;
 	}
 	close_pipes(&exec);

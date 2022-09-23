@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 14:41:19 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 04:24:34 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ void		close_pipes(t_exec *exec);
 void		clean_alloc(t_exec *exec);
 void		check_infile(t_table **tab, t_exec *exec);
 void		check_outfile(t_table **tab, t_exec *exec);
-void		executor(t_table **tab);
+void		executor(t_table **tab, char **envp);
 
 void		handle_sigint(int sig);
 void		handle_sigint_heredoc(int sing);
@@ -190,7 +190,10 @@ void		heredoc_caller(t_tokens **tks, t_table **tab, char **envp);
 /* ---------------------------------------------------------------------*\
 |	builtin														 |
 \* ---------------------------------------------------------------------*/
-void		is_built_in(t_table **tab);
-void		echo(t_table **tab);
+void		is_built_in(t_table **tab, t_exec *exec, char **envp);
+void		echo(t_table **tab, t_exec *exec);
+void		cd(t_table **tab, t_exec *exec, char **envp);
+void		pwd(t_table **tab, t_exec *exec);
+void		built_in_error(t_exec *exec, char *cmd);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/23 16:55:26 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/23 19:37:41 by ralves-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,5 +128,8 @@ norm:
 
 val:	all
 		${VAL} ./minishell
+val_gdb:all
+		${VAL} --vgdb=yes --vgdb-error=0 ./minishell
+		
 
 .PHONY:			all clean fclean re norm

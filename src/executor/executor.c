@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 05:54:34 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/22 19:07:40 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,19 @@ static int	execute(t_table **tab, t_exec *exec)
 	validate_path(tab, exec);
 	if (exec->pos == -1)
 	{
-		ft_putstr_fd("Comando não encontrado\n", 2);
-		clean_alloc(exec);
+		cmd_error(tab, exec);
 		exit(127);
 	}
 	if (exec->check == TRUE)
 	{
 		if (execve((*tab)->path[exec->pos], \
 		(*tab)->cmd_line, (*tab)->envp) == -1)
-			perror("exec: exec:");
+			perror("minishell: exec:");
 	}
 	else
 	{
 		if (execve((*tab)->cmd_line[0], (*tab)->cmd_line, (*tab)->envp) == -1)
-			perror("exec: exec:");
+			perror("minishell: exec:");
 	}
 	clean_alloc(exec);
 	exit(EXIT_FAILURE);
@@ -80,22 +79,27 @@ static void	initialize_childs(t_table **tab, t_exec *exec)
 		child(tab, exec);
 }
 
-void	executor(t_table **tab)
+void	executor(t_table **tab, char **envp)
 {
 	t_exec	exec;
 
 	exec.i = -1;
 	exec.exit = 0;
 	exec.amount_cmd = ft_lstsize_tab(*tab);
-	alloc_resources(&exec);
-	initialize_pipes(&exec);
-	while (++exec.i < exec.amount_cmd)
+	if ((ft_str_is_equal((*tab)->cmd_line[0], "cd")) && (exec.amount_cmd == 1))
+		cd(tab, envp);
+	else
 	{
-		initialize_files(tab);
-		initialize_childs(tab, &exec);
-		*tab = (*tab)->next;
+		alloc_resources(&exec);
+		initialize_pipes(&exec);
+		while (++exec.i < exec.amount_cmd)
+		{
+			initialize_files(tab);
+			initialize_childs(tab, &exec);
+			*tab = (*tab)->next;
+		}
+		close_pipes(&exec);
+		wait_processes(&exec);
+		clean_alloc(&exec);
 	}
-	close_pipes(&exec);
-	wait_processes(&exec);
-	clean_alloc(&exec);
 }

@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_built_in.c                                      :+:      :+:    :+:   */
+/*   built_in_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 17:57:14 by wportilh         ###   ########.fr       */
+/*   Created: 2022/09/22 21:27:56 by wportilh          #+#    #+#             */
+/*   Updated: 2022/09/22 21:28:48 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	is_built_in(t_table **tab)
+void	built_in_cd_error(t_table **tab)
 {
-	if (ft_str_is_equal((*tab)->cmd_line[0], "echo"))
-		echo(tab);
+	char	*str;
+
+	str = ft_strjoin("minishell: cd: ", (*tab)->cmd_line[1]);
+	perror(str);
+	free(str);
 }

@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/23 04:14:10 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:09:47 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ void	minishell(t_table **tab, char **envp)
 		}
 		if (!check_semicolon_and_backslash(buff))
 			lexer(&tokens, &buff, tab, envp);
-		executor(tab, envp);
-		reset_tab(tab);
+		if (tab && (*tab)->cmd_line)
+		{
+			executor(tab, envp);
+			reset_tab(tab);
+		}
 	}
 }

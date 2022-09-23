@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 06:16:35 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 04:41:59 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:05:46 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ void	cd(t_table **tab, t_exec *exec, char **envp)
 		if (ft_array_str_len((*tab)->cmd_line) > 2)
 		{
 			ft_putstr_fd("minishell: cd: too many arguments\n", 2);
-			return ;
+			exit(1);
 		}
 		if ((*tab)->cmd_line[1])
 		{
 			if (chdir((*tab)->cmd_line[1]))
-				built_in_error(exec, "cd");
+				built_in_cd_error(tab, exec);
 		}
 		else
 		{
 			if (chdir(home))
-				built_in_error(exec, "cd");
+				built_in_cd_error(tab, exec);
 		}
 		free(home);
 	}

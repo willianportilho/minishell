@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 04:24:34 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:59:33 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ void		is_built_in(t_table **tab, t_exec *exec, char **envp);
 void		echo(t_table **tab, t_exec *exec);
 void		cd(t_table **tab, t_exec *exec, char **envp);
 void		pwd(t_table **tab, t_exec *exec);
-void		built_in_error(t_exec *exec, char *cmd);
+void		built_in_cd_error(t_table **tab, t_exec *exec);
+void		built_in_pwd_error(t_exec *exec);
 
 #endif

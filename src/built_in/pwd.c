@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_in_error.c                                   :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 21:27:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 16:52:15 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/22 22:03:36 by wportilh          #+#    #+#             */
+/*   Updated: 2022/09/23 17:04:31 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	built_in_pwd_error(t_exec *exec)
+void	pwd(t_table **tab, t_exec *exec)
 {
-	perror("minishell: pwd");
-	if (exec->amount_cmd > 1)
-		exit(-1);
-	else
-		exec->exit = 0;
-}
+	char	cwd[4096];
 
-void	built_in_cd_error(t_table **tab, t_exec *exec)
-{
-	char	*str;
-
-	str = ft_strjoin("minishell: cd: ", (*tab)->cmd_line[1]);
-	perror(str);
-	free(str);
+	if (ft_str_is_equal((*tab)->cmd_line[0], "pwd"))
+	{
+		if (!getcwd(cwd, sizeof(cwd)))
+			built_in_pwd_error(exec);
+		ft_printf("%s\n", cwd);
+	}
 	if (exec->amount_cmd > 1)
-		exit(-1);
-	else
-		exec->exit = 0;
+		exit(0);
 }

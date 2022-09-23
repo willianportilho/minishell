@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/23 16:47:13 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:58:29 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,13 @@ void	minishell(t_table **tab, char **envp)
 		else
 		{
 			clean_exit(buff);
-			exit (EXIT_SUCCESS);
 		}
 		if (!check_semicolon_and_backslash(buff))
 			lexer(&tokens, &buff, tab, envp);
-		executor(tab, envp);
-		reset_tab(tab);
+		if (tab && (*tab)->cmd_line)
+		{
+			executor(tab, envp);
+			reset_tab(tab);
+		}
 	}
 }

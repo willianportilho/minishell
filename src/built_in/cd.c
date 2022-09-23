@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 06:16:35 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 21:29:36 by wportilh         ###   ########.fr       */
+/*   Created: 2022/09/23 16:52:22 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/23 17:09:32 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*get_home(char **envp)
 	return (home_expanded);
 }
 
-void	cd(t_table **tab, char **envp)
+void	cd(t_table **tab, t_exec *exec, char **envp)
 {
 	char	*home;
 
@@ -45,13 +45,15 @@ void	cd(t_table **tab, char **envp)
 		if ((*tab)->cmd_line[1])
 		{
 			if (chdir((*tab)->cmd_line[1]))
-				built_in_cd_error(tab);
+				built_in_cd_error(tab, exec);
 		}
 		else
 		{
 			if (chdir(home))
-				built_in_cd_error(tab);
+				built_in_cd_error(tab, exec);
 		}
 		free(home);
 	}
+	if (exec->amount_cmd > 1)
+		exit(0);
 }

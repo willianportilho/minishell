@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:00:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/23 14:07:09 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:58:40 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@ void	clean_exit(char *free_me)
 	ft_free_array(global()->envp);
 	ft_lstclear_t(&global()->tabble);
 	ft_putstr_fd("exit\n", STDOUT_FILENO);
+	exit (EXIT_SUCCESS);
 }

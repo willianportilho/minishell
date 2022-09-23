@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 16:46:15 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:49:28 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ int			ft_msg_er(char *msg, int erro, int fd);
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @brief malloc and create a new array of strings
  * 
  * @param array array to be duplicated
@@ -192,6 +193,8 @@ char		**ft_array_join_free(char **a, char *new_str);
 int			ft_count_c_in_str(char *str, char chr);
 
 /**
+=======
+>>>>>>> origin/pwd
  * @brief counts the length of the array
  * 
  * @param array the array to be counted

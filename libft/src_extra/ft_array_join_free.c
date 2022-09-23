@@ -6,12 +6,11 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:44:22 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/22 17:58:39 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 20:07:18 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
-#include <stdio.h>
 
 char	**ft_array_join_free(char **a, char *new_str)
 {

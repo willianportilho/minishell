@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 16:56:50 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:51:18 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ void		cd(t_table **tab, t_exec *exec, char **envp);
 void		pwd(t_table **tab, t_exec *exec);
 void		built_in_cd_error(t_table **tab, t_exec *exec);
 void		built_in_pwd_error(t_exec *exec);
+int			built_in_cmd(char *cmd);
 
 void		expand(t_tokens **tks);
 

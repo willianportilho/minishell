@@ -39,6 +39,7 @@ void	cd(t_table **tab, t_exec *exec, char **envp)
 	{
 		if (ft_array_str_len((*tab)->cmd_line) > 2)
 		{
+			free(home);
 			ft_putstr_fd("minishell: cd: too many arguments\n", 2);
 			return ;
 		}

@@ -91,15 +91,18 @@ void	executor(t_table **tab, char **envp)
 	exec.amount_cmd = ft_lstsize_tab(*tab);
 	if (exec.amount_cmd == 1)
 		is_built_in(tab, &exec, envp);
-	alloc_resources(&exec);
-	initialize_pipes(&exec);
-	while (++exec.i < exec.amount_cmd)
+	if ((exec.amount_cmd > 1) || (!built_in_cmd((*tab)->cmd_line[0])))
 	{
-		initialize_files(tab);
-		initialize_childs(tab, &exec, envp);
-		*tab = (*tab)->next;
+		alloc_resources(&exec);
+		initialize_pipes(&exec);
+		while (++exec.i < exec.amount_cmd)
+		{
+			initialize_files(tab);
+			initialize_childs(tab, &exec, envp);
+			*tab = (*tab)->next;
+		}
+		close_pipes(&exec);
+		wait_processes(&exec);
+		clean_alloc(&exec);
 	}
-	close_pipes(&exec);
-	wait_processes(&exec);
-	clean_alloc(&exec);
 }

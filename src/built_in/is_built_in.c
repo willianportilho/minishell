@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-static int	built_in_cmd(char *cmd)
+int	built_in_cmd(char *cmd)
 {
 	if ((ft_str_is_equal(cmd, "echo")
 		|| ft_str_is_equal(cmd, "cd"))

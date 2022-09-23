@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 21:46:38 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 23:00:27 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,5 +212,7 @@ void		expand(t_tokens **tks);
 void		unset(t_table **tab, t_exec *exec);
 
 char		*simple_expander(char *variable);
+
+void		env(t_table **tab, t_exec *exec);
 
 #endif

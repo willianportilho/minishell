@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 21:54:58 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 22:55:54 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	is_built_in(t_table **tab, t_exec *exec)
 		pwd(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "unset"))
 		unset(tab, exec);
+	else if (ft_str_is_equal((*tab)->cmd_line[0], "env"))
+		env(tab, exec);
 	if (exec->amount_cmd == 1 && built_in_cmd((*tab)->cmd_line[0]))
 	{
 		exec->amount_cmd--;

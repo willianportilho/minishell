@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 14:02:20 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:29:25 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@
 # define TEMP_DQUOT 3
 # define TEMP_SQUOT 4
 # define HDERRO	"bash: warning: here-document delimited by end-of-file"
+
+typedef struct s_utils
+{
+	char	*str;
+	char	*tmp;
+	char	*aux;
+	int		i;
+	int		size;
+	int		start;
+}			t_utils;
 
 typedef struct s_exec
 {
@@ -185,14 +195,16 @@ void		handle_sigint(int sig);
 void		handle_sigint_heredoc(int sing);
 
 void		heredoc_caller(t_tokens **tks, t_table **tab, char **envp);
+
 /* ---------------------------------------------------------------------*\
 |	builtin														 |
 \* ---------------------------------------------------------------------*/
 void		is_built_in(t_table **tab);
+
 void		echo(t_table **tab);
 
 void		expand(t_tokens **tks);
 
-void		clean_exit(char *);
+void		clean_exit(char *free_me);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 16:54:22 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:21:07 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,7 @@ void	executor(t_table **tab, char **envp)
 		initialize_childs(tab, &exec, envp);
 		*tab = (*tab)->next;
 	}
+	close_pipes(&exec);
+	wait_processes(&exec);
+	clean_alloc(&exec);
 }

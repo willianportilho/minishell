@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 16:49:28 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/24 03:48:50 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,8 +169,6 @@ void		ft_str_swap_chr(char **str, char old, char new);
 int			ft_msg_er(char *msg, int erro, int fd);
 
 /**
-<<<<<<< HEAD
-<<<<<<< HEAD
  * @brief malloc and create a new array of strings
  * 
  * @param array array to be duplicated
@@ -193,13 +191,31 @@ char		**ft_array_join_free(char **a, char *new_str);
 int			ft_count_c_in_str(char *str, char chr);
 
 /**
-=======
->>>>>>> origin/pwd
  * @brief counts the length of the array
  * 
  * @param array the array to be counted
  * @return returns the length of the array
  */
 int			ft_array_str_len(char **array);
+
+/**
+ * @brief adds a char on start end the end of the string
+ * 
+ * @param str the string to be modifyed
+ * @param c the char chosen to be added to new_str
+ * @return returns a new_str
+ */
+char		*ft_add_char_start_end(char *str, char c);
+
+/**
+ * @brief adds a char on start end the end of the string
+ * 
+ * @param s the string to be copied
+ * @param size the size to be copied
+ * @return returns a new_str
+ */
+char		*ft_strndup(const char *s, int size);
+void		ft_array_print(char **array);
+char		**ft_create_blank_array(void);
 
 #endif

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_tab.c                                   :+:      :+:    :+:   */
+/*   ft_array_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 01:45:59 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/24 01:44:51 by wportilh         ###   ########.fr       */
+/*   Created: 2022/09/23 23:07:42 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/23 23:10:22 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../inc/libft.h"
+#include "../../inc/ft_printf.h"
 
-int	ft_lstsize_tab(t_table *lst)
+void	ft_array_print(char **array)
 {
 	int	i;
 
-	i = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
+	i = -1;
+	if (!array || !(*array))
+		return ;
+	while (array[++i])
+		ft_printf("%s\n", array[i]);
 }

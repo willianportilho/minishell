@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_tab.c                                   :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 01:45:59 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/24 01:44:51 by wportilh         ###   ########.fr       */
+/*   Created: 2022/09/23 22:54:46 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/23 23:11:07 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	ft_lstsize_tab(t_table *lst)
+void	env(t_table **tab, t_exec *exec)
 {
-	int	i;
-
-	i = 0;
-	while (lst)
+	if (ft_array_str_len((*tab)->cmd_line) > 1)
 	{
-		lst = lst->next;
-		i++;
+		ft_putstr_fd("minishell: env: this env take no options ", 2);
+		ft_putstr_fd("or arguments\n", 2);
+		return ;
 	}
-	return (i);
+	else
+		ft_array_print(global()->envp);
+	if (exec->amount_cmd > 1)
+		exit(0);
 }

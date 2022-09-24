@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/24 00:18:12 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/24 01:40:05 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,5 +214,7 @@ void		expand(t_tokens **tks);
 void		unset(t_table **tab, t_exec *exec);
 
 char		*simple_expander(char *variable);
+
+void		env(t_table **tab, t_exec *exec);
 
 #endif

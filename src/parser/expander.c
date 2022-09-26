@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/26 17:13:59 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 18:00:15 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*expand_query(char *rest)
 {
 	char	*expanded;
 
-	expanded = ft_strjoin(ft_itoa(global()->query), rest);
+	expanded = ft_strjoin(ft_itoa(global()->exit), rest);
 	return (expanded);
 }
 

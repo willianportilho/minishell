@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 21:41:22 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:43:37 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,23 @@ static int	execute(t_table **tab, t_exec *exec)
 	if (exec->pos == -1)
 	{
 		cmd_error(tab, exec);
+		global()->exit = 127;
 		exit(127);
 	}
 	if (exec->check == TRUE)
 	{
-		if (execve((*tab)->path[exec->pos], \
-		(*tab)->cmd_line, global()->envp) == -1)
-			perror("minishell: exec:");
+		global()->exit = execve((*tab)->path[exec->pos], \
+		(*tab)->cmd_line, global()->envp);
+		perror((*tab)->cmd_line[1]);
 	}
 	else
 	{
-		if (execve((*tab)->cmd_line[0], (*tab)->cmd_line, global()->envp) == -1)
-			perror("minishell: exec:");
+		global()->exit = (execve((*tab)->cmd_line[0], \
+		(*tab)->cmd_line, global()->envp));
+		perror((*tab)->cmd_line[1]);
 	}
 	clean_alloc(exec);
-	exit(EXIT_FAILURE);
+	exit(global()->exit);
 }
 
 static void	child(t_table **tab, t_exec *exec)

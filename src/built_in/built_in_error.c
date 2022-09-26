@@ -6,22 +6,21 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 21:27:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 16:52:15 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:24:27 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	built_in_pwd_error(t_exec *exec)
+int	built_in_pwd_error(t_exec *exec)
 {
 	perror("minishell: pwd");
 	if (exec->amount_cmd > 1)
-		exit(-1);
-	else
-		exec->exit = 0;
+		exit(0);
+	return (0);
 }
 
-void	built_in_cd_error(t_table **tab, t_exec *exec)
+int	built_in_cd_error(t_table **tab, t_exec *exec)
 {
 	char	*str;
 
@@ -29,7 +28,6 @@ void	built_in_cd_error(t_table **tab, t_exec *exec)
 	perror(str);
 	free(str);
 	if (exec->amount_cmd > 1)
-		exit(-1);
-	else
-		exec->exit = 0;
+		exit(1);
+	return (1);
 }

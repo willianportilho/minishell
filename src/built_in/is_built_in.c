@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 17:58:20 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:07:26 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ static int	built_in_cmd(char *cmd)
 void	is_built_in(t_table **tab, t_exec *exec)
 {
 	if (ft_str_is_equal((*tab)->cmd_line[0], "echo"))
-		echo(tab, exec);
+		global()->exit = echo(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "cd"))
-		cd(tab, exec);
+		global()->exit = cd(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "pwd"))
-		pwd(tab, exec);
+		global()->exit = pwd(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "unset"))
-		unset(tab, exec);
+		global()->exit = unset(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "env"))
-		env(tab, exec);
+		global()->exit = env(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "exit"))
-		exit_builtin((*tab)->cmd_line[1]);
+		global()->exit = exit_builtin(tab);
 	if (exec->amount_cmd == 1 && built_in_cmd((*tab)->cmd_line[0]))
 	{
 		exec->amount_cmd--;

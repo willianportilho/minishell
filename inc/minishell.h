@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 17:59:35 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:14:35 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,18 +204,18 @@ void		heredoc_caller(t_tokens **tks, t_table **tab);
 \* ---------------------------------------------------------------------*/
 void		is_built_in(t_table **tab, t_exec *exec);
 void		clean_exit(char *free_me);
-void		echo(t_table **tab, t_exec *exec);
-void		cd(t_table **tab, t_exec *exec);
-void		pwd(t_table **tab, t_exec *exec);
-void		built_in_cd_error(t_table **tab, t_exec *exec);
-void		built_in_pwd_error(t_exec *exec);
+int			echo(t_table **tab, t_exec *exec);
+int			cd(t_table **tab, t_exec *exec);
+int			pwd(t_table **tab, t_exec *exec);
+int			built_in_cd_error(t_table **tab, t_exec *exec);
+int			built_in_pwd_error(t_exec *exec);
 
 void		expand(t_tokens **tks);
-void		unset(t_table **tab, t_exec *exec);
+int			unset(t_table **tab, t_exec *exec);
 
 char		*simple_expander(char *variable);
 
-void		env(t_table **tab, t_exec *exec);
-int			exit_builtin(char *cmd);
+int			env(t_table **tab, t_exec *exec);
+int			exit_builtin(t_table **tab);
 
 #endif

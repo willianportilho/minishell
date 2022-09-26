@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:53:47 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/23 21:55:26 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:26:36 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ char	**array_remove(char **a, char *new_str)
 	return (new_array);
 }
 
-void	unset(t_table **tab, t_exec *exec)
+int	unset(t_table **tab, t_exec *exec)
 {
 	char	**temp_envp;
 
 	temp_envp = array_remove(global()->envp, (*tab)->cmd_line[1]);
 	global()->envp = temp_envp;
 	if (exec->amount_cmd > 1)
-		exit(0);
+		exit(global()->exit);
+	return (global()->exit);
 }

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 17:13:22 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:52:29 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct s_st
 	t_bool	heredoc;
 	int		fd_global;
 	char	**envp;
-	int		query;
+	int		exit;
 	t_table	*tabble;
 }			t_test;
 

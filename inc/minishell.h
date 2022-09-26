@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 23:00:27 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:45:46 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@
 
 # define TEMP_VALUE	1
 # define TEMP_SHILD 2
-# define TEMP_DQUOT 3
-# define TEMP_SQUOT 4
+# define TEMP_QUOT	3
 # define HDERRO	"bash: warning: here-document delimited by end-of-file"
 
 typedef struct s_utils

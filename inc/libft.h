@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/24 00:15:53 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:35:06 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,5 +199,6 @@ int			ft_count_c_in_str(char *str, char chr);
 int			ft_array_str_len(char **array);
 void		ft_array_print(char **array);
 char		**ft_create_blank_array(void);
+int			ft_c_first_than_in_str(char *str, char c_1, char c_2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:48:23 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 17:19:01 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/26 21:25:40 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,10 @@ static int	check_env_dup(char *arg, char **array)
 			{
 				if (!arg[i2])
 				{
-					//ft_printf("print\n");
 					free(tmp);
 					return (0);
 				}
 				tmp_array = array_remove_str(i);
-				//ft_array_print(tmp_array);
 				global()->envp = tmp_array;
 				if (i == ft_array_str_len(global()->envp))
 					i--;
@@ -100,6 +98,31 @@ static int	check_env_dup(char *arg, char **array)
 		}
 	}
 	free(tmp);
+	return (1);
+}
+
+static int check_characters(char *cmd)
+{
+	int	i;
+	int	size;
+
+	i = -1;
+	size = ft_strlen(cmd);
+	if ((!ft_isalpha(cmd[0])) && (cmd[0] != '_'))
+	{
+		built_in_exportation_error(cmd);
+		return (0);
+	}
+	while (cmd[++i])
+	{
+		if (cmd[i] == '=')
+			return (1);
+		if ((!ft_isalnum(cmd[i])) && (cmd[i] != '_'))
+		{
+			built_in_exportation_error(cmd);
+			return (0);
+		}
+	}
 	return (1);
 }
 
@@ -118,8 +141,11 @@ void	exportation(t_table **tab, t_exec *exec)
 		{
 			while ((*tab)->cmd_line[++i])
 			{
-				if (check_env_dup((*tab)->cmd_line[i], global()->envp))
+				if (check_characters((*tab)->cmd_line[i]))
+				{
+					if (check_env_dup((*tab)->cmd_line[i], global()->envp))
 					*p = ft_array_join_free(global()->envp, (*tab)->cmd_line[i]);
+				}
 			}
 		}
 	}

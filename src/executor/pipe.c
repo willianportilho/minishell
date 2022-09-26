@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:32:30 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 01:48:32 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:43:09 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	wait_processes(t_exec *exec)
 	{
 		waitpid(exec->pid[i], &wstatus, 0);
 		if (WIFEXITED(wstatus))
-			exec->exit = WEXITSTATUS(wstatus);
+			global()->exit = WEXITSTATUS(wstatus);
 	}
 }
 

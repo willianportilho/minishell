@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:48:23 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 21:25:40 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/26 22:48:21 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static int	check_env_dup(char *arg, char **array)
 	return (1);
 }
 
-static int check_characters(char *cmd)
+static int	check_characters(char *cmd)
 {
 	int	i;
 	int	size;
@@ -110,7 +110,7 @@ static int check_characters(char *cmd)
 	size = ft_strlen(cmd);
 	if ((!ft_isalpha(cmd[0])) && (cmd[0] != '_'))
 	{
-		built_in_exportation_error(cmd);
+		built_in_identifier_error("export", cmd);
 		return (0);
 	}
 	while (cmd[++i])
@@ -119,14 +119,14 @@ static int check_characters(char *cmd)
 			return (1);
 		if ((!ft_isalnum(cmd[i])) && (cmd[i] != '_'))
 		{
-			built_in_exportation_error(cmd);
+			built_in_identifier_error("export", cmd);
 			return (0);
 		}
 	}
 	return (1);
 }
 
-void	exportation(t_table **tab, t_exec *exec)
+int	exportation(t_table **tab, t_exec *exec)
 {
 	int		i;
 	char	***p;
@@ -144,11 +144,13 @@ void	exportation(t_table **tab, t_exec *exec)
 				if (check_characters((*tab)->cmd_line[i]))
 				{
 					if (check_env_dup((*tab)->cmd_line[i], global()->envp))
-					*p = ft_array_join_free(global()->envp, (*tab)->cmd_line[i]);
+						*p = ft_array_join_free(global()->envp, \
+						(*tab)->cmd_line[i]);
 				}
 			}
 		}
 	}
 	if (exec->amount_cmd > 1)
-		exit(0);
+		exit(global()->exit);
+	return (global()->exit);
 }

@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/23 22:41:13 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/26 23:38:10 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,30 @@ static void	validate_path(t_table **tab, t_exec *exec)
 
 static int	execute(t_table **tab, t_exec *exec)
 {
+	int	*p;
+
+	p = &global()->exit;
 	validate_path(tab, exec);
 	if (exec->pos == -1)
 	{
 		cmd_error(tab, exec);
+		*p = 127;
 		exit(127);
 	}
 	if (exec->check == TRUE)
 	{
-		if (execve((*tab)->path[exec->pos], \
-		(*tab)->cmd_line, global()->envp) == -1)
-			perror("minishell: exec:");
+		*p = execve((*tab)->path[exec->pos], \
+		(*tab)->cmd_line, global()->envp);
+		perror((*tab)->cmd_line[1]);
 	}
 	else
 	{
-		if (execve((*tab)->cmd_line[0], (*tab)->cmd_line, global()->envp) == -1)
-			perror("minishell: exec:");
+		*p = (execve((*tab)->cmd_line[0], \
+		(*tab)->cmd_line, global()->envp));
+		perror((*tab)->cmd_line[1]);
 	}
 	clean_alloc(exec);
-	exit(EXIT_FAILURE);
+	exit(global()->exit);
 }
 
 static void	child(t_table **tab, t_exec *exec)

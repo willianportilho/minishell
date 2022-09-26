@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 21:05:13 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/26 22:45:19 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@
 
 # define TEMP_VALUE	1
 # define TEMP_SHILD 2
-# define TEMP_DQUOT 3
-# define TEMP_SQUOT 4
+# define TEMP_QUOT	3
 # define HDERRO	"bash: warning: here-document delimited by end-of-file"
 
 typedef struct s_utils
@@ -83,6 +82,7 @@ typedef struct s_st
 	t_bool	heredoc;
 	int		fd_global;
 	char	**envp;
+	int		exit;
 	t_table	*tabble;
 }			t_test;
 
@@ -97,6 +97,7 @@ typedef struct s_st
  * @param PIPE |
  * @param I_REDIRECT <
  * @param O_REDIRECT >
+ * @param QUERY ?
  * @param APP_O_REDIRECT >>
  * @param DELIMITER <<
  * @param EXPANDABLE "$hi" (example)
@@ -110,6 +111,7 @@ enum e_tokens
 	S_COLON = 59,
 	I_REDIRECT = 60,
 	O_REDIRECT = 62,
+	QUERY = 63,
 	B_SLASH = 92,
 	PIPE = 124,
 	COMMAND = 666,
@@ -201,21 +203,20 @@ void		heredoc_caller(t_tokens **tks, t_table **tab);
 |	builtin														 |
 \* ---------------------------------------------------------------------*/
 void		is_built_in(t_table **tab, t_exec *exec);
-void		clean_exit(char *free_me);
-void		echo(t_table **tab, t_exec *exec);
-void		cd(t_table **tab, t_exec *exec);
-void		pwd(t_table **tab, t_exec *exec);
-void		exportation(t_table **tab, t_exec *exec);
-void		built_in_cd_error(t_table **tab, t_exec *exec);
-void		built_in_pwd_error(t_exec *exec);
-void		built_in_exportation_error(char *cmd);
 int			built_in_cmd(char *cmd);
+int			echo(t_table **tab, t_exec *exec);
+int			cd(t_table **tab, t_exec *exec);
+int			pwd(t_table **tab, t_exec *exec);
+int			exportation(t_table **tab, t_exec *exec);
+int			unset(t_table **tab, t_exec *exec);
+int			env(t_table **tab, t_exec *exec);
+int			built_in_cd_error(t_table **tab, t_exec *exec);
+int			built_in_pwd_error(t_exec *exec);
+int			built_in_identifier_error(char *cmd_name, char *cmd);
+int			exit_builtin(t_table **tab);
 
+void		clean_exit(char *free_me);
 void		expand(t_tokens **tks);
-void		unset(t_table **tab, t_exec *exec);
-
 char		*simple_expander(char *variable);
-
-void		env(t_table **tab, t_exec *exec);
 
 #endif

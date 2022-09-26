@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:53:47 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/26 05:04:40 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/26 22:48:32 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,51 @@ char	**array_remove(char **a, char *new_str)
 	return (new_array);
 }
 
-void	unset(t_table **tab, t_exec *exec)
+static int	check_characters(char *cmd)
 {
+	int	i;
+	int	size;
+
+	i = -1;
+	size = ft_strlen(cmd);
+	if ((!ft_isalpha(cmd[0])) && (cmd[0] != '_'))
+	{
+		built_in_identifier_error("unset", cmd);
+		return (0);
+	}
+	while (cmd[++i])
+	{
+		if ((!ft_isalnum(cmd[i])) && (cmd[i] != '_'))
+		{
+			built_in_identifier_error("unset", cmd);
+			return (0);
+		}
+	}
+	return (1);
+}
+
+int	unset(t_table **tab, t_exec *exec)
+{
+	int		i;
 	char	**temp_envp;
 
-	temp_envp = array_remove(global()->envp, (*tab)->cmd_line[1]);
-	global()->envp = temp_envp;
+	i = 0;
+	if (ft_array_str_len((*tab)->cmd_line) == 1)
+		global()->exit = 0;
+	else
+	{
+		while ((*tab)->cmd_line[++i])
+		{
+			if (check_characters((*tab)->cmd_line[i]))
+			{
+				temp_envp = array_remove(global()->envp, (*tab)->cmd_line[i]);
+				global()->envp = temp_envp;
+			}
+			else
+				global()->exit = 1;
+		}
+	}	
 	if (exec->amount_cmd > 1)
-		exit(0);
+		exit(global()->exit);
+	return (global()->exit);
 }

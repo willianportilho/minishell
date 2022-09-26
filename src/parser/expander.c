@@ -6,19 +6,34 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/23 16:44:04 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 18:00:15 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+char	*expand_query(char *rest)
+{
+	char	*expanded;
+
+	expanded = ft_strjoin(ft_itoa(global()->exit), rest);
+	return (expanded);
+}
+
 char	*simple_expander(char *variable)
 {
 	char	*expanded;
+	char	*rest;
 	int		i;
 
 	i = 1;
 	expanded = ft_strdup("");
+	rest = ft_strdup("");
+	if (*variable == QUERY)
+	{
+		rest = ft_strdup(variable + 1);
+		return (expand_query(rest));
+	}
 	variable = ft_strjoin(variable, "=");
 	while ((global()->envp[i] != NULL) != 0)
 	{
@@ -44,7 +59,7 @@ static void	handle_dquote_dolars(char **str, char *s, int count, t_utils u)
 			ft_strlen_til_chr(s + u.size, DOLAR)));
 			u.i++;
 			while (s[u.i] && s[u.i] != D_QUOTE && s[u.i] != SPACE
-				&& s[u.i] != DOLAR)
+				&& s[u.i] != DOLAR && s[u.i] != S_QUOTE)
 				u.i++;
 			u.tmp = ft_substr(s, u.start, u.i - u.start);
 			u.aux = simple_expander(u.tmp + 1);
@@ -94,12 +109,14 @@ void	expand(t_tokens **t)
 {
 	char	*new_str;
 
-	if ((*t)->token == S_QUOTE)
+	if ((*t)->token == S_QUOTE
+		|| ft_c_first_than_in_str((*t)->str, S_QUOTE, D_QUOTE))
 	{
 		simple_trim(&(*t)->str, S_QUOTE);
 		ft_str_swap_chr(&(*t)->str, SPACE, TEMP_SHILD);
 	}
-	else if ((*t)->token == D_QUOTE)
+	else if ((*t)->token == D_QUOTE
+		|| ft_c_first_than_in_str((*t)->str, D_QUOTE, S_QUOTE))
 		simple_trim(&(*t)->str, D_QUOTE);
 	else
 	{

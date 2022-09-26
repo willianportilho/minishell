@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_msg_erro.c                                      :+:      :+:    :+:   */
+/*   exit_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/13 18:53:57 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/26 19:01:45 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/26 17:55:36 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/26 18:51:49 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/libft.h"
-#include "../../inc/ft_printf.h"
 #include "../../inc/minishell.h"
 
-int	ft_msg_er(char *msg, int erro, int fd)
+int	exit_builtin(t_table **tab)
 {
-	ft_putstr_fd(msg, fd);
-	global()->exit = erro;
-	return (erro);
+	if (ft_atoi((*tab)->cmd + 5))
+		exit (ft_atoi((*tab)->cmd + 5));
+	exit (global()->exit);
 }

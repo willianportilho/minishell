@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_msg_erro.c                                      :+:      :+:    :+:   */
+/*   ft_c_first_than_in_str.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/13 18:53:57 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/26 19:01:45 by ralves-b         ###   ########.fr       */
+/*   Created: 2022/09/26 15:27:41 by ralves-b          #+#    #+#             */
+/*   Updated: 2022/09/26 15:55:08 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
-#include "../../inc/ft_printf.h"
-#include "../../inc/minishell.h"
 
-int	ft_msg_er(char *msg, int erro, int fd)
+int	ft_c_first_than_in_str(char *str, char c_1, char c_2)
 {
-	ft_putstr_fd(msg, fd);
-	global()->exit = erro;
-	return (erro);
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c_1)
+			return (1);
+		else if (str[i] == c_2)
+			return (0);
+		i++;
+	}
+	return (0);
 }

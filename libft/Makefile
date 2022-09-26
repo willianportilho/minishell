@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/20 00:41:26 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/24 03:49:14 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/26 21:42:34 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,8 @@ SOURCES_EXTRA =									\
 						ft_array_print.c		\
 						ft_create_blank_array.c \
 						ft_add_char_start_end.c \
-						ft_strndup.c
+						ft_strndup.c            \
+						ft_c_first_than_in_str.c
 
 NAME =					libft.a
 

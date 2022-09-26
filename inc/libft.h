@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/24 03:48:50 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/26 21:38:08 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,5 +217,6 @@ char		*ft_add_char_start_end(char *str, char c);
 char		*ft_strndup(const char *s, int size);
 void		ft_array_print(char **array);
 char		**ft_create_blank_array(void);
+int			ft_c_first_than_in_str(char *str, char c_1, char c_2);
 
 #endif

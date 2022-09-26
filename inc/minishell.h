@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 16:45:46 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:13:22 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_st
 	t_bool	heredoc;
 	int		fd_global;
 	char	**envp;
+	int		query;
 	t_table	*tabble;
 }			t_test;
 
@@ -96,6 +97,7 @@ typedef struct s_st
  * @param PIPE |
  * @param I_REDIRECT <
  * @param O_REDIRECT >
+ * @param QUERY ?
  * @param APP_O_REDIRECT >>
  * @param DELIMITER <<
  * @param EXPANDABLE "$hi" (example)
@@ -109,6 +111,7 @@ enum e_tokens
 	S_COLON = 59,
 	I_REDIRECT = 60,
 	O_REDIRECT = 62,
+	QUERY = 63,
 	B_SLASH = 92,
 	PIPE = 124,
 	COMMAND = 666,

@@ -6,19 +6,34 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/26 16:48:25 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:13:59 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+char	*expand_query(char *rest)
+{
+	char	*expanded;
+
+	expanded = ft_strjoin(ft_itoa(global()->query), rest);
+	return (expanded);
+}
+
 char	*simple_expander(char *variable)
 {
 	char	*expanded;
+	char	*rest;
 	int		i;
 
 	i = 1;
 	expanded = ft_strdup("");
+	rest = ft_strdup("");
+	if (*variable == QUERY)
+	{
+		rest = ft_strdup(variable + 1);
+		return (expand_query(rest));
+	}
 	variable = ft_strjoin(variable, "=");
 	while ((global()->envp[i] != NULL) != 0)
 	{

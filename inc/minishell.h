@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 22:45:19 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 01:38:25 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,8 @@ void		heredoc_caller(t_tokens **tks, t_table **tab);
 \* ---------------------------------------------------------------------*/
 void		is_built_in(t_table **tab, t_exec *exec);
 int			built_in_cmd(char *cmd);
+int			check_characters(char *cmd);
+char		**array_remove_export(int i);
 int			echo(t_table **tab, t_exec *exec);
 int			cd(t_table **tab, t_exec *exec);
 int			pwd(t_table **tab, t_exec *exec);

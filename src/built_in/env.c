@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:54:46 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/26 19:16:21 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 00:20:03 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int	env(t_table **tab, t_exec *exec)
 {
+	int	i;
+
+	i = -1;
 	if (ft_array_str_len((*tab)->cmd_line) > 1)
 	{
 		ft_putstr_fd("minishell: env: this env take no options ", 2);
@@ -21,7 +24,15 @@ int	env(t_table **tab, t_exec *exec)
 		global()->exit = 127;
 	}
 	else
-		ft_array_print(global()->envp);
+	{
+		if (!global()->envp || !(*global()->envp))
+			return (global()->exit);
+		while (global()->envp[++i])
+		{
+			if (ft_strlen_til_chr(global()->envp[i], '=') > 0)
+				ft_printf("%s\n", global()->envp[i]);
+		}
+	}
 	if (exec->amount_cmd > 1)
 		exit(global()->exit);
 	return (global()->exit);

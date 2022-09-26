@@ -6,35 +6,11 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:48:23 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 22:48:21 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 01:45:55 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-static char	**array_remove_str(int i)
-{
-	char	**new_array;
-	int		size;
-	int		i_na;
-	int		i_a;
-
-	i_a = 0;
-	i_na = 0;
-	size = ft_array_str_len(global()->envp);
-	new_array = (char **)malloc(size * sizeof(char *));
-	while (i_a < size)
-	{
-		if (i_a == i)
-			i_a++;
-		new_array[i_na] = ft_strdup(global()->envp[i_a]);
-		i_a++;
-		i_na++;
-	}
-	new_array[i_na - 1] = NULL;
-	ft_free_array(global()->envp);
-	return (new_array);
-}
 
 static void	print_with_no_args(char **array)
 {
@@ -42,112 +18,92 @@ static void	print_with_no_args(char **array)
 	char	*tmp;
 	char	*tmp2;
 	char	*tmp3;
-	char	*tmp4;
 	char	*str;
 
 	i = -1;
-	if (!array || !*array)
-		return ;
-	while (array[++i])
+	while (array && array[++i])
 	{
 		tmp = ft_strdup(array[i] + (ft_strlen_til_chr(array[i], '=') + 1));
 		tmp2 = ft_add_char_start_end(tmp, '"');
-		tmp3 = ft_strndup(array[i], ft_strlen_til_chr(array[i], '=') + 1);
-		tmp4 = ft_strjoin(tmp3, tmp2);
-		str = ft_strjoin("declare -x ", tmp4);
+		free(tmp);
+		tmp = ft_strndup(array[i], ft_strlen_til_chr(array[i], '=') + 1);
+		tmp3 = ft_strjoin(tmp, tmp2);
+		str = ft_strjoin("declare -x ", tmp3);
 		if (ft_count_c_in_str(array[i], '='))
 			ft_printf("%s\n", str);
 		else
-			ft_printf("declare -x %s\n", tmp);
+			ft_printf("declare -x %s\n", array[i]);
 		free(tmp);
 		free(tmp2);
 		free(tmp3);
-		free(tmp4);
 		free(str);
 	}
 }
 
-static int	check_env_dup(char *arg, char **array)
+static int	check_dup(char *arg, int i, int i2)
 {
-	int		i;
-	int		i2;
-	char	*tmp;
-	char	**tmp_array;
-
-	i = -1;
-	i2 = 0;
-	while (arg[i2] && (arg[i2] != '='))
-		i2++;
-	tmp = ft_strndup(arg, i2);
-	while (array[++i])
+	if ((!global()->envp[i][i2]) || (global()->envp[i][i2] == '='))
 	{
-		if (!strncmp(tmp, array[i], i2))
-		{
-			if ((!array[i][i2]) || (array[i][i2] == '='))
-			{
-				if (!arg[i2])
-				{
-					free(tmp);
-					return (0);
-				}
-				tmp_array = array_remove_str(i);
-				global()->envp = tmp_array;
-				if (i == ft_array_str_len(global()->envp))
-					i--;
-			}
-		}
+		if (!arg[i2])
+			return (0);
+		global()->envp = array_remove_export(i);
 	}
-	free(tmp);
 	return (1);
 }
 
-static int	check_characters(char *cmd)
+static int	check_env_dup(char *arg)
 {
-	int	i;
-	int	size;
+	int		i;
+	int		i2;
+	int		check;
+	char	*tmp;
 
 	i = -1;
-	size = ft_strlen(cmd);
-	if ((!ft_isalpha(cmd[0])) && (cmd[0] != '_'))
+	i2 = 0;
+	check = 1;
+	while (arg[i2] && (arg[i2] != '='))
+		i2++;
+	tmp = ft_strndup(arg, i2);
+	while (global()->envp[++i])
 	{
-		built_in_identifier_error("export", cmd);
-		return (0);
+		if (!strncmp(tmp, global()->envp[i], i2))
+			check = check_dup(arg, i, i2);
+		if (!global()->envp[i])
+			i--;
 	}
-	while (cmd[++i])
+	free(tmp);
+	return (check);
+}
+
+static void	export_variable(char *cmd)
+{
+	char	***p;
+
+	p = &global()->envp;
+	if (check_characters(cmd))
 	{
-		if (cmd[i] == '=')
-			return (1);
-		if ((!ft_isalnum(cmd[i])) && (cmd[i] != '_'))
-		{
-			built_in_identifier_error("export", cmd);
-			return (0);
-		}
+		if (check_env_dup(cmd))
+			*p = ft_array_join_free(global()->envp, \
+			cmd);
 	}
-	return (1);
+	else
+		global()->exit = 1;
 }
 
 int	exportation(t_table **tab, t_exec *exec)
 {
 	int		i;
-	char	***p;
 
 	i = 0;
+	global()->exit = 0;
 	if (global()->envp)
 	{
-		p = &global()->envp;
 		if (ft_array_str_len((*tab)->cmd_line) == 1)
 			print_with_no_args(global()->envp);
 		else
 		{
 			while ((*tab)->cmd_line[++i])
-			{
-				if (check_characters((*tab)->cmd_line[i]))
-				{
-					if (check_env_dup((*tab)->cmd_line[i], global()->envp))
-						*p = ft_array_join_free(global()->envp, \
-						(*tab)->cmd_line[i]);
-				}
-			}
+				export_variable((*tab)->cmd_line[i]);
 		}
 	}
 	if (exec->amount_cmd > 1)

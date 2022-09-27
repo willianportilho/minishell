@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   is_built_in.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 19:07:26 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 21:57:13 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static int	built_in_cmd(char *cmd)
+int	built_in_cmd(char *cmd)
 {
 	if ((ft_str_is_equal(cmd, "echo")
 			|| ft_str_is_equal(cmd, "cd"))
@@ -29,18 +29,23 @@ static int	built_in_cmd(char *cmd)
 
 void	is_built_in(t_table **tab, t_exec *exec)
 {
+	int	*p;
+
+	p = &global()->exit;
 	if (ft_str_is_equal((*tab)->cmd_line[0], "echo"))
-		global()->exit = echo(tab, exec);
+		*p = echo(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "cd"))
-		global()->exit = cd(tab, exec);
+		*p = cd(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "pwd"))
-		global()->exit = pwd(tab, exec);
+		*p = pwd(tab, exec);
+	else if (ft_str_is_equal((*tab)->cmd_line[0], "export"))
+		exportation(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "unset"))
-		global()->exit = unset(tab, exec);
+		*p = unset(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "env"))
-		global()->exit = env(tab, exec);
+		*p = env(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "exit"))
-		global()->exit = exit_builtin(tab);
+		*p = exit_builtin(tab);
 	if (exec->amount_cmd == 1 && built_in_cmd((*tab)->cmd_line[0]))
 	{
 		exec->amount_cmd--;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 19:14:35 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 01:38:25 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,19 +203,22 @@ void		heredoc_caller(t_tokens **tks, t_table **tab);
 |	builtin														 |
 \* ---------------------------------------------------------------------*/
 void		is_built_in(t_table **tab, t_exec *exec);
-void		clean_exit(char *free_me);
+int			built_in_cmd(char *cmd);
+int			check_characters(char *cmd);
+char		**array_remove_export(int i);
 int			echo(t_table **tab, t_exec *exec);
 int			cd(t_table **tab, t_exec *exec);
 int			pwd(t_table **tab, t_exec *exec);
+int			exportation(t_table **tab, t_exec *exec);
+int			unset(t_table **tab, t_exec *exec);
+int			env(t_table **tab, t_exec *exec);
 int			built_in_cd_error(t_table **tab, t_exec *exec);
 int			built_in_pwd_error(t_exec *exec);
-
-void		expand(t_tokens **tks);
-int			unset(t_table **tab, t_exec *exec);
-
-char		*simple_expander(char *variable);
-
-int			env(t_table **tab, t_exec *exec);
+int			built_in_identifier_error(char *cmd_name, char *cmd);
 int			exit_builtin(t_table **tab);
+
+void		clean_exit(char *free_me);
+void		expand(t_tokens **tks);
+char		*simple_expander(char *variable);
 
 #endif

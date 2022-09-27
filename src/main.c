@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 17:11:39 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 03:38:11 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 10:51:14 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,19 @@
 
 void	hard_init(char **envp)
 {
+	global()->test = 0;
+	global()->heredoc = 0;
 	global()->exit = 0;
 	global()->envp = ft_array_dup(envp);
 	global()->tabble = malloc(sizeof(t_table));
-	global()->tabble->next = NULL;
+	global()->tabble->cmd = ft_strdup("");
+	global()->tabble->cmd_line = ft_create_blank_array();
+	global()->tabble->path = ft_create_blank_array();
 	global()->tabble->envp = NULL;
+	global()->tabble->envp = ft_create_blank_array();
+	global()->tabble->next = NULL;
+	global()->tabble->in_file = ft_strdup("");
+	global()->tabble->out_file = ft_strdup("");
 }
 
 t_test	*global(void)

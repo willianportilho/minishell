@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:47:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/26 23:51:18 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 14:57:06 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,19 @@ static void	heredoc_loop(t_tokens **tks)
 		if (buf == NULL)
 		{
 			ft_printf("%s (wanted `%s')\n", HDERRO, (*tks)->str);
+			free(buf);
 			global()->test = FALSE;
 			break ;
 		}
 		if (ft_str_is_equal(buf, (*tks)->str))
 		{
 			global()->test = FALSE;
+			free(buf);
 			break ;
 		}
 		ft_putstr_fd(buf, global()->fd_global);
 		ft_putstr_fd("\n", global()->fd_global);
+		free(buf);
 	}
 }
 
@@ -66,7 +69,9 @@ static void	heredoc(t_tokens **tks)
 	global()->fd_global = fd;
 	heredoc_loop(tks);
 	close(global()->fd_global);
-	exit(global()->exit);
+	clear_tokens_lst(tks);
+	rl_clear_history();
+	exit(clean_exit(ft_strdup("cavalinho")));
 }
 
 void	heredoc_caller(t_tokens **tks, t_table **tab)
@@ -82,15 +87,16 @@ void	heredoc_caller(t_tokens **tks, t_table **tab)
 		wait(&global()->exit);
 		if (!global()->exit)
 		{
+			free((*tab)->in_file);
 			(*tab)->in_file = ft_strdup(".heredoc");
 			(*tab)->in_red = TRUE;
 			ft_lstfoward_free_t(tks);
 		}
 		else
 		{
-			ft_lstclear_t(tab);
-			*tab = malloc(sizeof(t_table));
-			minishell(tab);
+			clean_exit(ft_strdup("cavalinho"));
+			global()->tabble = malloc(sizeof(t_table));
+			minishell(&global()->tabble);
 		}
 	}
 }

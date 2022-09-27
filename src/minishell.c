@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 13:38:51 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:04:25 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	check_semicolon_and_backslash(char *buff)
 		else if (buff[i] == S_QUOTE && bt_s_qt)
 			bt_s_qt = FALSE;
 		if ((buff[i] == S_COLON || buff[i] == B_SLASH) && !bt_d_qt && !bt_s_qt)
-			return (ft_msg_er("invalid ; or \\\n", EXIT_FAILURE, STDOUT_FILENO));
+			return (free(buff), ft_msg_er("invalid ; or \\\n", 1, 1));
 	}
 	if (bt_d_qt || bt_s_qt)
 		return (ft_msg_er("unclosed quotes\n", EXIT_FAILURE, STDOUT_FILENO));
@@ -73,7 +73,7 @@ void	minishell(t_table **tab)
 		if (tab && (*tab)->cmd_line)
 		{
 			executor(tab);
-			reset_tab(buff);
+			reset_tab(ft_strdup("cavalinho"));
 		}
 	}
 }

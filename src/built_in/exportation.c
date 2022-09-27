@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:48:23 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 01:45:55 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 02:14:09 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	print_with_no_args(char **array)
 	int		i;
 	char	*tmp;
 	char	*tmp2;
-	char	*tmp3;
 	char	*str;
 
 	i = -1;
@@ -27,15 +26,14 @@ static void	print_with_no_args(char **array)
 		tmp2 = ft_add_char_start_end(tmp, '"');
 		free(tmp);
 		tmp = ft_strndup(array[i], ft_strlen_til_chr(array[i], '=') + 1);
-		tmp3 = ft_strjoin(tmp, tmp2);
-		str = ft_strjoin("declare -x ", tmp3);
+		tmp = ft_strjoin_free(tmp, tmp2);
+		str = ft_strjoin("declare -x ", tmp);
 		if (ft_count_c_in_str(array[i], '='))
 			ft_printf("%s\n", str);
 		else
 			ft_printf("declare -x %s\n", array[i]);
 		free(tmp);
 		free(tmp2);
-		free(tmp3);
 		free(str);
 	}
 }

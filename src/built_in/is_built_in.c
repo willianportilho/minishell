@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 19:49:12 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:44:25 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	reset_in_out(t_exec *exec)
 
 static void	init_resources(t_table **tab, t_exec *exec)
 {
-	exec->p = &global()->exit;
 	exec->cpin = dup(0);
 	exec->cpout = dup(1);
 	initialize_files(tab);
@@ -47,6 +46,7 @@ static void	init_resources(t_table **tab, t_exec *exec)
 
 void	is_built_in(t_table **tab, t_exec *exec)
 {
+	exec->p = &global()->exit;
 	if (exec->amount_cmd == 1)
 		init_resources(tab, exec);
 	if (ft_str_is_equal((*tab)->cmd_line[0], "echo"))

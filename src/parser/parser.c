@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 01:45:43 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:45:41 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	get_path(t_table *p, int i)
 	if (temp == NULL)
 	{
 		temp = ft_create_blank_array();
-		p->path = ft_create_blank_array();
 		return ;
 	}
 	i = 0;
 	while (temp[i])
 		i++;
+	ft_free_array(p->path);
 	p->path = (char **)malloc((i + 1) * sizeof(*temp));
 	p->path[i] = NULL;
 	while (i--)

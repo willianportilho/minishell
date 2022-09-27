@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/23 21:40:33 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 12:13:30 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	create_cmd_line_and_path(t_table *tab)
 
 	i = -1;
 	clean_space(tab->cmd);
+	ft_free_array(tab->cmd_line);
 	tab->cmd_line = ft_split(tab->cmd, ' ');
 	ft_str_swap_chr(&tab->cmd, TEMP_VALUE, SPACE);
 	while (tab->cmd_line[++i])
@@ -74,7 +75,6 @@ void	create_cmd_line_and_path(t_table *tab)
 
 void	false_all(t_table *tab)
 {
-	tab->cmd = ft_strdup("");
 	tab->pipe = FALSE;
 	tab->in_red = FALSE;
 	tab->infile_fd = -1;
@@ -94,7 +94,7 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 		return ;
 	clean_space(*str);
 	add_space(str);
-	tks_aux = ft_split_free(*str, SPACE);
+	tks_aux = ft_split(*str, SPACE);
 	fill_lst_content(tks, tks_aux);
 	lst_tokenizer(tks);
 	aux_tab = *tab;
@@ -109,7 +109,7 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 		{
 			aux_tab->next = malloc(sizeof(t_table));
 			aux_tab = aux_tab->next;
-			simple_init(aux_tab);
+			init_new_tab(aux_tab);
 		}
 	}
 }

@@ -6,33 +6,19 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 03:12:36 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:27:12 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void	reset_tab(t_table **tab)
+static void	reset_tab(char *buff)
 {
-	t_table	*aux;
-	t_table	*temp;
-	int		i;
-
-	i = -1;
-	aux = *tab;
-	while (aux)
-	{
-		while (aux->path[++i])
-			aux->path[i] = ft_strtrim_free(aux->path[i], aux->cmd_line[0]);
-		i = -1;
-		while (aux->cmd_line[++i])
-			free(aux->cmd_line[i]);
-		free(aux->cmd_line);
-		temp = aux->next;
-		free(aux);
-		aux = temp;
-	}
-	*tab = malloc(sizeof(t_table));
+	char	**envp;
+	envp = ft_array_dup(global()->envp);
+	clean_exit(buff);
+	hard_init(envp);
+	ft_free_array(envp);
 }
 
 static int	check_semicolon_and_backslash(char *buff)
@@ -81,14 +67,15 @@ void	minishell(t_table **tab)
 		}
 		else
 		{
-			clean_exit(buff);
+			ft_putstr_fd("exit\n", STDOUT_FILENO);
+			exit(clean_exit(buff));
 		}
 		if (!check_semicolon_and_backslash(buff))
 			lexer(&tokens, &buff, tab);
 		if (tab && (*tab)->cmd_line)
 		{
 			executor(tab);
-			reset_tab(tab);
+			reset_tab(buff);
 		}
 	}
 }

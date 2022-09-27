@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 23:38:10 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 12:01:01 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,15 @@ static void	initialize_childs(t_table **tab, t_exec *exec)
 void	executor(t_table **tab)
 {
 	t_exec	exec;
+	t_table *aux;
 
+	aux = *tab;
 	exec.i = -1;
 	exec.exit = 0;
-	exec.amount_cmd = ft_lstsize_tab(*tab);
+	exec.amount_cmd = ft_lstsize_tab(aux);
 	if (exec.amount_cmd == 1)
-		is_built_in(tab, &exec);
-	if ((exec.amount_cmd > 1) || (!built_in_cmd((*tab)->cmd_line[0])))
+		is_built_in(&aux, &exec);
+	if ((exec.amount_cmd > 1) || (!built_in_cmd((aux)->cmd_line[0])))
 	{
 		alloc_resources(&exec);
 		initialize_pipes(&exec);
@@ -104,7 +106,7 @@ void	executor(t_table **tab)
 		{
 			initialize_files(tab);
 			initialize_childs(tab, &exec);
-			*tab = (*tab)->next;
+			aux = (aux)->next;
 		}
 		close_pipes(&exec);
 		wait_processes(&exec);

@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_tab.c                                   :+:      :+:    :+:   */
+/*   ft_add_char_start_end.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 01:45:59 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/24 01:44:51 by wportilh         ###   ########.fr       */
+/*   Created: 2022/09/24 03:22:27 by wportilh          #+#    #+#             */
+/*   Updated: 2022/09/24 03:35:26 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	ft_lstsize_tab(t_table *lst)
+char	*ft_add_char_start_end(char *str, char c)
 {
-	int	i;
+	int		i;
+	int		i2;
+	int		size;
+	char	*new_str;
 
 	i = 0;
-	while (lst)
+	i2 = 0;
+	if (str)
 	{
-		lst = lst->next;
-		i++;
+		size = ft_strlen(str);
+		new_str = (char *)malloc(size + 3 * sizeof(char));
+		new_str[i] = c;
+		while (str[i2])
+			new_str[++i] = str[i2++];
+		new_str[++i] = c;
+		new_str[++i] = '\0';
+		return (new_str);
 	}
-	return (i);
+	return (NULL);
 }

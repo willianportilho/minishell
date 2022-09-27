@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 21:27:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 19:24:27 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 22:41:47 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+int	built_in_identifier_error(char *cmd_name, char *cmd)
+{
+	ft_printf("minishell: %s: `%s': not a valid identifier\n", cmd_name, cmd);
+	return (1);
+}
 
 int	built_in_pwd_error(t_exec *exec)
 {

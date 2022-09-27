@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 19:43:37 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 23:38:10 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,25 @@ static void	validate_path(t_table **tab, t_exec *exec)
 
 static int	execute(t_table **tab, t_exec *exec)
 {
+	int	*p;
+
+	p = &global()->exit;
 	validate_path(tab, exec);
 	if (exec->pos == -1)
 	{
 		cmd_error(tab, exec);
-		global()->exit = 127;
+		*p = 127;
 		exit(127);
 	}
 	if (exec->check == TRUE)
 	{
-		global()->exit = execve((*tab)->path[exec->pos], \
+		*p = execve((*tab)->path[exec->pos], \
 		(*tab)->cmd_line, global()->envp);
 		perror((*tab)->cmd_line[1]);
 	}
 	else
 	{
-		global()->exit = (execve((*tab)->cmd_line[0], \
+		*p = (execve((*tab)->cmd_line[0], \
 		(*tab)->cmd_line, global()->envp));
 		perror((*tab)->cmd_line[1]);
 	}
@@ -93,15 +96,18 @@ void	executor(t_table **tab)
 	exec.amount_cmd = ft_lstsize_tab(*tab);
 	if (exec.amount_cmd == 1)
 		is_built_in(tab, &exec);
-	alloc_resources(&exec);
-	initialize_pipes(&exec);
-	while (++exec.i < exec.amount_cmd)
+	if ((exec.amount_cmd > 1) || (!built_in_cmd((*tab)->cmd_line[0])))
 	{
-		initialize_files(tab);
-		initialize_childs(tab, &exec);
-		*tab = (*tab)->next;
+		alloc_resources(&exec);
+		initialize_pipes(&exec);
+		while (++exec.i < exec.amount_cmd)
+		{
+			initialize_files(tab);
+			initialize_childs(tab, &exec);
+			*tab = (*tab)->next;
+		}
+		close_pipes(&exec);
+		wait_processes(&exec);
+		clean_alloc(&exec);
 	}
-	close_pipes(&exec);
-	wait_processes(&exec);
-	clean_alloc(&exec);
 }

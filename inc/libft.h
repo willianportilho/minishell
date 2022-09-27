@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 19:01:25 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/26 21:38:08 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,24 @@ int			ft_count_c_in_str(char *str, char chr);
  * @return returns the length of the array
  */
 int			ft_array_str_len(char **array);
+
+/**
+ * @brief adds a char on start end the end of the string
+ * 
+ * @param str the string to be modifyed
+ * @param c the char chosen to be added to new_str
+ * @return returns a new_str
+ */
+char		*ft_add_char_start_end(char *str, char c);
+
+/**
+ * @brief adds a char on start end the end of the string
+ * 
+ * @param s the string to be copied
+ * @param size the size to be copied
+ * @return returns a new_str
+ */
+char		*ft_strndup(const char *s, int size);
 void		ft_array_print(char **array);
 char		**ft_create_blank_array(void);
 int			ft_c_first_than_in_str(char *str, char c_1, char c_2);

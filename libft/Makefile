@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/20 00:41:26 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/26 15:34:50 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/26 21:42:34 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,8 +76,10 @@ SOURCES_EXTRA =									\
 						ft_array_join_free.c	\
 						ft_count_c_in_str.c		\
 						ft_array_print.c		\
-						ft_create_blank_array.c	\
-						ft_c_first_than_in_str.c \
+						ft_create_blank_array.c \
+						ft_add_char_start_end.c \
+						ft_strndup.c            \
+						ft_c_first_than_in_str.c
 
 NAME =					libft.a
 

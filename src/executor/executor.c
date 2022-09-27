@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 13:31:31 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 14:35:34 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	executor(t_table **tab)
 	t_table	*aux;
 
 	aux = *tab;
-	exec.exit = 0;
+	global()->exit = 0;
 	exec.amount_cmd = ft_lstsize_tab(aux);
 	if (exec.amount_cmd == 1)
 		is_built_in(&aux, &exec);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 13:40:23 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 14:39:07 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_utils
 
 typedef struct s_exec
 {
+	int				cpin;
+	int				cpout;
 	int				amount_cmd;
 	int				**pipes;
 	int				*pid;
@@ -46,6 +48,7 @@ typedef struct s_exec
 	int				check;
 	int				pos;
 	int				i;
+	int				*p;
 }					t_exec;
 
 typedef struct s_tokens

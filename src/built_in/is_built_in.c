@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 21:57:13 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 14:39:31 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,28 @@ int	built_in_cmd(char *cmd)
 
 void	is_built_in(t_table **tab, t_exec *exec)
 {
-	int	*p;
-
-	p = &global()->exit;
+	exec->p = &global()->exit;
+	exec->cpin = dup(0);
+	exec->cpout = dup(1);
+	initialize_files(tab);
+	check_infile(tab, exec);
+	check_outfile(tab, exec);
 	if (ft_str_is_equal((*tab)->cmd_line[0], "echo"))
-		*p = echo(tab, exec);
+		*exec->p = echo(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "cd"))
-		*p = cd(tab, exec);
+		*exec->p = cd(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "pwd"))
-		*p = pwd(tab, exec);
+		*exec->p = pwd(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "export"))
-		exportation(tab, exec);
+		*exec->p = exportation(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "unset"))
-		*p = unset(tab, exec);
+		*exec->p = unset(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "env"))
-		*p = env(tab, exec);
+		*exec->p = env(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "exit"))
-		*p = exit_builtin(tab);
-	if (exec->amount_cmd == 1 && built_in_cmd((*tab)->cmd_line[0]))
-	{
-		exec->amount_cmd--;
-		exec->exit = 0;
-	}
+		*exec->p = exit_builtin(tab);
+	dup2(exec->cpin, 0);
+	dup2(exec->cpout, 1);
+	close(exec->cpin);
+	close(exec->cpout);
 }

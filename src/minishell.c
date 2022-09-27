@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 11:27:12 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:38:51 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	reset_tab(char *buff)
 {
 	char	**envp;
+
 	envp = ft_array_dup(global()->envp);
 	clean_exit(buff);
 	hard_init(envp);
@@ -66,10 +67,7 @@ void	minishell(t_table **tab)
 				add_history(buff);
 		}
 		else
-		{
-			ft_putstr_fd("exit\n", STDOUT_FILENO);
-			exit(clean_exit(buff));
-		}
+			exit(msg_n_exit_function("exit\n", &clean_exit, buff));
 		if (!check_semicolon_and_backslash(buff))
 			lexer(&tokens, &buff, tab);
 		if (tab && (*tab)->cmd_line)

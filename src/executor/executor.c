@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 12:01:01 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:31:31 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,9 @@ static void	initialize_childs(t_table **tab, t_exec *exec)
 void	executor(t_table **tab)
 {
 	t_exec	exec;
-	t_table *aux;
+	t_table	*aux;
 
 	aux = *tab;
-	exec.i = -1;
 	exec.exit = 0;
 	exec.amount_cmd = ft_lstsize_tab(aux);
 	if (exec.amount_cmd == 1)
@@ -104,9 +103,12 @@ void	executor(t_table **tab)
 		initialize_pipes(&exec);
 		while (++exec.i < exec.amount_cmd)
 		{
-			initialize_files(tab);
-			initialize_childs(tab, &exec);
-			aux = (aux)->next;
+			initialize_files(&aux);
+			initialize_childs(&aux, &exec);
+			if (exec.i > 0)
+				next_n_free_tab(aux);
+			else
+				aux = aux->next;
 		}
 		close_pipes(&exec);
 		wait_processes(&exec);

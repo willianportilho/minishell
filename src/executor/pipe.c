@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:32:30 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 19:43:09 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:12:47 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	alloc_resources(t_exec *exec)
 	int	i;
 
 	i = -1;
+	exec->i = -1;
 	exec->pipes = malloc((exec->amount_cmd + 1) * sizeof(int *));
 	while (++i < exec->amount_cmd)
 		exec->pipes[i] = malloc((\

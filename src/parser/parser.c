@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 11:45:41 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:35:14 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	is_redirect(t_tokens **tks, t_bool *boolean, char **file)
 {
 	*boolean = TRUE;
 	ft_lstfoward_free_t(tks);
+	free(*file);
 	*file = ft_strdup((*tks)->str);
 	ft_lstfoward_free_t(tks);
 }

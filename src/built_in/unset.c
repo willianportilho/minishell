@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:53:47 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 17:26:35 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 22:24:54 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**array_remove(char **a, char *new_str)
 			i_a++;
 		i_na++;
 	}
-	new_array[i_na] = NULL;
+	new_array[i_na - 1] = NULL;
 	ft_free_array(a);
 	return (new_array);
 }

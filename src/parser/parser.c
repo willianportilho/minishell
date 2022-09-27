@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/24 00:19:12 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 01:45:43 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	simple_init(t_table *tab)
 {
-	tab->next = NULL;
 	tab->envp = NULL;
+	tab->next = NULL;
 }
 
 void	get_path(t_table *p, int i)

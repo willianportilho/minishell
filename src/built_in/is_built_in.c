@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 14:39:31 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:40:46 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ int	built_in_cmd(char *cmd)
 		return (1);
 	}
 	return (0);
+}
+
+static void	reset_in_out(t_exec *exec)
+{
+	dup2(exec->cpin, 0);
+	dup2(exec->cpout, 1);
+	close(exec->cpin);
+	close(exec->cpout);
 }
 
 void	is_built_in(t_table **tab, t_exec *exec)
@@ -49,8 +57,5 @@ void	is_built_in(t_table **tab, t_exec *exec)
 		*exec->p = env(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "exit"))
 		*exec->p = exit_builtin(tab);
-	dup2(exec->cpin, 0);
-	dup2(exec->cpout, 1);
-	close(exec->cpin);
-	close(exec->cpout);
+	reset_in_out(exec);
 }

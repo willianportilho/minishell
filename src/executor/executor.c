@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 17:18:45 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:29:35 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ void	executor(t_table **tab)
 		{
 			initialize_files(&aux);
 			initialize_childs(&aux, &exec);
-			if (exec.i > 0)
-				next_n_free_tab(aux);
-			else
+			//if (exec.i > 0)
+			//	next_n_free_tab(aux);
+			//else
 				aux = aux->next;
 		}
 		close_pipes(&exec);

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:55:36 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/26 18:51:49 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:51:14 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,19 @@
 
 int	exit_builtin(t_table **tab)
 {
-	if (ft_atoi((*tab)->cmd + 5))
-		exit (ft_atoi((*tab)->cmd + 5));
+	int	i;
+
+	i = 0;
+	rl_clear_history();
+	while ((*tab)->cmd[i])
+	{
+		if (ft_isdigit((*tab)->cmd[i]))
+		{
+			global()->exit = ft_atoi((*tab)->cmd + i);
+			exit (clean_exit(ft_strdup("cavalinho")));
+		}
+		i++;
+	}
+	clean_exit(ft_strdup("cavalinho"));
 	exit (global()->exit);
 }

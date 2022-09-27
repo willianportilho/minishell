@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 14:55:20 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:26:25 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_st
 {
 	t_bool	test;
 	t_bool	heredoc;
+	t_bool	control;
 	int		fd_global;
 	char	**envp;
 	int		exit;

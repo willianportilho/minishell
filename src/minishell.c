@@ -6,11 +6,27 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:59:56 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 15:04:25 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:25:45 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+int	not_ful_space(char *buff)
+{
+	int	i;
+
+	i = 0;
+	while (buff[i])
+	{
+		if ((buff[i] >= 9 && buff[i] <= 13) || (buff[i] == ' '))
+			i++;
+		else
+			return (1);
+	}
+	free(buff);
+	return (0);
+}
 
 static void	reset_tab(char *buff)
 {
@@ -59,6 +75,7 @@ void	minishell(t_table **tab)
 	global()->test = FALSE;
 	while (TRUE)
 	{
+		global()->control = FALSE;
 		signal_main();
 		buff = readline(">>");
 		if (buff != NULL)
@@ -68,9 +85,9 @@ void	minishell(t_table **tab)
 		}
 		else
 			exit(msg_n_exit_function("exit\n", &clean_exit, buff));
-		if (!check_semicolon_and_backslash(buff))
+		if (!check_semicolon_and_backslash(buff) && not_ful_space(buff))
 			lexer(&tokens, &buff, tab);
-		if (tab && (*tab)->cmd_line)
+		if (global()->control)
 		{
 			executor(tab);
 			reset_tab(ft_strdup("cavalinho"));

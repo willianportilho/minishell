@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 13:35:14 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:29:01 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	get_path(t_table *p, int i)
 	while (i--)
 		p->path[i] = ft_strjoin_free(temp[i], "/");
 	free(temp);
+	global()->control = TRUE;
 }
 
 static int	is_something_that_i_didnt_named_yet(int tk)

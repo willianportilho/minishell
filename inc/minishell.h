@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 14:39:07 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:27:05 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_st
 {
 	t_bool	test;
 	t_bool	heredoc;
+	t_bool	control;
 	int		fd_global;
 	char	**envp;
 	int		exit;
@@ -209,12 +210,12 @@ void		is_built_in(t_table **tab, t_exec *exec);
 int			built_in_cmd(char *cmd);
 int			check_characters(char *cmd);
 char		**array_remove_export(int i);
-int			echo(t_table **tab, t_exec *exec);
+int			echo(t_table **tab);
 int			cd(t_table **tab, t_exec *exec);
 int			pwd(t_table **tab, t_exec *exec);
-int			exportation(t_table **tab, t_exec *exec);
-int			unset(t_table **tab, t_exec *exec);
-int			env(t_table **tab, t_exec *exec);
+int			exportation(t_table **tab);
+int			unset(t_table **tab);
+int			env(t_table **tab);
 int			built_in_cd_error(t_table **tab, t_exec *exec);
 int			built_in_pwd_error(t_exec *exec);
 int			built_in_identifier_error(char *cmd_name, char *cmd);
@@ -229,5 +230,6 @@ int			msg_n_exit_function(char *msg, int (*f)(char *), char *fr);
 void		free_tab(t_table *tab);
 void		next_n_free_tab(t_table *tab);
 t_test		*global(void);
+void		clear_tokens_lst(t_tokens **lst);
 
 #endif

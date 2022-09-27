@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 00:08:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 19:06:38 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:22:05 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	echo(t_table **tab, t_exec *exec)
+int	echo(t_table **tab)
 {
 	int	i;
 
@@ -33,7 +33,5 @@ int	echo(t_table **tab, t_exec *exec)
 	}
 	else
 		ft_printf("\n");
-	if (exec->amount_cmd > 1)
-		exit(0);
 	return (0);
 }

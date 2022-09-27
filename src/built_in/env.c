@@ -6,13 +6,13 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:54:46 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 00:20:03 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:27:00 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	env(t_table **tab, t_exec *exec)
+int	env(t_table **tab)
 {
 	int	i;
 
@@ -33,7 +33,5 @@ int	env(t_table **tab, t_exec *exec)
 				ft_printf("%s\n", global()->envp[i]);
 		}
 	}
-	if (exec->amount_cmd > 1)
-		exit(global()->exit);
 	return (global()->exit);
 }

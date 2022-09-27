@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:53:47 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 01:27:16 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:26:35 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	check_unset_characters(char *cmd)
 	return (1);
 }
 
-int	unset(t_table **tab, t_exec *exec)
+int	unset(t_table **tab)
 {
 	int		i;
 	char	**temp_envp;
@@ -98,8 +98,6 @@ int	unset(t_table **tab, t_exec *exec)
 			else
 				global()->exit = 1;
 		}
-	}	
-	if (exec->amount_cmd > 1)
-		exit(global()->exit);
+	}
 	return (global()->exit);
 }

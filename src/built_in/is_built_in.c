@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 16:40:46 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:09:00 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	reset_in_out(t_exec *exec)
 	close(exec->cpout);
 }
 
-void	is_built_in(t_table **tab, t_exec *exec)
+static void	init_resources(t_table **tab, t_exec *exec)
 {
 	exec->p = &global()->exit;
 	exec->cpin = dup(0);
@@ -43,19 +43,30 @@ void	is_built_in(t_table **tab, t_exec *exec)
 	initialize_files(tab);
 	check_infile(tab, exec);
 	check_outfile(tab, exec);
+}
+
+void	is_built_in(t_table **tab, t_exec *exec)
+{
+	init_resources(tab, exec);
 	if (ft_str_is_equal((*tab)->cmd_line[0], "echo"))
-		*exec->p = echo(tab, exec);
+		*exec->p = echo(tab);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "cd"))
 		*exec->p = cd(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "pwd"))
 		*exec->p = pwd(tab, exec);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "export"))
-		*exec->p = exportation(tab, exec);
+		*exec->p = exportation(tab);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "unset"))
-		*exec->p = unset(tab, exec);
+		*exec->p = unset(tab);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "env"))
-		*exec->p = env(tab, exec);
+		*exec->p = env(tab);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "exit"))
 		*exec->p = exit_builtin(tab);
 	reset_in_out(exec);
+	if (exec->amount_cmd > 1)
+	{
+		clean_alloc(exec);
+		rl_clear_history();
+		exit(clean_exit(ft_strdup("cavalinho")));
+	}
 }

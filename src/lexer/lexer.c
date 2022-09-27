@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 12:13:30 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:28:37 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	create_cmd_line_and_path(t_table *tab)
 	clean_space(tab->cmd);
 	ft_free_array(tab->cmd_line);
 	tab->cmd_line = ft_split(tab->cmd, ' ');
+	if (!(*tab->cmd_line))
+		tab->cmd_line = ft_create_blank_array();
 	ft_str_swap_chr(&tab->cmd, TEMP_VALUE, SPACE);
 	while (tab->cmd_line[++i])
 	{
@@ -94,7 +96,7 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 		return ;
 	clean_space(*str);
 	add_space(str);
-	tks_aux = ft_split(*str, SPACE);
+	tks_aux = ft_split_free(*str, SPACE);
 	fill_lst_content(tks, tks_aux);
 	lst_tokenizer(tks);
 	aux_tab = *tab;

@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:52:22 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/26 22:30:22 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:20:08 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,5 @@ int	cd(t_table **tab, t_exec *exec)
 		}
 		free(home);
 	}
-	if (exec->amount_cmd > 1)
-		exit(global()->exit);
 	return (global()->exit);
 }

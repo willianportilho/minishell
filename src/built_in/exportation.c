@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:48:23 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 02:14:09 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:26:44 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	export_variable(char *cmd)
 		global()->exit = 1;
 }
 
-int	exportation(t_table **tab, t_exec *exec)
+int	exportation(t_table **tab)
 {
 	int		i;
 
@@ -104,7 +104,5 @@ int	exportation(t_table **tab, t_exec *exec)
 				export_variable((*tab)->cmd_line[i]);
 		}
 	}
-	if (exec->amount_cmd > 1)
-		exit(global()->exit);
 	return (global()->exit);
 }

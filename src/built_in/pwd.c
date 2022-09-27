@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 22:03:36 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 19:23:44 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:20:49 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,5 @@ int	pwd(t_table **tab, t_exec *exec)
 			global()->exit = built_in_pwd_error(exec);
 		ft_printf("%s\n", cwd);
 	}
-	if (exec->amount_cmd > 1)
-		exit(global()->exit);
 	return (global()->exit);
 }

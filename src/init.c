@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:39:38 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 13:40:02 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:52:59 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	hard_init(char **envp)
 {
 	global()->test = 0;
 	global()->heredoc = 0;
-	global()->exit = 0;
 	global()->envp = ft_array_dup(envp);
 	global()->tabble = malloc(sizeof(t_table));
 	init_new_tab(global()->tabble);

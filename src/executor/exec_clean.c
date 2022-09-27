@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_clean.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:39:09 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/20 23:42:31 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:05:20 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	clean_alloc(t_exec *exec)
 {
+	rl_clear_history();
 	ft_free_int_array(&exec->pipes);
 	ft_free_vector(&exec->pid);
 }

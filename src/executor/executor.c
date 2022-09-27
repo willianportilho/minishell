@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 14:35:34 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:18:45 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static int	execute(t_table **tab, t_exec *exec)
 	{
 		cmd_error(tab, exec);
 		*p = 127;
-		exit(127);
+		rl_clear_history();
+		exit(clean_exit(ft_strdup("cavalinho")));
 	}
 	if (exec->check == TRUE)
 	{
@@ -54,7 +55,7 @@ static int	execute(t_table **tab, t_exec *exec)
 		perror((*tab)->cmd_line[1]);
 	}
 	clean_alloc(exec);
-	exit(global()->exit);
+	exit(clean_exit(ft_strdup("cavalinho")));
 }
 
 static void	child(t_table **tab, t_exec *exec)

@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 18:09:00 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/27 19:49:12 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static void	init_resources(t_table **tab, t_exec *exec)
 
 void	is_built_in(t_table **tab, t_exec *exec)
 {
-	init_resources(tab, exec);
+	if (exec->amount_cmd == 1)
+		init_resources(tab, exec);
 	if (ft_str_is_equal((*tab)->cmd_line[0], "echo"))
 		*exec->p = echo(tab);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "cd"))
@@ -62,8 +63,9 @@ void	is_built_in(t_table **tab, t_exec *exec)
 		*exec->p = env(tab);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "exit"))
 		*exec->p = exit_builtin(tab);
-	reset_in_out(exec);
-	if (exec->amount_cmd > 1)
+	if (exec->amount_cmd == 1)
+		reset_in_out(exec);
+	if ((exec->amount_cmd > 1) && built_in_cmd((*tab)->cmd_line[0]))
 	{
 		clean_alloc(exec);
 		rl_clear_history();

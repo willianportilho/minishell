@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:48:23 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 17:26:44 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:00:24 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,21 @@ static void	print_with_no_args(char **array)
 	i = -1;
 	while (array && array[++i])
 	{
-		tmp = ft_strdup(array[i] + (ft_strlen_til_chr(array[i], '=') + 1));
-		tmp2 = ft_add_char_start_end(tmp, '"');
-		free(tmp);
-		tmp = ft_strndup(array[i], ft_strlen_til_chr(array[i], '=') + 1);
-		tmp = ft_strjoin_free(tmp, tmp2);
-		str = ft_strjoin("declare -x ", tmp);
-		if (ft_count_c_in_str(array[i], '='))
+		if (ft_strlen_til_chr(array[i], '=') != -1)
+		{
+			tmp = ft_strdup(array[i] + (ft_strlen_til_chr(array[i], '=') + 1));
+			tmp2 = ft_add_char_start_end(tmp, '"');
+			free(tmp);
+			tmp = ft_strndup(array[i], ft_strlen_til_chr(array[i], '=') + 1);
+			tmp = ft_strjoin_free(tmp, tmp2);
+			str = ft_strjoin("declare -x ", tmp);
 			ft_printf("%s\n", str);
+			free(tmp);
+			free(tmp2);
+			free(str);
+		}
 		else
 			ft_printf("declare -x %s\n", array[i]);
-		free(tmp);
-		free(tmp2);
-		free(str);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:53:47 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 22:24:54 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:10:12 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,24 @@ char	**array_remove(char **a, char *new_str)
 	int		i_na;
 	int		i_a;
 
-	size = ft_strlen(new_str);
 	if (!teste_exist(a, new_str))
 		return (a);
-	new_array = (char **)malloc((ft_array_str_len(a)) * sizeof(char *));
 	i_a = 0;
 	i_na = 0;
+	size = ft_strlen(new_str);
+	new_array = (char **)malloc(ft_array_str_len(a) * sizeof(char *));
 	while (a[i_a])
 	{
 		if (ft_strnstr(a[i_a], new_str, size) \
 		&& ((!a[i_a][size]) || (a[i_a][size] == '=')))
 			i_a++;
-		new_array[i_na] = ft_strdup(a[i_a]);
+		if (a[i_a])
+			new_array[i_na] = ft_strdup(a[i_a]);
 		if (a[i_a])
 			i_a++;
 		i_na++;
 	}
-	new_array[i_na - 1] = NULL;
+	new_array[ft_array_str_len(a) - 1] = NULL;
 	ft_free_array(a);
 	return (new_array);
 }

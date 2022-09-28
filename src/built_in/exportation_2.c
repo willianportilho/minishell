@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 01:19:57 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 01:38:12 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/28 16:44:06 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ char	**array_remove_export(int i)
 	{
 		if (i_a == i)
 			i_a++;
-		new_array[i_na] = ft_strdup(global()->envp[i_a]);
+		if (i_a < size)
+			new_array[i_na] = ft_strdup(global()->envp[i_a]);
 		i_a++;
 		i_na++;
 	}
-	new_array[i_na - 1] = NULL;
+	new_array[size - 1] = NULL;
 	ft_free_array(global()->envp);
 	return (new_array);
 }

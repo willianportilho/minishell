@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/28 21:28:27 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:32:16 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,10 @@ void	parser(t_tokens **tks, t_table *tab)
 	{
 		tab->pipe = TRUE;
 		ft_lstfoward_free_t(tks);
+		if (!(*tks))
+		{
+			tkn_error(tks);
+			return ;
+		}
 	}
 }

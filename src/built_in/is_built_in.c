@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 16:21:10 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:01:42 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	init_resources(t_table **tab, t_exec *exec)
 
 static int	clean_builtin_child(t_exec *exec)
 {
-	pre_reset(*exec);
+	pre_reset();
 	clean_alloc(exec);
 	rl_clear_history();
 	return (clean_exit(ft_strdup("cavalinho")));

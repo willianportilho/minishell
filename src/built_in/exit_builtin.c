@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:55:36 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 15:51:14 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 16:41:32 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	exit_builtin(t_table **tab)
 	rl_clear_history();
 	while ((*tab)->cmd[i])
 	{
-		if (ft_isdigit((*tab)->cmd[i]))
+		if (ft_isdigit((*tab)->cmd[i])
+			|| ((*tab)->cmd[i] == '-' && ft_isdigit((*tab)->cmd[i + 1])))
 		{
 			global()->exit = ft_atoi((*tab)->cmd + i);
 			exit (clean_exit(ft_strdup("cavalinho")));

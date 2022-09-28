@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:32:30 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 19:54:56 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/28 20:02:44 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	close_pipes(t_exec *exec)
 	i = -1;
 	while (++i < exec->amount_cmd - 1)
 	{
-		close(exec->pipes[i][0])
-		close(exec->pipes[i][1])
+		close(exec->pipes[i][0]);
+		close(exec->pipes[i][1]);
 	}
 }
 

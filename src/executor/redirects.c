@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:34:38 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 02:18:04 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/28 20:09:36 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,20 @@ void	initialize_files(t_table **tab)
 	{
 		(*tab)->infile_fd = open((*tab)->in_file, O_RDONLY);
 		if ((*tab)->infile_fd == -1)
-			ft_printf("infile: colocar erro depois e limpar memória\n");
+			perror_message((*tab)->in_file);
 	}
 	if ((*tab)->out_red)
 	{
 		(*tab)->outfile_fd = open((*tab)->out_file, \
 		O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if ((*tab)->outfile_fd == -1)
-			ft_printf("outfile: colocar erro depois e limpar memória\n");
+			perror_message((*tab)->out_file);
 	}
 	if ((*tab)->out_append)
 	{
 		(*tab)->outfile_fd = open((*tab)->out_file, \
 		O_WRONLY | O_CREAT | O_APPEND, 0644);
 		if ((*tab)->outfile_fd == -1)
-			ft_printf("append: colocar erro depois e limpar memória\n");
+			perror_message((*tab)->out_file);
 	}
 }

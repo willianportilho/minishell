@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 14:48:20 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 20:20:29 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define TEMP_SHILD 2
 # define TEMP_QUOT	3
 # define HDERRO	"bash: warning: here-document delimited by end-of-file"
+# define SYNTXERR "bash: syntax error near unexpected token `"
 
 typedef struct s_utils
 {
@@ -232,6 +233,6 @@ void		free_tab(t_table *tab);
 void		next_n_free_tab(t_table *tab);
 t_test		*global(void);
 void		clear_tokens_lst(t_tokens **lst);
-void		pre_reset(t_exec exec);
+void		pre_reset(void);
 
 #endif

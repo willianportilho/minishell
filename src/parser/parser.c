@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 16:29:01 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 20:23:14 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,28 @@ static int	is_something_that_i_didnt_named_yet(int tk)
 
 static void	is_redirect(t_tokens **tks, t_bool *boolean, char **file)
 {
-	*boolean = TRUE;
+	char	*msg_erro;
+
+	msg_erro = ft_strdup("newline");
 	ft_lstfoward_free_t(tks);
+	if (!(*tks) || !is_something_that_i_didnt_named_yet((*tks)->token))
+	{
+		if (*tks)
+		{
+			free(msg_erro);
+			msg_erro = ft_strdup((*tks)->str);
+			while (*tks)
+				ft_lstfoward_free_t(tks);
+		}
+		ft_putstr_fd(SYNTXERR, 2);
+		ft_putstr_fd(msg_erro, 2);
+		ft_putstr_fd("'\n", 2);
+		free(msg_erro);
+		global()->control = FALSE;
+		global()->exit = 2;
+		return ;
+	}
+	*boolean = TRUE;
 	free(*file);
 	*file = ft_strdup((*tks)->str);
 	ft_lstfoward_free_t(tks);

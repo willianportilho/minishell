@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 16:28:37 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 20:09:50 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ void	lexer(t_tokens **tks, char **str, t_table **tab)
 		false_all(aux_tab);
 		while (!aux_tab->pipe && (*tks))
 			parser(tks, aux_tab);
-		create_cmd_line_and_path(aux_tab);
+		if (global()->control)
+			create_cmd_line_and_path(aux_tab);
 		if (*tks)
 		{
 			aux_tab->next = malloc(sizeof(t_table));

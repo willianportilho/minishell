@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/28 20:59:16 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:28:27 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	is_redirect(t_tokens **tks, t_bool *boolean, char **file)
 	ft_lstfoward_free_t(tks);
 	if (!(*tks) || !is_something_that_i_didnt_named_yet((*tks)->token))
 	{
-		redirect_tkn_error(tks);
+		tkn_error(tks);
 		return ;
 	}
 	*boolean = TRUE;
@@ -70,9 +70,6 @@ static void	is_redirect(t_tokens **tks, t_bool *boolean, char **file)
 
 void	parser(t_tokens **tks, t_table *tab)
 {
-	int	i;
-
-	i = -1;
 	if ((*tks) && (*tks)->token == I_REDIRECT)
 		is_redirect(tks, &tab->in_red, &tab->in_file);
 	if ((*tks) && (*tks)->token == O_REDIRECT)

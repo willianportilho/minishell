@@ -6,13 +6,13 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 20:56:35 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/28 21:00:03 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:17:44 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	redirect_tkn_error(t_tokens **tks)
+void	tkn_error(t_tokens **tks)
 {
 	char	*msg_erro;
 

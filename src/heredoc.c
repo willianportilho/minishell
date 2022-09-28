@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:47:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 14:57:06 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:28:03 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,24 @@ static void	heredoc(t_tokens **tks)
 	exit(clean_exit(ft_strdup("cavalinho")));
 }
 
+void	prepare_infile(t_tokens **tks, t_table **tab)
+{
+	free((*tab)->in_file);
+	(*tab)->in_file = ft_strdup(".heredoc");
+	(*tab)->in_red = TRUE;
+	ft_lstfoward_free_t(tks);
+}
+
 void	heredoc_caller(t_tokens **tks, t_table **tab)
 {
 	int	parent;
 
 	ft_lstfoward_free_t(tks);
+	if (!(*tks))
+	{
+		tkn_error(tks);
+		return ;
+	}
 	parent = fork();
 	if (!parent)
 		heredoc(tks);
@@ -87,10 +100,7 @@ void	heredoc_caller(t_tokens **tks, t_table **tab)
 		wait(&global()->exit);
 		if (!global()->exit)
 		{
-			free((*tab)->in_file);
-			(*tab)->in_file = ft_strdup(".heredoc");
-			(*tab)->in_red = TRUE;
-			ft_lstfoward_free_t(tks);
+			prepare_infile(tks, tab);
 		}
 		else
 		{

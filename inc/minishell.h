@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 17:27:05 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/28 02:56:29 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ void		alloc_resources(t_exec *exec);
 void		initialize_files(t_table **tab);
 void		close_pipes(t_exec *exec);
 void		clean_alloc(t_exec *exec);
+void		clean_alloc_parent(t_exec *exec);
 void		check_infile(t_table **tab, t_exec *exec);
 void		check_outfile(t_table **tab, t_exec *exec);
 void		cmd_error(t_table **tab, t_exec *exec);

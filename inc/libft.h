@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 00:38:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 21:38:08 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/28 04:17:52 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,5 +218,6 @@ char		*ft_strndup(const char *s, int size);
 void		ft_array_print(char **array);
 char		**ft_create_blank_array(void);
 int			ft_c_first_than_in_str(char *str, char c_1, char c_2);
+char		*ft_strjoin_double_free(char *s1, char *s2);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/20 00:41:26 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/27 11:34:17 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/28 04:18:27 by ralves-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,8 @@ SOURCES_EXTRA =									\
 						ft_create_blank_array.c \
 						ft_add_char_start_end.c \
 						ft_strndup.c            \
-						ft_c_first_than_in_str.c
+						ft_c_first_than_in_str.c\
+						ft_strjoin_double_free.c\
 
 NAME =					libft.a
 

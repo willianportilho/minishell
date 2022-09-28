@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 18:57:27 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:17:30 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_exec
 	int				check;
 	int				pos;
 	int				i;
+	int				ind;
 	int				*p;
 }					t_exec;
 

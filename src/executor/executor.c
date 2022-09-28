@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 20:01:54 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:49:09 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ static int	execute(t_table **tab, t_exec *exec)
 	{
 		*p = execve((*tab)->path[exec->pos], \
 		(*tab)->cmd_line, global()->envp);
-		perror((*tab)->cmd_line[1]);
+		perror_message((*tab)->cmd_line[1]);
 	}
 	else
 	{
 		*p = (execve((*tab)->cmd_line[0], \
 		(*tab)->cmd_line, global()->envp));
-		perror((*tab)->cmd_line[1]);
+		perror_message((*tab)->cmd_line[1]);
 	}
 	clean_alloc(exec);
 	exit(clean_exit(ft_strdup("cavalinho")));
@@ -83,7 +83,7 @@ static void	initialize_childs(t_table **tab, t_exec *exec)
 {
 	exec->pid[exec->i] = fork();
 	if (exec->pid[exec->i] == -1)
-		ft_printf("fork: colocar erro depois e limpar memória\n");
+		perror_message("fork");
 	if (exec->pid[exec->i] == 0)
 		child(tab, exec);
 }

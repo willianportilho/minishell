@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 21:28:20 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:57:27 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,10 +218,11 @@ int			pwd(t_table **tab, t_exec *exec);
 int			exportation(t_table **tab);
 int			unset(t_table **tab);
 int			env(t_table **tab);
+int			exit_builtin(t_table **tab);
 int			built_in_cd_error(t_table **tab, t_exec *exec);
 int			built_in_pwd_error(t_exec *exec);
 int			built_in_identifier_error(char *cmd_name, char *cmd);
-int			exit_builtin(t_table **tab);
+void		perror_message(char *msg);
 
 int			clean_exit(char *free_me);
 void		expand(t_tokens **tks);

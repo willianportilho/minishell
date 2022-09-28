@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/28 21:00:49 by ralves-b         ###   ########.fr        #
+#    Updated: 2022/09/28 18:52:01 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIST =			ft_lstadd_back_t.c ft_lstnew_t.c ft_lstfoward_free_t.c \
 PARSER =		parser.c expander.c parser_error.c
 EXECUTOR =		exec_clean.c pipe.c redirects.c executor.c exec_error.c
 BUILT_IN =		is_built_in.c echo.c cd.c pwd.c built_in_error.c unset.c \
-				exportation.c exportation_2.c env.c exit_builtin.c
+				exportation.c exportation_2.c env.c exit_builtin.c perror_message.c
 
 NAME =			minishell
 

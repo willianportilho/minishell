@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 02:55:50 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 14:16:57 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,23 @@ static void	initialize_childs(t_table **tab, t_exec *exec)
 		child(tab, exec);
 }
 
+void	please_help_me(t_exec exec)
+{
+	t_table	*aux;
+
+	exec.i = -1;
+	while (++exec.i < exec.amount_cmd)
+	{
+		aux = global()->tabble->next;
+		free_tab(global()->tabble);
+		free(global()->tabble);
+		global()->tabble = NULL;
+		global()->tabble = aux;
+	}
+	global()->tabble = malloc(sizeof(t_table));
+	init_new_tab(global()->tabble);
+}
+
 void	executor(t_table **tab)
 {
 	t_exec	exec;
@@ -106,13 +123,11 @@ void	executor(t_table **tab)
 		{
 			initialize_files(&aux);
 			initialize_childs(&aux, &exec);
-			//if (exec.i > 0)
-			//	next_n_free_tab(aux);
-			//else
-				aux = aux->next;
+			aux = aux->next;
 		}
 		close_pipes(&exec);
 		wait_processes(&exec);
+		please_help_me(exec);
 		clean_alloc_parent(&exec);
 	}
 }

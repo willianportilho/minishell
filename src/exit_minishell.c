@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:00:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 15:07:57 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 14:47:16 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,21 @@ void	free_tab(t_table *tab)
 	free(tab->out_file);
 }
 
-void	next_n_free_tab(t_table *tab)
+void	pre_reset(t_exec exec)
 {
-	t_table	*temp;
+	t_table	*aux;
 
-	temp = tab->next;
-	free_tab(tab);
-	tab = temp;
+	exec.i = -1;
+	while (++exec.i < exec.amount_cmd)
+	{
+		aux = global()->tabble->next;
+		free_tab(global()->tabble);
+		free(global()->tabble);
+		global()->tabble = NULL;
+		global()->tabble = aux;
+	}
+	global()->tabble = malloc(sizeof(t_table));
+	init_new_tab(global()->tabble);
 }
 
 int	msg_n_exit_function(char *msg, int (*f)(char *), char *fr)

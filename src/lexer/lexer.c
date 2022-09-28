@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 16:28:37 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 20:54:28 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	create_cmd_line_and_path(t_table *tab)
 {
 	int		i;
 
+	if (!global()->control)
+		return ;
 	i = -1;
 	clean_space(tab->cmd);
 	ft_free_array(tab->cmd_line);

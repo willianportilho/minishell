@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 14:48:03 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 20:01:54 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	executor(t_table **tab)
 		}
 		close_pipes(&exec);
 		wait_processes(&exec);
-		pre_reset(exec);
+		pre_reset();
 		clean_alloc_parent(&exec);
 	}
 }

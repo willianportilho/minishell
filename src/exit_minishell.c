@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:00:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/28 14:47:16 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 20:01:41 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	clear_tokens_lst(t_tokens **lst)
 
 int	clean_exit(char *free_me)
 {
+	pre_reset();
 	free(free_me);
 	ft_free_array(global()->envp);
 	free(global()->tabble->cmd);
@@ -51,12 +52,11 @@ void	free_tab(t_table *tab)
 	free(tab->out_file);
 }
 
-void	pre_reset(t_exec exec)
+void	pre_reset(void)
 {
 	t_table	*aux;
 
-	exec.i = -1;
-	while (++exec.i < exec.amount_cmd)
+	while (global()->tabble)
 	{
 		aux = global()->tabble->next;
 		free_tab(global()->tabble);

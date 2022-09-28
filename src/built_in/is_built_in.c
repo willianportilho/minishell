@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_built_in.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/27 20:44:25 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:27:44 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ static void	init_resources(t_table **tab, t_exec *exec)
 	check_outfile(tab, exec);
 }
 
+static int	clean_builtin_child(t_exec *exec)
+{
+	pre_reset(*exec);
+	clean_alloc(exec);
+	rl_clear_history();
+	return (clean_exit(ft_strdup("cavalinho")));
+}
+
 void	is_built_in(t_table **tab, t_exec *exec)
 {
 	exec->p = &global()->exit;
@@ -66,9 +74,5 @@ void	is_built_in(t_table **tab, t_exec *exec)
 	if (exec->amount_cmd == 1)
 		reset_in_out(exec);
 	if ((exec->amount_cmd > 1) && built_in_cmd((*tab)->cmd_line[0]))
-	{
-		clean_alloc(exec);
-		rl_clear_history();
-		exit(clean_exit(ft_strdup("cavalinho")));
-	}
+		exit(clean_builtin_child(exec));
 }

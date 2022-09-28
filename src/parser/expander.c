@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/28 04:23:11 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 04:28:23 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*expand_query(char *rest)
 {
 	char	*expanded;
 
-	expanded = ft_strjoin(ft_itoa(global()->exit), rest);
+	expanded = ft_strjoin_double_free(ft_itoa(global()->exit), rest);
 	return (expanded);
 }
 
@@ -31,7 +31,7 @@ char	*simple_expander(char *variable)
 	if (*variable == QUERY)
 	{
 		rest = ft_strdup(variable + 1);
-		return (expand_query(rest));
+		return (free(expanded), free(variable), expand_query(rest));
 	}
 	variable = ft_strjoin_free(variable, "=");
 	while ((global()->envp[i] != NULL) != 0)

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 15:27:44 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 16:21:10 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	clean_builtin_child(t_exec *exec)
 void	is_built_in(t_table **tab, t_exec *exec)
 {
 	exec->p = &global()->exit;
-	if (exec->amount_cmd == 1)
+	if ((exec->amount_cmd == 1) && built_in_cmd((*tab)->cmd_line[0]))
 		init_resources(tab, exec);
 	if (ft_str_is_equal((*tab)->cmd_line[0], "echo"))
 		*exec->p = echo(tab);
@@ -71,7 +71,7 @@ void	is_built_in(t_table **tab, t_exec *exec)
 		*exec->p = env(tab);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "exit"))
 		*exec->p = exit_builtin(tab);
-	if (exec->amount_cmd == 1)
+	if ((exec->amount_cmd == 1) && built_in_cmd((*tab)->cmd_line[0]))
 		reset_in_out(exec);
 	if ((exec->amount_cmd > 1) && built_in_cmd((*tab)->cmd_line[0]))
 		exit(clean_builtin_child(exec));

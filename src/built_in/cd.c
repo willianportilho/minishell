@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:52:22 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 17:20:08 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/28 13:43:11 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	cd(t_table **tab, t_exec *exec)
 	char	*home;
 
 	p = &global()->exit;
-	home = simple_expander("HOME");
+	home = simple_expander(ft_strdup("HOME"));
 	if (ft_str_is_equal((*tab)->cmd_line[0], "cd"))
 	{
 		if (ft_array_str_len((*tab)->cmd_line) > 2)

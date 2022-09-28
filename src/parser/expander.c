@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/26 18:00:15 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/28 04:01:09 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ char	*simple_expander(char *variable)
 
 	i = 1;
 	expanded = ft_strdup("");
-	rest = ft_strdup("");
 	if (*variable == QUERY)
 	{
 		rest = ft_strdup(variable + 1);
@@ -39,17 +38,19 @@ char	*simple_expander(char *variable)
 	{
 		if (ft_strnstr(global()->envp[i], variable, ft_strlen(variable)))
 		{
+			free(expanded);
 			expanded = ft_strdup(global()->envp[i] + ft_strlen(variable));
 			break ;
 		}
 		i++;
 	}
+	free(variable);
 	return (expanded);
 }
 
 static void	handle_dquote_dolars(char **str, char *s, int count, t_utils u)
 {
-	while (s[++u.i] && count)
+	while (count && s[++u.i])
 	{
 		if (s[u.i] == DOLAR)
 		{
@@ -71,8 +72,8 @@ static void	handle_dquote_dolars(char **str, char *s, int count, t_utils u)
 		if (s[u.i] == DOLAR)
 			u.i--;
 	}
-	if (s + u.i)
-		u.str = ft_strjoin_free(u.str, s + u.i - 1);
+	if ((int)ft_strlen(s) > u.i)
+		u.str = ft_strjoin_free(u.str, s + u.i);
 	*str = ft_strjoin_free(*str, u.str);
 }
 
@@ -100,7 +101,7 @@ static void	simple_trim(char **str, char c)
 		else
 			new_str = ft_strjoin_free(new_str, temp[i]);
 	}
-	free(temp);
+	ft_free_array(temp);
 	free(*str);
 	*str = new_str;
 }

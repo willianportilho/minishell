@@ -6,35 +6,35 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:57:49 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/26 16:47:10 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:43:55 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static void	add_space_before_dolar(char **str)
-{
-	int	i;
-	int	value;
+// static void	add_space_before_dolar(char **str)
+// {
+// 	int	i;
+// 	int	value;
 
-	i = 0;
-	while ((*str)[i])
-	{
-		if ((*str)[i] == S_QUOTE || (*str)[i] == D_QUOTE)
-		{
-			value = (*str)[i];
-			i++;
-			while ((*str)[i] && (*str)[i] != value)
-				i++;
-		}
-		else if ((*str)[i] == DOLAR)
-		{
-			*str = ft_str_insert_free(*str, SPACE, i);
-			i++;
-		}
-		i++;
-	}
-}
+// 	i = 0;
+// 	while ((*str)[i])
+// 	{
+// 		if ((*str)[i] == S_QUOTE || (*str)[i] == D_QUOTE)
+// 		{
+// 			value = (*str)[i];
+// 			i++;
+// 			while ((*str)[i] && (*str)[i] != value)
+// 				i++;
+// 		}
+// 		else if ((*str)[i] == DOLAR)
+// 		{
+// 			*str = ft_str_insert_free(*str, SPACE, i);
+// 			i++;
+// 		}
+// 		i++;
+// 	}
+// }
 
 /**
  * @brief Checar entrada triplicada
@@ -83,7 +83,7 @@ void	add_space(char **str)
 			check_double(str, &i, (*str)[i]);
 		i++;
 	}
-	add_space_before_dolar(str);
+	//add_space_before_dolar(str);
 }
 
 void	clean_space(char *str)

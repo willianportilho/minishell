@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/28 04:28:23 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:22:53 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*simple_expander(char *variable)
 
 static void	handle_dquote_dolars(char **str, char *s, int count, t_utils *u)
 {
+	ft_printf("AQUI = %s\n", s);
 	while (count && s[++u->i])
 	{
 		if (s[u->i] == DOLAR)
@@ -59,8 +60,8 @@ static void	handle_dquote_dolars(char **str, char *s, int count, t_utils *u)
 			u->str = ft_strjoin_double_free(u->str, ft_substr(s + u->size, 0, \
 			ft_strlen_til_chr(s + u->size, DOLAR)));
 			u->i++;
-			while (s[u->i] && s[u->i] != D_QUOTE && s[u->i] != SPACE
-				&& s[u->i] != DOLAR && s[u->i] != S_QUOTE)
+			while (s[u->i] && s[u->i] != TEMP_DQUOT && s[u->i] != SPACE
+				&& s[u->i] != DOLAR && s[u->i] != TEMP_SQUOT)
 				u->i++;
 			u->tmp = ft_substr(s, u->start, u->i - u->start);
 			u->aux = simple_expander(ft_strdup(u->tmp + 1));
@@ -76,7 +77,7 @@ static void	handle_dquote_dolars(char **str, char *s, int count, t_utils *u)
 	*str = ft_strjoin_free(*str, u->str);
 }
 
-static void	simple_trim(int i, char **str, char c)
+static void	simple_trim(int i, char **str)
 {
 	char	*new_str;
 	char	**temp;
@@ -87,13 +88,11 @@ static void	simple_trim(int i, char **str, char c)
 	utils.i = -1;
 	utils.str = ft_strdup("");
 	n_dolars = ft_count_c_in_str(*str, DOLAR);
-	temp = ft_split(*str, c);
+	temp = ft_split(*str, D_QUOTE);
 	new_str = ft_strdup("");
 	while (temp[++i])
 	{
-		if (!ft_strchr(temp[i], DOLAR) && c == D_QUOTE)
-			new_str = ft_strjoin_free(new_str, temp[i]);
-		else if (c == D_QUOTE)
+		if (ft_strchr(temp[i], DOLAR))
 			handle_dquote_dolars(&new_str, temp[i], n_dolars, &utils);
 		else
 			new_str = ft_strjoin_free(new_str, temp[i]);
@@ -106,27 +105,14 @@ static void	simple_trim(int i, char **str, char c)
 
 void	expand(t_tokens **t)
 {
-	char	*new_str;
 	int		i;
 
 	i = -1;
-	if ((*t)->token == S_QUOTE
-		|| ft_c_first_than_in_str((*t)->str, S_QUOTE, D_QUOTE))
-	{
-		simple_trim(i, &(*t)->str, S_QUOTE);
-		ft_str_swap_chr(&(*t)->str, SPACE, TEMP_SHILD);
-	}
-	else if ((*t)->token == D_QUOTE
-		|| ft_c_first_than_in_str((*t)->str, D_QUOTE, S_QUOTE))
-		simple_trim(i, &(*t)->str, D_QUOTE);
-	else
-	{
-		if (ft_strchr((*t)->str, DOLAR))
-		{
-			new_str = simple_expander(ft_strdup((*t)->str + 1));
-			free((*t)->str);
-			(*t)->str = new_str;
-		}
-		ft_str_swap_chr(&(*t)->str, SPACE, TEMP_SHILD);
-	}
+	ft_printf("\nANTES = %s\n", (*t)->str);
+	expand_2((*t)->str);
+	ft_printf("\nDEPOIS = %s\n", (*t)->str);
+	simple_trim(i, &(*t)->str);
+	ft_str_swap_chr(&(*t)->str, TEMP_DQUOT, D_QUOTE);
+	ft_str_swap_chr(&(*t)->str, TEMP_DOLAR, DOLAR);
+	ft_printf("\nSUPER DEPOIS = %s\n", (*t)->str);
 }

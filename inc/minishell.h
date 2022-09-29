@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 21:28:20 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:40:33 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 
 # define TEMP_VALUE	1
 # define TEMP_SHILD 2
-# define TEMP_QUOT	3
+# define TEMP_SQUOT	3
+# define TEMP_DQUOT 4
+# define TEMP_DOLAR 5
 # define HDERRO	"bash: warning: here-document delimited by end-of-file"
 # define SYNTXERR "bash: syntax error near unexpected token `"
 
@@ -235,5 +237,6 @@ t_test		*global(void);
 void		clear_tokens_lst(t_tokens **lst);
 void		pre_reset(void);
 void		tkn_error(t_tokens **tks);
+void		expand_2(char *str);
 
 #endif

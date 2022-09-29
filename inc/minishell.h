@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 19:17:30 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:28:21 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_exec
 	int				cpin;
 	int				cpout;
 	int				amount_cmd;
+	int				amount_cmd_cp;
 	int				**pipes;
 	int				*pid;
 	int				exit;
@@ -190,6 +191,7 @@ int			ft_lstsize_tab(t_table *lst);
 |	executor														 |
 \* ---------------------------------------------------------------------*/
 void		wait_processes(t_exec *exec);
+void		initialize_variables(t_exec *exec, t_table **aux);
 void		initialize_pipes(t_exec *exec);
 void		alloc_resources(t_exec *exec);
 void		initialize_files(t_table **tab);

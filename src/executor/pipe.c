@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:32:30 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 20:02:44 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:29:40 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,19 @@ void	alloc_resources(t_exec *exec)
 	}
 }
 
+void	initialize_variables(t_exec *exec, t_table **aux)
+{
+	global()->exit = 0;
+	exec->amount_cmd = ft_lstsize_tab(*aux);
+	exec->amount_cmd_cp = exec->amount_cmd;
+}
+
 void	close_pipes(t_exec *exec)
 {
 	int	i;
 
 	i = -1;
-	while (++i < exec->amount_cmd - 1)
+	while (++i < exec->amount_cmd_cp - 1)
 	{
 		close(exec->pipes[i][0]);
 		close(exec->pipes[i][1]);

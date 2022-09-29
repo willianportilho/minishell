@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:21:35 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 16:30:19 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:47:23 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ void	protect_d_quotes(char *str, int *i)
 			str[*i] = TEMP_SQUOT;
 		else if (str[*i] == SPACE)
 			str[*i] = TEMP_VALUE;
+		else if (str[*i] == DOLAR)
+		{
+			if (str[*i + 1] && (str[*i + 1] == SPACE || str[*i + 1] == D_QUOTE
+				|| str[*i + 1] == DOLAR))
+				str[*i] = TEMP_DOLAR;
+		}
 		*i += 1;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 16:19:30 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:47:53 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	create_cmd_line_and_path(t_table *tab)
 		ft_str_swap_chr(&tab->cmd_line[i], I_REDIRECT_TEMP, I_REDIRECT);
 		ft_str_swap_chr(&tab->cmd_line[i], O_REDIRECT_TEMP, O_REDIRECT);
 		ft_str_swap_chr(&tab->cmd_line[i], TEMP_PIPE, PIPE);
+		ft_str_swap_chr(&tab->cmd_line[i], TEMP_DOLAR, DOLAR);
 	}
 	i = -1;
 	while (tab->path[++i])

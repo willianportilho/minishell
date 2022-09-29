@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:34:38 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 20:09:36 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/30 00:35:19 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	check_outfile(t_table **tab, t_exec *exec)
 			clean_alloc(exec);
 			exit(EXIT_FAILURE);
 		}
-		if (((*tab)->in_red != TRUE) && (exec->amount_cmd > 1))
+		if (((*tab)->in_red != TRUE) && (exec->amount_cmd > 1) && exec->i)
 			dup2(exec->pipes[exec->i - 1][0], STDIN_FILENO);
 		dup2((*tab)->outfile_fd, STDOUT_FILENO);
 		close((*tab)->outfile_fd);

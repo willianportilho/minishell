@@ -19,6 +19,10 @@ void	handle_sigint(int sig)
 	{
 		ft_putchar_fd('\n', STDOUT_FILENO);
 		rl_replace_line("", 0);
+		rl_clear_history();
+		pre_reset();
+		reset_tab(ft_strdup("cavalinho"));
+		clean_exit(ft_strdup("cavalinho"));
 		exit(-1);
 	}
 	else

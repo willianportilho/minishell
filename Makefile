@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES =		minishell.c	main.c signals.c heredoc.c exit_minishell.c init.c
+SOURCES =		minishell.c	main.c signals.c heredoc.c exit_minishell.c init.c heredoc_utils.c
 LEXER =			lexer.c handle_spaces.c
 LIST =			ft_lstadd_back_t.c ft_lstnew_t.c ft_lstfoward_free_t.c \
 				ft_lstsize_tab.c ft_lstclear_t.c

@@ -12,25 +12,21 @@
 
 #include "../inc/minishell.h"
 
-void	check_heredoc(void)
+static void	prepare_new_loop(char **buf)
 {
-	char	pwd[1024];
-	char	*heredoc_path;
-	char	*cmd_line;
-	int		parent;
+	expand(buf);
+	bring_temp_values_back(buf);
+	ft_putstr_fd(*buf, global()->fd_global);
+	ft_putstr_fd("\n", global()->fd_global);
+	free(*buf);
+}
 
-	if (!getcwd(pwd, sizeof(pwd)))
-		return ;
-	heredoc_path = ft_strjoin(pwd, "/.heredoc");
-	cmd_line = ft_strjoin("rm ", heredoc_path);
-	if (!access(heredoc_path, F_OK))
-	{
-		parent = fork();
-		if (!parent)
-			execve("/usr/bin/rm", ft_split(cmd_line, ' '), NULL);
-		else
-			waitpid(-1, &global()->exit, 0);
-	}
+static void	first_loop(t_tokens **tks)
+{
+	free(global()->tabble->cmd);
+	global()->tabble->cmd = ft_strdup((*tks)->str);
+	clear_tokens_lst(tks);
+	*tks = NULL;
 }
 
 static void	heredoc_loop(t_tokens **tks)
@@ -39,26 +35,24 @@ static void	heredoc_loop(t_tokens **tks)
 
 	while (global()->test)
 	{
+		if ((*tks))
+			first_loop(tks);
 		if (global()->test)
 			buf = readline(">");
 		if (buf == NULL)
 		{
-			ft_printf("%s (wanted `%s')\n", HDERRO, (*tks)->str);
+			ft_printf("%s (wanted `%s')\n", HDERRO, global()->tabble->cmd);
 			free(buf);
 			global()->test = FALSE;
 			break ;
 		}
-		if (ft_str_is_equal(buf, (*tks)->str))
+		if (ft_str_is_equal(buf, global()->tabble->cmd))
 		{
 			global()->test = FALSE;
 			free(buf);
 			break ;
 		}
-		expand(&buf);
-		bring_temp_values_back(&buf);
-		ft_putstr_fd(buf, global()->fd_global);
-		ft_putstr_fd("\n", global()->fd_global);
-		free(buf);
+		prepare_new_loop(&buf);
 	}
 }
 
@@ -71,18 +65,9 @@ static void	heredoc(t_tokens **tks)
 	global()->fd_global = fd;
 	heredoc_loop(tks);
 	close(global()->fd_global);
-	clear_tokens_lst(tks);
 	rl_clear_history();
 	global()->exit = 0;
 	exit(clean_exit(ft_strdup("cavalinho")));
-}
-
-void	prepare_infile(t_tokens **tks, t_table **tab)
-{
-	free((*tab)->in_file);
-	(*tab)->in_file = ft_strdup(".heredoc");
-	(*tab)->in_red = TRUE;
-	ft_lstfoward_free_t(tks);
 }
 
 void	heredoc_caller(t_tokens **tks, t_table **tab)
@@ -102,13 +87,12 @@ void	heredoc_caller(t_tokens **tks, t_table **tab)
 	{
 		wait(&parent);
 		if (!parent)
-		{
 			prepare_infile(tks, tab);
-		}
 		else
 		{
-			clean_exit(ft_strdup("cavalinho"));
-			global()->tabble = malloc(sizeof(t_table));
+			pre_reset();
+			reset_tab(ft_strdup("cavalinho"));
+			global()->control = FALSE;
 			minishell(&global()->tabble);
 		}
 	}

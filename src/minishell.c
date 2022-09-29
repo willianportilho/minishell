@@ -28,7 +28,7 @@ int	not_ful_space(char *buff)
 	return (0);
 }
 
-static void	reset_tab(char *buff)
+void	reset_tab(char *buff)
 {
 	char	**envp;
 

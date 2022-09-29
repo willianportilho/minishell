@@ -244,5 +244,8 @@ void		tkn_error(t_tokens **tks);
 void		expand_2(char *str);
 void		bring_temp_values_back(char **str);
 void		false_all(t_table *tab);
+void		reset_tab(char *buff);
+void		prepare_infile(t_tokens **tks, t_table **tab);
+void		check_heredoc(void);
 
 #endif

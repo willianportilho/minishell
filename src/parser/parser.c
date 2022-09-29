@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 17:16:18 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:33:58 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,8 @@ void	get_path(t_table *p, int i)
 			temp = ft_split(global()->envp[i] + 5, ':');
 		i++;
 	}
-	global()->control = TRUE;
 	if (temp == NULL)
-	{
 		temp = ft_create_blank_array();
-		return ;
-	}
 	i = 0;
 	while (temp[i])
 		i++;
@@ -44,6 +40,7 @@ void	get_path(t_table *p, int i)
 	while (i--)
 		p->path[i] = ft_strjoin_free(temp[i], "/");
 	free(temp);
+	global()->control = TRUE;
 }
 
 static int	is_something_that_i_didnt_named_yet(int tk)

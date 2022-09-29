@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 15:22:53 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:27:03 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char	*simple_expander(char *variable)
 
 static void	handle_dquote_dolars(char **str, char *s, int count, t_utils *u)
 {
-	ft_printf("AQUI = %s\n", s);
 	while (count && s[++u->i])
 	{
 		if (s[u->i] == DOLAR)
@@ -108,11 +107,8 @@ void	expand(t_tokens **t)
 	int		i;
 
 	i = -1;
-	ft_printf("\nANTES = %s\n", (*t)->str);
 	expand_2((*t)->str);
-	ft_printf("\nDEPOIS = %s\n", (*t)->str);
 	simple_trim(i, &(*t)->str);
 	ft_str_swap_chr(&(*t)->str, TEMP_DQUOT, D_QUOTE);
 	ft_str_swap_chr(&(*t)->str, TEMP_DOLAR, DOLAR);
-	ft_printf("\nSUPER DEPOIS = %s\n", (*t)->str);
 }

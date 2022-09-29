@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:57:49 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 14:43:55 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:40:47 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,12 @@ void	clean_space(char *str)
 		value = str[i];
 		while (str[++i] != value)
 		{
-			if (str[i] == ' ')
+			if (str[i] == SPACE)
 				str[i] = TEMP_VALUE;
+			if (str[i] == I_REDIRECT)
+				str[i] = I_REDIRECT_TEMP;
+			if (str[i] == O_REDIRECT)
+				str[i] = O_REDIRECT_TEMP;
 		}
 		i++;
 	}

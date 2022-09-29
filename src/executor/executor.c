@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 20:01:54 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/30 00:58:16 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ static int	execute(t_table **tab, t_exec *exec)
 	{
 		*p = execve((*tab)->path[exec->pos], \
 		(*tab)->cmd_line, global()->envp);
-		perror((*tab)->cmd_line[1]);
+		perror_message((*tab)->cmd_line[1]);
 	}
 	else
 	{
 		*p = (execve((*tab)->cmd_line[0], \
 		(*tab)->cmd_line, global()->envp));
-		perror((*tab)->cmd_line[1]);
+		perror_message((*tab)->cmd_line[1]);
 	}
 	clean_alloc(exec);
 	exit(clean_exit(ft_strdup("cavalinho")));
@@ -74,6 +74,11 @@ static void	child(t_table **tab, t_exec *exec)
 	close_pipes(exec);
 	if (global()->envp)
 		;
+	if (!ft_strlen((*tab)->cmd_line[0]))
+	{
+		clean_alloc(exec);
+		exit(clean_exit(ft_strdup("cavalinho")));
+	}
 	if (exec->amount_cmd > 1)
 		is_built_in(tab, exec);
 	execute(tab, exec);
@@ -83,7 +88,7 @@ static void	initialize_childs(t_table **tab, t_exec *exec)
 {
 	exec->pid[exec->i] = fork();
 	if (exec->pid[exec->i] == -1)
-		ft_printf("fork: colocar erro depois e limpar memória\n");
+		perror_message("fork");
 	if (exec->pid[exec->i] == 0)
 		child(tab, exec);
 }
@@ -94,11 +99,13 @@ void	executor(t_table **tab)
 	t_table	*aux;
 
 	aux = *tab;
-	global()->exit = 0;
-	exec.amount_cmd = ft_lstsize_tab(aux);
-	if (exec.amount_cmd == 1)
+	initialize_variables(&exec, &aux);
+	if ((exec.amount_cmd == 1) && !ft_strlen((aux)->cmd_line[0]))
+		initialize_files(&aux);
+	if ((exec.amount_cmd == 1) && ft_strlen((aux)->cmd_line[0]))
 		is_built_in(&aux, &exec);
-	if ((exec.amount_cmd > 1) || (!built_in_cmd((aux)->cmd_line[0])))
+	if ((exec.amount_cmd > 1) || (!built_in_cmd((aux)->cmd_line[0]) \
+	&& ft_strlen((aux)->cmd_line[0])))
 	{
 		alloc_resources(&exec);
 		initialize_pipes(&exec);

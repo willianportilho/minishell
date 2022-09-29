@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/29 17:57:53 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/30 01:45:20 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ typedef struct s_exec
 	int				cpin;
 	int				cpout;
 	int				amount_cmd;
+	int				amount_cmd_cp;
 	int				**pipes;
 	int				*pid;
 	int				exit;
 	int				check;
 	int				pos;
 	int				i;
+	int				ind;
 	int				*p;
 }					t_exec;
 
@@ -195,6 +197,7 @@ int			ft_lstsize_tab(t_table *lst);
 |	executor														 |
 \* ---------------------------------------------------------------------*/
 void		wait_processes(t_exec *exec);
+void		initialize_variables(t_exec *exec, t_table **aux);
 void		initialize_pipes(t_exec *exec);
 void		alloc_resources(t_exec *exec);
 void		initialize_files(t_table **tab);
@@ -224,10 +227,11 @@ int			pwd(t_table **tab, t_exec *exec);
 int			exportation(t_table **tab);
 int			unset(t_table **tab);
 int			env(t_table **tab);
+int			exit_builtin(t_table **tab);
 int			built_in_cd_error(t_table **tab, t_exec *exec);
 int			built_in_pwd_error(t_exec *exec);
 int			built_in_identifier_error(char *cmd_name, char *cmd);
-int			exit_builtin(t_table **tab);
+void		perror_message(char *msg);
 
 int			clean_exit(char *free_me);
 void		expand(char **str);

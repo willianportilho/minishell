@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 21:27:56 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/26 22:41:47 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:35:55 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 int	built_in_identifier_error(char *cmd_name, char *cmd)
 {
-	ft_printf("minishell: %s: `%s': not a valid identifier\n", cmd_name, cmd);
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(cmd_name, 2);
+	ft_putstr_fd(": `", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd("': not a valid identifier\n", 2);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:21:35 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 16:14:14 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:30:19 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	protect_d_quotes(char *str, int *i)
 	{
 		if (str[*i] == S_QUOTE)
 			str[*i] = TEMP_SQUOT;
+		else if (str[*i] == SPACE)
+			str[*i] = TEMP_VALUE;
 		*i += 1;
 	}
 }

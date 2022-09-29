@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/29 15:40:36 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:02:05 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define TEMP_DOLAR 5
 # define I_REDIRECT_TEMP 6
 # define O_REDIRECT_TEMP 7
+# define TEMP_PIPE 8
+# define SPLIT_ME -1
 # define HDERRO	"bash: warning: here-document delimited by end-of-file"
 # define SYNTXERR "bash: syntax error near unexpected token `"
 

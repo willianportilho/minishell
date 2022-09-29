@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:21:35 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 15:06:33 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:14:14 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	protect_s_quotes(char *str, int *i)
 {
+	str[*i] = SPLIT_ME;
 	*i += 1;
 	while (str[*i] != S_QUOTE)
 	{
@@ -24,6 +25,7 @@ void	protect_s_quotes(char *str, int *i)
 			str[*i] = TEMP_DOLAR;
 		*i += 1;
 	}
+	str[*i] = SPLIT_ME;
 }
 
 void	protect_d_quotes(char *str, int *i)

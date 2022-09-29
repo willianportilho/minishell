@@ -6,11 +6,30 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:00:31 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 15:41:49 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:05:06 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+void	remove_squotes(char	**str)
+{
+	char	**str_splited;
+	char	*new_str;
+	int		i;
+
+	i = 0;
+	new_str = ft_strdup("");
+	str_splited = ft_split(*str, SPLIT_ME);	
+	while (str_splited[i])
+	{
+		new_str = ft_strjoin_double_free(new_str, str_splited[i]);
+		i++;
+	}
+	free(str_splited);
+	free(*str);
+	*str = new_str;
+}
 
 static void	lst_tokenizer(t_tokens **tks)
 {
@@ -62,8 +81,9 @@ void	create_cmd_line_and_path(t_table *tab)
 		return ;
 	i = -1;
 	clean_space(tab->cmd);
+	remove_squotes(&tab->cmd);
 	ft_free_array(tab->cmd_line);
-	tab->cmd_line = ft_split(tab->cmd, ' ');
+	tab->cmd_line = ft_split(tab->cmd, SPACE);
 	if (!(*tab->cmd_line))
 		tab->cmd_line = ft_create_blank_array();
 	ft_str_swap_chr(&tab->cmd, TEMP_VALUE, SPACE);
@@ -75,6 +95,7 @@ void	create_cmd_line_and_path(t_table *tab)
 		ft_str_swap_chr(&tab->cmd_line[i], TEMP_SQUOT, S_QUOTE);
 		ft_str_swap_chr(&tab->cmd_line[i], I_REDIRECT_TEMP, I_REDIRECT);
 		ft_str_swap_chr(&tab->cmd_line[i], O_REDIRECT_TEMP, O_REDIRECT);
+		ft_str_swap_chr(&tab->cmd_line[i], TEMP_PIPE, PIPE);
 	}
 	i = -1;
 	while (tab->path[++i])

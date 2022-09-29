@@ -6,35 +6,13 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:57:49 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 15:40:47 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:59:39 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-// static void	add_space_before_dolar(char **str)
-// {
-// 	int	i;
-// 	int	value;
 
-// 	i = 0;
-// 	while ((*str)[i])
-// 	{
-// 		if ((*str)[i] == S_QUOTE || (*str)[i] == D_QUOTE)
-// 		{
-// 			value = (*str)[i];
-// 			i++;
-// 			while ((*str)[i] && (*str)[i] != value)
-// 				i++;
-// 		}
-// 		else if ((*str)[i] == DOLAR)
-// 		{
-// 			*str = ft_str_insert_free(*str, SPACE, i);
-// 			i++;
-// 		}
-// 		i++;
-// 	}
-// }
 
 /**
  * @brief Checar entrada triplicada
@@ -83,7 +61,6 @@ void	add_space(char **str)
 			check_double(str, &i, (*str)[i]);
 		i++;
 	}
-	//add_space_before_dolar(str);
 }
 
 void	clean_space(char *str)
@@ -94,7 +71,7 @@ void	clean_space(char *str)
 	i = 0;
 	while (str[i])
 	{
-		while (str[i] != D_QUOTE && str[i] != S_QUOTE && str[i])
+		while (str[i] != D_QUOTE && str[i] != S_QUOTE && str[i] && str[i] != SPLIT_ME)
 			i++;
 		if (i == ft_strlen(str))
 			return ;
@@ -107,6 +84,8 @@ void	clean_space(char *str)
 				str[i] = I_REDIRECT_TEMP;
 			if (str[i] == O_REDIRECT)
 				str[i] = O_REDIRECT_TEMP;
+			if (str[i] == PIPE)
+				str[i] = TEMP_PIPE;
 		}
 		i++;
 	}

@@ -62,6 +62,7 @@ static void	is_redirect(t_tokens **tks, t_bool *boolean, char **file)
 	*boolean = TRUE;
 	free(*file);
 	*file = ft_strdup((*tks)->str);
+	expand(file);
 	ft_lstfoward_free_t(tks);
 }
 
@@ -77,7 +78,7 @@ void	parser(t_tokens **tks, t_table *tab)
 		is_redirect(tks, &tab->out_append, &tab->out_file);
 	while ((*tks) && is_something_that_i_didnt_named_yet((*tks)->token))
 	{
-		expand(tks);
+		expand(&(*tks)->str);
 		tab->cmd = ft_strjoin_free(tab->cmd, (*tks)->str);
 		tab->cmd = ft_strjoin_free(tab->cmd, " ");
 		ft_lstfoward_free_t(tks);

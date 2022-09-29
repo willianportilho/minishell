@@ -103,24 +103,24 @@ static void	simple_trim(int i, char **str)
 	*str = new_str;
 }
 
-void	expand(t_tokens **t)
+void	expand(char	**str)
 {
 	int		i;
 
 	i = -1;
-	expand_2((*t)->str);
-	while ((*t)->str[++i])
+	expand_2(*str);
+	while ((*str)[++i])
 	{
-		if ((*t)->str[i] == DOLAR)
+		if ((*str)[i] == DOLAR)
 		{
-			if ((*t)->str[i + 1] == SPACE || !(*t)->str[i + 1]
-				|| (*t)->str[i + 1] == D_QUOTE
-				|| (*t)->str[i + 1] == DOLAR)
-				(*t)->str[i] = TEMP_DOLAR;
+			if ((*str)[i + 1] == SPACE || !(*str)[i + 1]
+				|| (*str)[i + 1] == D_QUOTE
+				|| (*str)[i + 1] == DOLAR)
+				(*str)[i] = TEMP_DOLAR;
 		}
 	}
 	i = -1;
-	simple_trim(i, &(*t)->str);
-	ft_str_swap_chr(&(*t)->str, TEMP_DQUOT, D_QUOTE);
-	ft_str_swap_chr(&(*t)->str, TEMP_DOLAR, DOLAR);
+	simple_trim(i, str);
+	ft_str_swap_chr(str, TEMP_DQUOT, D_QUOTE);
+	ft_str_swap_chr(str, TEMP_DOLAR, DOLAR);
 }

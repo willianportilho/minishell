@@ -230,7 +230,7 @@ int			built_in_identifier_error(char *cmd_name, char *cmd);
 int			exit_builtin(t_table **tab);
 
 int			clean_exit(char *free_me);
-void		expand(t_tokens **tks);
+void		expand(char **str);
 char		*simple_expander(char *variable);
 void		hard_init(char **envp);
 void		init_new_tab(t_table *tab);

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 16:54:35 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 17:00:19 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,17 @@ void	expand(t_tokens **t)
 
 	i = -1;
 	expand_2((*t)->str);
+	while ((*t)->str[++i])
+	{
+		if ((*t)->str[i] == DOLAR)
+		{
+			if ((*t)->str[i + 1] == SPACE || !(*t)->str[i + 1]
+				|| (*t)->str[i + 1] == D_QUOTE
+				|| (*t)->str[i + 1] == DOLAR)
+				(*t)->str[i] = TEMP_DOLAR;
+		}
+	}
+	i = -1;
 	simple_trim(i, &(*t)->str);
 	ft_str_swap_chr(&(*t)->str, TEMP_DQUOT, D_QUOTE);
 	ft_str_swap_chr(&(*t)->str, TEMP_DOLAR, DOLAR);

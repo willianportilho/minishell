@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:47:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/28 21:28:03 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:00:02 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void	heredoc(t_tokens **tks)
 	close(global()->fd_global);
 	clear_tokens_lst(tks);
 	rl_clear_history();
+	global()->exit = 0;
 	exit(clean_exit(ft_strdup("cavalinho")));
 }
 
@@ -97,8 +98,8 @@ void	heredoc_caller(t_tokens **tks, t_table **tab)
 		heredoc(tks);
 	else
 	{
-		wait(&global()->exit);
-		if (!global()->exit)
+		wait(&parent);
+		if (!parent)
 		{
 			prepare_infile(tks, tab);
 		}

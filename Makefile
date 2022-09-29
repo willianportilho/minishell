@@ -6,7 +6,7 @@
 #    By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:44:36 by wportilh          #+#    #+#              #
-#    Updated: 2022/09/28 18:52:01 by wportilh         ###   ########.fr        #
+#    Updated: 2022/09/30 01:45:28 by wportilh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ SOURCES =		minishell.c	main.c signals.c heredoc.c exit_minishell.c init.c
 LEXER =			lexer.c handle_spaces.c
 LIST =			ft_lstadd_back_t.c ft_lstnew_t.c ft_lstfoward_free_t.c \
 				ft_lstsize_tab.c ft_lstclear_t.c
-PARSER =		parser.c expander.c parser_error.c
+PARSER =		parser.c expander.c parser_error.c expander_2.c
 EXECUTOR =		exec_clean.c pipe.c redirects.c executor.c exec_error.c
 BUILT_IN =		is_built_in.c echo.c cd.c pwd.c built_in_error.c unset.c \
 				exportation.c exportation_2.c env.c exit_builtin.c perror_message.c

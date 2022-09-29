@@ -90,6 +90,7 @@ void	heredoc_caller(t_tokens **tks, t_table **tab)
 			prepare_infile(tks, tab);
 		else
 		{
+			clear_tokens_lst(tks);
 			pre_reset();
 			reset_tab(ft_strdup("cavalinho"));
 			global()->control = FALSE;

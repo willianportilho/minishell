@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/29 18:28:21 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/29 20:03:43 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_exec
 	int				amount_cmd_cp;
 	int				**pipes;
 	int				*pid;
+	int				w_i;
 	int				exit;
 	int				check;
 	int				pos;

@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:32:30 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/29 18:29:40 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:35:54 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	alloc_resources(t_exec *exec)
 void	initialize_variables(t_exec *exec, t_table **aux)
 {
 	global()->exit = 0;
+	exec->w_i = -1;
 	exec->amount_cmd = ft_lstsize_tab(*aux);
 	exec->amount_cmd_cp = exec->amount_cmd;
 }
@@ -61,13 +62,11 @@ void	close_pipes(t_exec *exec)
 
 void	wait_processes(t_exec *exec)
 {
-	int	i;
 	int	wstatus;
 
-	i = -1;
-	while (++i < exec->amount_cmd)
+	while (++exec->w_i < exec->amount_cmd)
 	{
-		if (waitpid(exec->pid[i], &wstatus, 0) == -1)
+		if (waitpid(exec->pid[exec->w_i], &wstatus, 0) == -1)
 			perror_message("waitpid");
 		if (WIFEXITED(wstatus))
 			global()->exit = WEXITSTATUS(wstatus);

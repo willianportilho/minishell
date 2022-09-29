@@ -60,7 +60,7 @@ static void	handle_dquote_dolars(char **str, char *s, int count, t_utils *u)
 			ft_strlen_til_chr(s + u->size, DOLAR)));
 			u->i++;
 			while (s[u->i] && s[u->i] != TEMP_DQUOT && s[u->i] != SPACE
-				&& s[u->i] != DOLAR && s[u->i] != TEMP_SQUOT
+				&& s[u->i] != DOLAR && s[u->i] != TEMP_SQUOT && s[u->i] != '/'
 				&& s[u->i] != TEMP_VALUE && s[u->i] != TEMP_DOLAR)
 				u->i++;
 			u->tmp = ft_substr(s, u->start, u->i - u->start);

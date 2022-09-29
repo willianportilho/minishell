@@ -63,6 +63,7 @@ static void	is_redirect(t_tokens **tks, t_bool *boolean, char **file)
 	free(*file);
 	*file = ft_strdup((*tks)->str);
 	expand(file);
+	bring_temp_values_back(file);
 	ft_lstfoward_free_t(tks);
 }
 

@@ -54,6 +54,8 @@ static void	heredoc_loop(t_tokens **tks)
 			free(buf);
 			break ;
 		}
+		expand(&buf);
+		bring_temp_values_back(&buf);
 		ft_putstr_fd(buf, global()->fd_global);
 		ft_putstr_fd("\n", global()->fd_global);
 		free(buf);

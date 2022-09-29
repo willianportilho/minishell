@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 17:00:19 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 17:52:19 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static void	handle_dquote_dolars(char **str, char *s, int count, t_utils *u)
 			ft_strlen_til_chr(s + u->size, DOLAR)));
 			u->i++;
 			while (s[u->i] && s[u->i] != TEMP_DQUOT && s[u->i] != SPACE
-				&& s[u->i] != DOLAR && s[u->i] != TEMP_SQUOT && s[u->i] != TEMP_VALUE)
+				&& s[u->i] != DOLAR && s[u->i] != TEMP_SQUOT
+				&& s[u->i] != TEMP_VALUE)
 				u->i++;
 			u->tmp = ft_substr(s, u->start, u->i - u->start);
 			u->aux = simple_expander(ft_strdup(u->tmp + 1));

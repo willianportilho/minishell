@@ -6,12 +6,22 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:21:35 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 17:00:53 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 17:56:18 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-#include <stdio.h>
+
+void	bring_temp_values_back(char **str)
+{
+	ft_str_swap_chr(str, TEMP_VALUE, SPACE);
+	ft_str_swap_chr(str, TEMP_SHILD, SPACE);
+	ft_str_swap_chr(str, TEMP_SQUOT, S_QUOTE);
+	ft_str_swap_chr(str, I_REDIRECT_TEMP, I_REDIRECT);
+	ft_str_swap_chr(str, O_REDIRECT_TEMP, O_REDIRECT);
+	ft_str_swap_chr(str, TEMP_PIPE, PIPE);
+	ft_str_swap_chr(str, TEMP_DOLAR, DOLAR);
+}
 
 void	protect_s_quotes(char *str, int *i)
 {
@@ -40,7 +50,7 @@ void	protect_d_quotes(char *str, int *i)
 		else if (str[*i] == DOLAR)
 		{
 			if ((str[*i + 1] == SPACE || str[*i + 1] == D_QUOTE
-				|| str[*i + 1] == DOLAR || !str[*i + 1]))
+					|| str[*i + 1] == DOLAR || !str[*i + 1]))
 				str[*i] = TEMP_DOLAR;
 		}
 		*i += 1;

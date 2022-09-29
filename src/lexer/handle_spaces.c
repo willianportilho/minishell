@@ -6,13 +6,11 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:57:49 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 15:59:39 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 17:58:42 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-
 
 /**
  * @brief Checar entrada triplicada
@@ -71,7 +69,8 @@ void	clean_space(char *str)
 	i = 0;
 	while (str[i])
 	{
-		while (str[i] != D_QUOTE && str[i] != S_QUOTE && str[i] && str[i] != SPLIT_ME)
+		while (str[i] != D_QUOTE && str[i] != S_QUOTE && str[i]
+			&& str[i] != SPLIT_ME)
 			i++;
 		if (i == ft_strlen(str))
 			return ;

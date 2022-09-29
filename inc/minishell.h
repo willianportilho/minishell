@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/29 16:22:21 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 17:57:53 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,5 +242,7 @@ void		clear_tokens_lst(t_tokens **lst);
 void		pre_reset(void);
 void		tkn_error(t_tokens **tks);
 void		expand_2(char *str);
+void		bring_temp_values_back(char **str);
+void		false_all(t_table *tab);
 
 #endif

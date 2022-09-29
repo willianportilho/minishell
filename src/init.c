@@ -6,11 +6,23 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:39:38 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/27 16:52:59 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 17:57:40 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+void	false_all(t_table *tab)
+{
+	tab->pipe = FALSE;
+	tab->in_red = FALSE;
+	tab->infile_fd = -1;
+	tab->out_red = FALSE;
+	tab->outfile_fd = -1;
+	tab->path_done = FALSE;
+	tab->out_append = FALSE;
+	tab->in_delimiter = FALSE;
+}
 
 void	init_new_tab(t_table *tab)
 {

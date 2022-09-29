@@ -63,7 +63,7 @@ static int	check_semicolon_and_backslash(char *buff)
 			return (free(buff), ft_msg_er("invalid ; or \\\n", 1, 1));
 	}
 	if (bt_d_qt || bt_s_qt)
-		return (ft_msg_er("unclosed quotes\n", EXIT_FAILURE, STDOUT_FILENO));
+		return (free(buff), ft_msg_er("unclosed quotes\n", 1, 1));
 	return (EXIT_SUCCESS);
 }
 

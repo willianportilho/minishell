@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/29 20:33:25 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/29 21:17:46 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,12 @@ void	executor(t_table **tab)
 
 	aux = *tab;
 	initialize_variables(&exec, &aux);
-	if (exec.amount_cmd == 1)
+	if ((exec.amount_cmd == 1) && !ft_strlen((aux)->cmd_line[0]))
+		ft_printf("teste\n");
+	if ((exec.amount_cmd == 1) && ft_strlen((aux)->cmd_line[0]))
 		is_built_in(&aux, &exec);
-	if ((exec.amount_cmd > 1) || (!built_in_cmd((aux)->cmd_line[0])))
+	if ((exec.amount_cmd > 1) || (!built_in_cmd((aux)->cmd_line[0]) \
+	&& ft_strlen((aux)->cmd_line[0])))
 	{
 		alloc_resources(&exec);
 		initialize_pipes(&exec);

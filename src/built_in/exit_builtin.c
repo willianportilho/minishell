@@ -6,28 +6,53 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:55:36 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/28 16:41:32 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/29 20:01:39 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	exit_builtin(t_table **tab)
+int	test_exit_exception(char **ar)
 {
 	int	i;
 
-	i = 0;
-	rl_clear_history();
-	while ((*tab)->cmd[i])
+	i = -1;
+	while (ar[++i])
 	{
-		if (ft_isdigit((*tab)->cmd[i])
-			|| ((*tab)->cmd[i] == '-' && ft_isdigit((*tab)->cmd[i + 1])))
+		if (ft_is_numeric(ar[i]))
 		{
-			global()->exit = ft_atoi((*tab)->cmd + i);
+			ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+			return (1);
+		}
+	}
+	rl_clear_history();
+	global()->exit = 2;
+	exit(clean_exit(ft_strdup("cavalinho")));
+}
+
+int	exit_builtin(t_table **tab)
+{
+	if (ft_array_str_len((*tab)->cmd_line) > 2)
+		return (test_exit_exception((*tab)->cmd_line));
+	else if (ft_array_str_len((*tab)->cmd_line) == 2)
+	{
+		rl_clear_history();
+		if (ft_is_numeric((*tab)->cmd_line[1]))
+		{
+			global()->exit = ft_atoi((*tab)->cmd_line[1]);
 			exit (clean_exit(ft_strdup("cavalinho")));
 		}
-		i++;
+		else
+		{
+			global()->exit = 2;
+			exit (clean_exit(ft_strdup("cavalinho")));
+		}
+		clean_exit(ft_strdup("cavalinho"));
+		exit (global()->exit);
 	}
-	clean_exit(ft_strdup("cavalinho"));
-	exit (global()->exit);
+	else
+	{
+		rl_clear_history();
+		exit (clean_exit(ft_strdup("cavalinho")));
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/29 20:16:22 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/29 20:33:25 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,7 @@ void	executor(t_table **tab)
 		while (++exec.i < exec.amount_cmd)
 		{
 			initialize_files(&aux);
-			if (ft_strlen((aux)->cmd_line[0]) > 0)
-				initialize_childs(&aux, &exec);
-			else
-				exec.w_i++;
+			initialize_childs(&aux, &exec);
 			aux = aux->next;
 		}
 		close_pipes(&exec);

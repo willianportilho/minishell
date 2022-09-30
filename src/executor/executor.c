@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/30 00:58:16 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/09/30 18:26:51 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 
 static void	validate_path(t_table **tab, t_exec *exec)
 {
+	struct stat	sb;
+
+	if (!stat((*tab)->cmd_line[0], &sb) && ((sb.st_mode & S_IFMT) == S_IFDIR)
+		&& ft_strchr((*tab)->cmd_line[0], '/'))
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd((*tab)->cmd_line[0], 2);
+		ft_putstr_fd(": Is a directory\n", 2);
+		exec->pos = -1;
+		return ;
+	}
 	exec->pos = -1;
 	exec->check = TRUE;
 	while ((*tab)->path[++exec->pos])
@@ -38,7 +49,6 @@ static int	execute(t_table **tab, t_exec *exec)
 	if (exec->pos == -1)
 	{
 		cmd_error(tab, exec);
-		*p = 127;
 		rl_clear_history();
 		exit(clean_exit(ft_strdup("cavalinho")));
 	}

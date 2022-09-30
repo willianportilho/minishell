@@ -82,8 +82,6 @@ static void	child(t_table **tab, t_exec *exec)
 	check_infile(tab, exec);
 	check_outfile(tab, exec);
 	close_pipes(exec);
-	if (global()->envp)
-		;
 	if (!ft_strlen((*tab)->cmd_line[0]))
 	{
 		clean_alloc(exec);

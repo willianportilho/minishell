@@ -15,10 +15,8 @@
 int	check_characters(char *cmd)
 {
 	int	i;
-	int	size;
 
 	i = -1;
-	size = ft_strlen(cmd);
 	if ((!ft_isalpha(cmd[0])) && (cmd[0] != '_'))
 	{
 		built_in_identifier_error("export", cmd);

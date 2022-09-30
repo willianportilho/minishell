@@ -60,10 +60,8 @@ char	**array_remove(char **a, char *new_str)
 static int	check_unset_characters(char *cmd)
 {
 	int	i;
-	int	size;
 
 	i = -1;
-	size = ft_strlen(cmd);
 	if ((!ft_isalpha(cmd[0])) && (cmd[0] != '_'))
 	{
 		built_in_identifier_error("unset", cmd);

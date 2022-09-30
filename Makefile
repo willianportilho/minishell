@@ -70,7 +70,7 @@ ${NAME}:		${LIBFT} ${OBJS} ${OBJS_EXEC} ${OBJS_PARSER} ${OBJS_LEXER} ${OBJS_LIST
 				@echo "${CYAN}--------------------------"
 				@echo "         objs ok!"
 				@echo "--------------------------"
-				@${CC} ${READ_LINE} ${OBJS} ${OBJS_EXEC} ${OBJS_PARSER} ${OBJS_LEXER} ${OBJS_LIST} ${OBJS_BUILT_IN} ${LIBFT} -o ${NAME}
+				@${CC} ${READ_LINE} ${OBJS} ${OBJS_EXEC} ${OBJS_PARSER} ${OBJS_LEXER} ${OBJS_LIST} ${OBJS_BUILT_IN} ${LIBFT} -o ${NAME} ${READ_LINE}
 				@echo "--------------------------"
 				@echo "minishell program created!"
 				@echo "--------------------------${RESET}"

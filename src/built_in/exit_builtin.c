@@ -6,13 +6,24 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:55:36 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 20:01:39 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:15:52 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	test_exit_exception(char **ar)
+static void	test_exit_exception_2(char *str)
+{
+	if ((ft_strlen(str) > 8 && global()->exit == 0
+			&& !ft_str_is_equal(str, "-9223372036854775808"))
+		|| ft_str_is_equal(str, "-9223372036854775809"))
+	{
+		ft_putstr_fd(" numeric argument required\n", 2);
+		global()->exit = 2;
+	}
+}
+
+static int	test_exit_exception(char **ar)
 {
 	int	i;
 
@@ -40,11 +51,13 @@ int	exit_builtin(t_table **tab)
 		if (ft_is_numeric((*tab)->cmd_line[1]))
 		{
 			global()->exit = ft_atoi((*tab)->cmd_line[1]);
+			test_exit_exception_2((*tab)->cmd_line[1]);
 			exit (clean_exit(ft_strdup("cavalinho")));
 		}
 		else
 		{
 			global()->exit = 2;
+			ft_putstr_fd(" numeric argument required\n", 2);
 			exit (clean_exit(ft_strdup("cavalinho")));
 		}
 		clean_exit(ft_strdup("cavalinho"));

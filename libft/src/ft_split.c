@@ -90,6 +90,8 @@ char	**ft_split(char const *s, char c)
 	int		check_malloc;
 	char	**matrix;
 
+	if (!*s)
+		return (NULL);
 	n_lines = count_lines(s, c);
 	matrix = (char **)malloc((n_lines + 1) * sizeof(char *));
 	if (!matrix)
@@ -98,6 +100,6 @@ char	**ft_split(char const *s, char c)
 	if (check_malloc == 1)
 		put_value(s, c, matrix);
 	else
-		return (NULL);
+		return (free(matrix), NULL);
 	return (matrix);
 }

@@ -21,6 +21,8 @@ void	remove_squotes(char	**str)
 	i = 0;
 	new_str = ft_strdup("");
 	str_splited = ft_split(*str, SPLIT_ME);
+	if (!str_splited)
+		str_splited = ft_create_blank_array();
 	while (str_splited[i])
 	{
 		new_str = ft_strjoin_double_free(new_str, str_splited[i]);
@@ -84,7 +86,7 @@ void	create_cmd_line_and_path(t_table *tab)
 	remove_squotes(&tab->cmd);
 	ft_free_array(tab->cmd_line);
 	tab->cmd_line = ft_split(tab->cmd, SPACE);
-	if (!(*tab->cmd_line))
+	if (!tab->cmd_line)
 		tab->cmd_line = ft_create_blank_array();
 	ft_str_swap_chr(&tab->cmd, TEMP_VALUE, SPACE);
 	ft_str_swap_chr(&tab->cmd, TEMP_SQUOT, S_QUOTE);

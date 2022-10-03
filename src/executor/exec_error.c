@@ -6,13 +6,13 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:43:44 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/03 22:54:49 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/10/04 00:17:37 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_error_fd(t_exec *exec, char *msg, char *str, int fd)
+void	ft_error_fd(char *msg, char *str, int fd, t_exec *exec)
 {
 	ft_putstr_fd("minishell: ", fd);
 	ft_putstr_fd(str, fd);

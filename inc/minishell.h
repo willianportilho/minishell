@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/03 22:50:51 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/10/04 00:17:48 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ int			built_in_cd_error(t_table **tab, t_exec *exec);
 int			built_in_pwd_error(t_exec *exec);
 int			built_in_identifier_error(char *cmd_name, char *cmd);
 void		perror_message(char *msg);
-void		ft_error_fd(t_exec *exec, char *msg, char *str, int fd);
+void		ft_error_fd(char *msg, char *str, int fd, t_exec *exec);
 
 int			clean_exit(char *free_me);
 void		expand(char **str);

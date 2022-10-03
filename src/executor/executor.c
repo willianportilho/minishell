@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/03 23:04:30 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/10/04 00:17:26 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	validate_path(t_table **tab, t_exec *exec)
 
 	if (!stat((*tab)->cmd_line[0], &sb) && ((sb.st_mode & S_IFMT) == S_IFDIR)
 		&& ft_strchr((*tab)->cmd_line[0], '/'))
-		return (ft_erro_fd("Is a directory", (*tab)->cmd_line[0], 2, exec));
+		return (ft_error_fd("Is a directory", (*tab)->cmd_line[0], 2, exec));
 	if ((*tab)->cmd_line[0][0] == '/')
 	{
-		ft_erro_fd("No such file or directory", (*tab)->cmd_line[0], 2, exec);
+		ft_error_fd("No such file or directory", (*tab)->cmd_line[0], 2, exec);
 		return ;
 	}
 	exec->pos = -1;

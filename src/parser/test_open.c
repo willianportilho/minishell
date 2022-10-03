@@ -6,12 +6,11 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/10/03 18:28:16 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 20:09:13 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
 
 static void	open_in(int fd, char **file, t_table **tab)
 {

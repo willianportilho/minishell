@@ -6,19 +6,29 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:00:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/10/03 19:30:07 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 20:08:36 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+static void	child_heredoc(char *heredoc_path)
+{
+	char	*cmd_line;
+	char	**cmd;
+
+	cmd_line = ft_strjoin("rm ", heredoc_path);
+	free(heredoc_path);
+	cmd = ft_split_free(cmd_line, ' ');
+	execve("/usr/bin/rm", cmd, NULL);
+	ft_free_array(cmd);
+}
+
 void	check_heredoc(void)
 {
 	char	pwd[1024];
 	char	*heredoc_path;
-	char	*cmd_line;
 	int		parent;
-	char	**cmd;
 
 	if (!getcwd(pwd, sizeof(pwd)))
 		return ;
@@ -28,11 +38,7 @@ void	check_heredoc(void)
 		parent = fork();
 		if (!parent)
 		{	
-			cmd_line = ft_strjoin("rm ", heredoc_path);
-			free(heredoc_path);
-			cmd = ft_split_free(cmd_line, ' ');
-			execve("/usr/bin/rm", cmd, NULL);
-			ft_free_array(cmd);
+			child_heredoc(heredoc_path);
 		}
 		else
 		{

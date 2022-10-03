@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:00:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/28 20:01:41 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 19:30:07 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,20 @@ void	check_heredoc(void)
 	heredoc_path = ft_strjoin(pwd, "/.heredoc");
 	if (!access(heredoc_path, F_OK))
 	{
-		free(heredoc_path);
 		parent = fork();
 		if (!parent)
 		{	
 			cmd_line = ft_strjoin("rm ", heredoc_path);
+			free(heredoc_path);
 			cmd = ft_split_free(cmd_line, ' ');
 			execve("/usr/bin/rm", cmd, NULL);
 			ft_free_array(cmd);
 		}
 		else
+		{
 			waitpid(-1, &global()->exit, 0);
+			free(heredoc_path);
+		}
 	}
 	else
 		free(heredoc_path);

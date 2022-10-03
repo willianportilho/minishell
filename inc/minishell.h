@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/30 17:51:42 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 18:28:28 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_table
 	char			**cmd_line;
 	char			**path;
 	char			**envp;
+	t_bool			error;
 	t_bool			heredoc_error;
 	t_bool			path_done;
 	t_bool			pipe;
@@ -164,7 +165,7 @@ void		lexer(t_tokens **tks, char **str, t_table **tab);
  * @param tks 
  * @param tab 
  */
-void		parser(t_tokens **tks, t_table *tab);
+void		parser(t_tokens **tks, t_table **tab);
 
 /**
  * @brief init variables next and envp of the table node
@@ -253,5 +254,6 @@ void		false_all(t_table *tab);
 void		reset_tab(char *buff);
 void		prepare_infile(t_tokens **tks, t_table **tab);
 void		check_heredoc(void);
+void		teste_open(int red, char **file, t_table **tab);
 
 #endif

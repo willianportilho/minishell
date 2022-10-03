@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_built_in.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 05:53:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/28 21:01:42 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:19:10 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ void	is_built_in(t_table **tab, t_exec *exec)
 		*exec->p = env(tab);
 	else if (ft_str_is_equal((*tab)->cmd_line[0], "exit"))
 		*exec->p = exit_builtin(tab);
+	if ((((*tab)->in_red) && ((*tab)->infile_fd == -1)) \
+	|| (((*tab)->out_red) && ((*tab)->outfile_fd == -1)))
+		*exec->p = 1;
 	if ((exec->amount_cmd == 1) && built_in_cmd((*tab)->cmd_line[0]))
 		reset_in_out(exec);
 	if ((exec->amount_cmd > 1) && built_in_cmd((*tab)->cmd_line[0]))

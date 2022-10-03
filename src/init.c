@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:39:38 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 17:57:40 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:20:32 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	false_all(t_table *tab)
 
 void	init_new_tab(t_table *tab)
 {
+	tab->error = FALSE;
 	tab->cmd = ft_strdup("");
 	tab->cmd_line = ft_create_blank_array();
 	tab->path = ft_create_blank_array();

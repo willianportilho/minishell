@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:34:38 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/30 00:35:19 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/10/03 18:09:02 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,23 @@ void	check_infile(t_table **tab, t_exec *exec)
 {
 	if ((*tab)->in_red)
 	{
-		dup2((*tab)->infile_fd, STDIN_FILENO);
-		close((*tab)->infile_fd);
+		if ((*tab)->infile_fd != -1)
+		{
+			dup2((*tab)->infile_fd, STDIN_FILENO);
+			close((*tab)->infile_fd);
+		}
 		check_heredoc();
 		if (((*tab)->out_red != TRUE) && (exec->amount_cmd > 1))
 			dup2(exec->pipes[exec->i][1], STDOUT_FILENO);
 		if ((*tab)->infile_fd == -1)
 		{
-			clean_alloc(exec);
-			exit (EXIT_FAILURE);
+			global()->exit = 1;
+			if ((exec->amount_cmd > 1) || (!built_in_cmd((*tab)->cmd_line[0])))
+			{
+				clean_alloc(exec);
+				clean_exit(ft_strdup("cavalinho"));
+				exit (global()->exit);
+			}
 		}
 	}
 }
@@ -35,13 +43,21 @@ void	check_outfile(t_table **tab, t_exec *exec)
 	{
 		if ((*tab)->outfile_fd == -1)
 		{
-			clean_alloc(exec);
-			exit(EXIT_FAILURE);
+			global()->exit = 1;
+			if ((exec->amount_cmd > 1) || (!built_in_cmd((*tab)->cmd_line[0])))
+			{
+				clean_alloc(exec);
+				clean_exit(ft_strdup("cavalinho"));
+				exit (global()->exit);
+			}
 		}
 		if (((*tab)->in_red != TRUE) && (exec->amount_cmd > 1) && exec->i)
 			dup2(exec->pipes[exec->i - 1][0], STDIN_FILENO);
-		dup2((*tab)->outfile_fd, STDOUT_FILENO);
-		close((*tab)->outfile_fd);
+		if ((*tab)->outfile_fd != -1)
+		{
+			dup2((*tab)->outfile_fd, STDOUT_FILENO);
+			close((*tab)->outfile_fd);
+		}
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:34:38 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/30 00:35:19 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:32:09 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	check_infile(t_table **tab, t_exec *exec)
 		if ((*tab)->infile_fd == -1)
 		{
 			clean_alloc(exec);
+			clean_exit(ft_strdup("cavalinho"));
 			exit (EXIT_FAILURE);
 		}
 	}
@@ -36,6 +37,7 @@ void	check_outfile(t_table **tab, t_exec *exec)
 		if ((*tab)->outfile_fd == -1)
 		{
 			clean_alloc(exec);
+			clean_exit(ft_strdup("cavalinho"));
 			exit(EXIT_FAILURE);
 		}
 		if (((*tab)->in_red != TRUE) && (exec->amount_cmd > 1) && exec->i)

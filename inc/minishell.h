@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/30 17:51:42 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:51:40 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_table
 	char			**cmd_line;
 	char			**path;
 	char			**envp;
+	t_bool			error;
 	t_bool			heredoc_error;
 	t_bool			path_done;
 	t_bool			pipe;

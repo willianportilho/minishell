@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 18:33:58 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:22:45 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,32 +51,54 @@ static int	is_something_that_i_didnt_named_yet(int tk)
 	return (0);
 }
 
-static void	is_redirect(t_tokens **tks, t_bool *boolean, char **file)
+void	teste_open(int red, char **file, t_table **tab)
 {
+	int	fd;
+
+	if ((*tab)->error)
+		free(*file);
+	if (red == I_REDIRECT && !(*tab)->error)
+	{
+		(*tab)->in_red = TRUE;
+		free((*tab)->in_file);
+		(*tab)->in_file = *file;
+		fd = open(*file, O_RDONLY);
+		if (fd == -1)
+			(*tab)->error = TRUE;
+		else
+			close(fd);
+	}
+}
+
+static void	is_redirect(t_tokens **tks, t_table **tab)
+{
+	char	*file;
+	int		red;
+
+	red = (*tks)->token;
 	ft_lstfoward_free_t(tks);
 	if (!(*tks) || !is_something_that_i_didnt_named_yet((*tks)->token))
 	{
 		tkn_error(tks);
 		return ;
 	}
-	*boolean = TRUE;
-	free(*file);
-	*file = ft_strdup((*tks)->str);
-	expand(file);
-	bring_temp_values_back(file);
+	file = ft_strdup((*tks)->str);
+	expand(&file);
+	bring_temp_values_back(&file);
+	teste_open(red, &file, tab);
 	ft_lstfoward_free_t(tks);
 }
 
 void	parser(t_tokens **tks, t_table *tab)
 {
 	if ((*tks) && (*tks)->token == I_REDIRECT)
-		is_redirect(tks, &tab->in_red, &tab->in_file);
+		is_redirect(tks, &tab);
 	if ((*tks) && (*tks)->token == O_REDIRECT)
-		is_redirect(tks, &tab->out_red, &tab->out_file);
+		is_redirect(tks, &tab);
 	if ((*tks) && (*tks)->token == DELIMITER)
 		heredoc_caller(tks, &tab);
 	if ((*tks) && (*tks)->token == APP_O_REDIRECT)
-		is_redirect(tks, &tab->out_append, &tab->out_file);
+		is_redirect(tks, &tab);
 	while ((*tks) && is_something_that_i_didnt_named_yet((*tks)->token))
 	{
 		expand(&(*tks)->str);

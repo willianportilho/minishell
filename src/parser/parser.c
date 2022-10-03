@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/10/03 17:22:45 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:39:24 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,34 @@ void	teste_open(int red, char **file, t_table **tab)
 
 	if ((*tab)->error)
 		free(*file);
-	if (red == I_REDIRECT && !(*tab)->error)
+	else if (red == I_REDIRECT && !(*tab)->error)
 	{
 		(*tab)->in_red = TRUE;
 		free((*tab)->in_file);
 		(*tab)->in_file = *file;
 		fd = open(*file, O_RDONLY);
+		if (fd == -1)
+			(*tab)->error = TRUE;
+		else
+			close(fd);
+	}
+	else if (red == O_REDIRECT && !(*tab)->error)
+	{
+		(*tab)->out_red = TRUE;
+		free((*tab)->out_file);
+		(*tab)->out_file = *file;
+		fd = open((*tab)->out_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (fd == -1)
+			(*tab)->error = TRUE;
+		else
+			close(fd);
+	}
+	else if (red == APP_O_REDIRECT && !(*tab)->error)
+	{
+		(*tab)->out_append = TRUE;
+		free((*tab)->out_file);
+		(*tab)->out_file = *file;
+		fd = open((*tab)->out_file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 		if (fd == -1)
 			(*tab)->error = TRUE;
 		else

@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   exec_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:43:44 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/03 23:33:27 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 22:54:49 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+void	ft_error_fd(t_exec *exec, char *msg, char *str, int fd)
+{
+	ft_putstr_fd("minishell: ", fd);
+	ft_putstr_fd(str, fd);
+	ft_putstr_fd(": ", fd);
+	ft_putstr_fd(msg, fd);
+	ft_putstr_fd("\n", fd);
+	exec->pos = -1;
+}
+
+void	perror_message(char *msg)
+{
+	ft_putstr_fd("minishell: ", 2);
+	perror(msg);
+}
 
 void	cmd_error(t_table **tab, t_exec *exec)
 {

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:44:27 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/10/03 17:39:24 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 18:28:16 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,47 +51,6 @@ static int	is_something_that_i_didnt_named_yet(int tk)
 	return (0);
 }
 
-void	teste_open(int red, char **file, t_table **tab)
-{
-	int	fd;
-
-	if ((*tab)->error)
-		free(*file);
-	else if (red == I_REDIRECT && !(*tab)->error)
-	{
-		(*tab)->in_red = TRUE;
-		free((*tab)->in_file);
-		(*tab)->in_file = *file;
-		fd = open(*file, O_RDONLY);
-		if (fd == -1)
-			(*tab)->error = TRUE;
-		else
-			close(fd);
-	}
-	else if (red == O_REDIRECT && !(*tab)->error)
-	{
-		(*tab)->out_red = TRUE;
-		free((*tab)->out_file);
-		(*tab)->out_file = *file;
-		fd = open((*tab)->out_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (fd == -1)
-			(*tab)->error = TRUE;
-		else
-			close(fd);
-	}
-	else if (red == APP_O_REDIRECT && !(*tab)->error)
-	{
-		(*tab)->out_append = TRUE;
-		free((*tab)->out_file);
-		(*tab)->out_file = *file;
-		fd = open((*tab)->out_file, O_WRONLY | O_CREAT | O_APPEND, 0644);
-		if (fd == -1)
-			(*tab)->error = TRUE;
-		else
-			close(fd);
-	}
-}
-
 static void	is_redirect(t_tokens **tks, t_table **tab)
 {
 	char	*file;
@@ -111,26 +70,26 @@ static void	is_redirect(t_tokens **tks, t_table **tab)
 	ft_lstfoward_free_t(tks);
 }
 
-void	parser(t_tokens **tks, t_table *tab)
+void	parser(t_tokens **tks, t_table **tab)
 {
 	if ((*tks) && (*tks)->token == I_REDIRECT)
-		is_redirect(tks, &tab);
+		is_redirect(tks, tab);
 	if ((*tks) && (*tks)->token == O_REDIRECT)
-		is_redirect(tks, &tab);
+		is_redirect(tks, tab);
 	if ((*tks) && (*tks)->token == DELIMITER)
-		heredoc_caller(tks, &tab);
+		heredoc_caller(tks, tab);
 	if ((*tks) && (*tks)->token == APP_O_REDIRECT)
-		is_redirect(tks, &tab);
+		is_redirect(tks, tab);
 	while ((*tks) && is_something_that_i_didnt_named_yet((*tks)->token))
 	{
 		expand(&(*tks)->str);
-		tab->cmd = ft_strjoin_free(tab->cmd, (*tks)->str);
-		tab->cmd = ft_strjoin_free(tab->cmd, " ");
+		(*tab)->cmd = ft_strjoin_free((*tab)->cmd, (*tks)->str);
+		(*tab)->cmd = ft_strjoin_free((*tab)->cmd, " ");
 		ft_lstfoward_free_t(tks);
 	}
 	if ((*tks) && (*tks)->token == PIPE)
 	{
-		tab->pipe = TRUE;
+		(*tab)->pipe = TRUE;
 		ft_lstfoward_free_t(tks);
 		if (!(*tks))
 		{

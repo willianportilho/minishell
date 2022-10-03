@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:34:38 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/03 18:09:02 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 19:03:01 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_infile(t_table **tab, t_exec *exec)
 			close((*tab)->infile_fd);
 		}
 		check_heredoc();
-		if (((*tab)->out_red != TRUE) && (exec->amount_cmd > 1))
+		if (((*tab)->out_red != TRUE) && (exec->amount_cmd > 1) && (*tab)->next)
 			dup2(exec->pipes[exec->i][1], STDOUT_FILENO);
 		if ((*tab)->infile_fd == -1)
 		{

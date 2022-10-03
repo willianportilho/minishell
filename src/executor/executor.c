@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/03 19:13:38 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/03 20:01:52 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ static void	child(t_table **tab, t_exec *exec)
 		dup2(exec->pipes[exec->i - 1][0], STDIN_FILENO);
 		dup2(exec->pipes[exec->i][1], STDOUT_FILENO);
 	}
-	else if ((exec->i == exec->amount_cmd - 1) && (exec->i != 0))
+	else if ((exec->i == exec->amount_cmd - 1) \
+	&& (exec->i != 0) && (!(*tab)->in_red))
 		dup2(exec->pipes[exec->i - 1][0], STDIN_FILENO);
 	check_infile(tab, exec);
 	check_outfile(tab, exec);

@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/03 20:01:52 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/10/03 20:34:54 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	validate_path(t_table **tab, t_exec *exec)
 		if (access((*tab)->path[exec->pos], F_OK) == 0)
 			return ;
 	}
-	if (access((*tab)->cmd_line[0], F_OK) == 0)
+	if (!access((*tab)->cmd_line[0], F_OK) && ft_count_c_in_str((*tab)->cmd_line[0], '/'))
 	{
 		exec->check = FALSE;
 		return ;

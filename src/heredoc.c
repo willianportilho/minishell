@@ -6,7 +6,7 @@
 /*   By: ralves-b <rodrigoab123@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:47:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/10/04 23:15:07 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/05 00:20:58 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ static void	heredoc_loop(t_tokens **tks)
 		{
 			ft_printf("%s (wanted `%s')\n", HDERRO, global()->tabble->cmd);
 			free(buf);
-			global()->test = FALSE;
 			break ;
 		}
 		if (ft_str_is_equal(buf, global()->tabble->cmd))
 		{
-			global()->test = FALSE;
 			free(buf);
 			break ;
 		}
@@ -80,18 +78,19 @@ void	heredoc_caller(t_tokens **tks, t_table **tab)
 		tkn_error(tks);
 		return ;
 	}
+	global()->heredoc = TRUE;
 	parent = fork();
 	if (!parent)
+	{
+		signal(SIGINT, ctrlc_here_doc_handler);
 		heredoc(tks);
+	}
 	else
 	{
 		wait(&parent);
 		if (!parent)
 			prepare_infile(tks, tab);
 		else
-		{
-			clear_tokens_lst(tks);
-			prepare_minishell();
-		}
+			prepare_minishell(tks);
 	}
 }

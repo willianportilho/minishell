@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <rodrigoab123@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/04 04:12:40 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/05 00:29:26 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,15 @@ static void	child(t_table **tab, t_exec *exec)
 
 static void	initialize_childs(t_table **tab, t_exec *exec)
 {
+	global()->test = TRUE;
 	exec->pid[exec->i] = fork();
 	if (exec->pid[exec->i] == -1)
 		perror_message("fork");
 	if (exec->pid[exec->i] == 0)
+	{
+		signal(SIGINT, ctrlc_child_handler);
 		child(tab, exec);
+	}
 }
 
 void	executor(t_table **tab)

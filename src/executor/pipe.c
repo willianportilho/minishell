@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <rodrigoab123@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 22:32:30 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/29 20:34:52 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/10/05 00:15:19 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ void	wait_processes(t_exec *exec)
 		if (waitpid(exec->pid[i], &wstatus, 0) == -1)
 			perror_message("waitpid");
 		if (WIFEXITED(wstatus))
+		{
 			global()->exit = WEXITSTATUS(wstatus);
+			global()->test = FALSE;
+		}
 	}
 }
 

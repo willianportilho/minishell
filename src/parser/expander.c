@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <rodrigoab123@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:06:25 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 18:09:54 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:39:32 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*simple_expander(char *variable)
 
 static void	handle_dquote_dolars(char **str, char *s, int count, t_utils *u)
 {
-	while (count && s[++u->i])
+	while (count && ++u->i < (int)ft_strlen(s))
 	{
 		if (s[u->i] == DOLAR)
 		{

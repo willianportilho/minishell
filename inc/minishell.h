@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/03 18:28:28 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/04 03:12:26 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,5 +255,6 @@ void		reset_tab(char *buff);
 void		prepare_infile(t_tokens **tks, t_table **tab);
 void		check_heredoc(void);
 void		teste_open(int red, char **file, t_table **tab);
+void		ft_erro_fd(char *msg, char *str, int fd, t_exec *exec);
 
 #endif

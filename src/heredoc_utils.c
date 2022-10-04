@@ -6,7 +6,7 @@
 /*   By: ralves-b <rodrigoab123@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:00:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/10/05 00:21:16 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/05 00:58:44 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ void	prepare_infile(t_tokens **tks, t_table **tab)
 {
 	global()->test = FALSE;
 	global()->heredoc = FALSE;
-	free((*tab)->in_file);
-	(*tab)->in_file = ft_strdup(".heredoc");
-	(*tab)->in_red = TRUE;
+	if (!(*tab)->error)
+	{
+		free((*tab)->in_file);
+		(*tab)->in_file = ft_strdup(".heredoc");
+		(*tab)->in_red = TRUE;
+	}
 	ft_lstfoward_free_t(tks);
 }

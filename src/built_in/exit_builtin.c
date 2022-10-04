@@ -6,7 +6,7 @@
 /*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:55:36 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/10/04 17:10:46 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:22:52 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,12 @@
 
 static void	test_exit_exception_2(char *str)
 {
-	long	num;
-	int		check;
-
-	num = ft_atol(str);
-	check = 0;
-	if (str)
+	if ((ft_strlen(str) > 8 && global()->exit == 0
+			&& !ft_str_is_equal(str, "-9223372036854775808"))
+		|| ft_str_is_equal(str, "-9223372036854775809"))
 	{
-		if ((((str[0] == '-') && (num > 0))) \
-		|| ((str[0] != '-') && (num < 0)) || (ft_strlen(str) > 20))
-		{
-			ft_putstr_fd("minishell: exit: numeric argument required\n", 2);
-			global()->exit = 2;
-		}
+		ft_putstr_fd(" numeric argument required\n", 2);
+		global()->exit = 2;
 	}
 }
 

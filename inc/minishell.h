@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/04 03:12:26 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/04 03:25:58 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,6 +235,7 @@ int			built_in_cd_error(t_table **tab, t_exec *exec);
 int			built_in_pwd_error(t_exec *exec);
 int			built_in_identifier_error(char *cmd_name, char *cmd);
 void		perror_message(char *msg);
+void		ft_error_fd(char *msg, char *str, int fd, t_exec *exec);
 
 int			clean_exit(char *free_me);
 void		expand(char **str);

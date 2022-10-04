@@ -6,13 +6,14 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:43:44 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/04 03:03:54 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/04 03:25:21 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_erro_fd(char *msg, char *str, int fd, t_exec *exec)
+
+void	ft_error_fd(char *msg, char *str, int fd, t_exec *exec)
 {
 	ft_putstr_fd("minishell: ", fd);
 	ft_putstr_fd(str, fd);
@@ -20,6 +21,12 @@ void	ft_erro_fd(char *msg, char *str, int fd, t_exec *exec)
 	ft_putstr_fd(msg, fd);
 	ft_putstr_fd("\n", fd);
 	exec->pos = -1;
+}
+
+void	perror_message(char *msg)
+{
+	ft_putstr_fd("minishell: ", 2);
+	perror(msg);
 }
 
 void	cmd_error(t_table **tab, t_exec *exec)

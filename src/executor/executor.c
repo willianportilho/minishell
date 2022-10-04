@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/04 03:03:48 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/04 03:25:43 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	validate_path(t_table **tab, t_exec *exec)
 
 	if (!stat((*tab)->cmd_line[0], &sb) && ((sb.st_mode & S_IFMT) == S_IFDIR)
 		&& ft_strchr((*tab)->cmd_line[0], '/'))
-		return (ft_erro_fd("Is a directory", (*tab)->cmd_line[0], 2, exec));
+		return (ft_error_fd("Is a directory", (*tab)->cmd_line[0], 2, exec));
 	if ((*tab)->cmd_line[0][0] == '/')
 	{
-		ft_erro_fd("No such file or directory", (*tab)->cmd_line[0], 2, exec);
+		ft_error_fd("No such file or directory", (*tab)->cmd_line[0], 2, exec);
 		return ;
 	}
 	exec->pos = -1;
@@ -31,7 +31,8 @@ static void	validate_path(t_table **tab, t_exec *exec)
 		if (access((*tab)->path[exec->pos], F_OK) == 0)
 			return ;
 	}
-	if (access((*tab)->cmd_line[0], F_OK) == 0)
+	if (!access((*tab)->cmd_line[0], F_OK)
+		&& ft_count_c_in_str((*tab)->cmd_line[0], '/'))
 	{
 		exec->check = FALSE;
 		return ;

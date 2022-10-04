@@ -6,12 +6,32 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:43:44 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/04 03:25:21 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/04 04:21:39 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+int	is_file_and_not_permission(t_table **tab, t_exec *exec)
+{
+	struct stat	sb;
+	int			status;
+
+	status = stat((*tab)->cmd_line[0], &sb);
+	if (!status && ((sb.st_mode & S_IFMT) == S_IFREG))
+	{
+		if (access((*tab)->cmd_line[0], X_OK)
+			&& ft_strnstr((*tab)->cmd_line[0], "./", 2))
+		{
+			perror_message((*tab)->cmd_line[0]);
+			clean_alloc(exec);
+			rl_clear_history();
+			global()->exit = 126;
+			exit(clean_exit(ft_strdup("cavalinho")));
+		}
+	}
+	return (0);
+}
 
 void	ft_error_fd(char *msg, char *str, int fd, t_exec *exec)
 {
@@ -43,7 +63,7 @@ void	cmd_error(t_table **tab, t_exec *exec)
 	else
 	{
 		path = simple_expander(ft_strdup("PATH"));
-		if (ft_strlen(path))
+		if (ft_strlen(path) && !ft_strnstr((*tab)->cmd_line[0], "./", 2))
 			str = ft_strjoin((*tab)->cmd_line[0], ": command not found\n");
 		else
 			str = ft_strjoin((*tab)->cmd_line[0], \

@@ -6,7 +6,7 @@
 /*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/04 03:25:43 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/04 04:12:40 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static int	execute(t_table **tab, t_exec *exec)
 
 	p = &global()->exit;
 	validate_path(tab, exec);
+	is_file_and_not_permission(tab, exec);
 	if (exec->pos == -1)
 	{
 		cmd_error(tab, exec);

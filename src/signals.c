@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 19:39:58 by wportilh          #+#    #+#             */
-/*   Updated: 2022/09/22 15:10:39 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/04 21:35:54 by wportilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,42 @@ void	handle_sigint(int sig)
 
 void	signal_main(void)
 {
-	signal(SIGINT, &handle_sigint);
-	signal(SIGQUIT, SIG_IGN);
+	struct sigaction sa;
+	struct sigaction sb;
+
+	sa.sa_handler = &handle_sigint;
+	sa.sa_flags = 0;
+	sigemptyset(&sa.sa_mask);
+	sigaddset(&sa.sa_mask, SIGINT);
+	sb.sa_handler = SIG_IGN;
+	sb.sa_flags = 0;
+	sigemptyset(&sb.sa_mask);
+	sigaddset(&sb.sa_mask, SIGQUIT);
+	sigaction(SIGINT, &sa, NULL);
+	sigaction(SIGQUIT, &sb, NULL);
+}
+
+void	signal_executor(int pid)
+{
+	struct sigaction sa;
+	struct sigaction sb;
+	
+	if (!pid)
+	{
+		sa.sa_handler = SIG_DFL;
+		sb.sa_handler = SIG_DFL;
+	}
+	else
+	{
+		sa.sa_handler = SIG_IGN;
+		sb.sa_handler = SIG_IGN;
+	}
+	sa.sa_flags = 0;
+	sigemptyset(&sa.sa_mask);
+	//sigaddset(&sa.sa_mask, SIGINT);
+	sb.sa_flags = 0;
+	sigemptyset(&sb.sa_mask);
+	//sigaddset(&sb.sa_mask, SIGQUIT);
+	sigaction(SIGINT, &sa, NULL);
+	sigaction(SIGQUIT, &sb, NULL);
 }

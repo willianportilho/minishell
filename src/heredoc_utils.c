@@ -6,14 +6,17 @@
 /*   By: ralves-b <rodrigoab123@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:00:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/10/04 23:14:58 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/05 00:21:16 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	prepare_minishell(void)
+void	prepare_minishell(t_tokens **tks)
 {
+	clear_tokens_lst(tks);
+	global()->test = FALSE;
+	global()->heredoc = FALSE;
 	global()->exit = 130;
 	pre_reset();
 	reset_tab(ft_strdup("cavalinho"));
@@ -61,6 +64,8 @@ void	check_heredoc(void)
 
 void	prepare_infile(t_tokens **tks, t_table **tab)
 {
+	global()->test = FALSE;
+	global()->heredoc = FALSE;
 	free((*tab)->in_file);
 	(*tab)->in_file = ft_strdup(".heredoc");
 	(*tab)->in_red = TRUE;

@@ -6,7 +6,7 @@
 /*   By: ralves-b <rodrigoab123@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/04 23:15:45 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/05 00:21:31 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,8 @@ void		executor(t_table **tab);
 
 void		handle_sigint(int sig);
 void		handle_sigint_heredoc(int sing);
+void		ctrlc_here_doc_handler(int sing);
+void		ctrlc_child_handler(int sing);
 
 void		heredoc_caller(t_tokens **tks, t_table **tab);
 
@@ -258,6 +260,6 @@ void		check_heredoc(void);
 void		teste_open(int red, char **file, t_table **tab);
 void		ft_erro_fd(char *msg, char *str, int fd, t_exec *exec);
 int			is_file_and_not_permission(t_table **tab, t_exec *exec);
-void		prepare_minishell(void);
+void		prepare_minishell(t_tokens **tks);
 
 #endif

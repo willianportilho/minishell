@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <rodrigoab123@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:00:34 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/10/03 20:08:36 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/04 23:14:58 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+void	prepare_minishell(void)
+{
+	global()->exit = 130;
+	pre_reset();
+	reset_tab(ft_strdup("cavalinho"));
+	global()->control = FALSE;
+	minishell(&global()->tabble);
+}
 
 static void	child_heredoc(char *heredoc_path)
 {

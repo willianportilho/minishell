@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <rodrigoab123@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 23:11:52 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/04 04:11:18 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/04 23:15:45 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,5 +258,6 @@ void		check_heredoc(void);
 void		teste_open(int red, char **file, t_table **tab);
 void		ft_erro_fd(char *msg, char *str, int fd, t_exec *exec);
 int			is_file_and_not_permission(t_table **tab, t_exec *exec);
+void		prepare_minishell(void);
 
 #endif

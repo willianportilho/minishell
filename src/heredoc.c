@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <rodrigoab123@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:47:42 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/09/29 19:00:02 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/04 23:15:07 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,7 @@ void	heredoc_caller(t_tokens **tks, t_table **tab)
 		else
 		{
 			clear_tokens_lst(tks);
-			pre_reset();
-			reset_tab(ft_strdup("cavalinho"));
-			global()->control = FALSE;
-			minishell(&global()->tabble);
+			prepare_minishell();
 		}
 	}
 }

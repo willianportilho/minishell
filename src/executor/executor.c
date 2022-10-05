@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ralves-b <rodrigoab123@gmail.com>          +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:47:12 by wportilh          #+#    #+#             */
-/*   Updated: 2022/10/05 00:29:26 by ralves-b         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:03:23 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	validate_path(t_table **tab, t_exec *exec)
 	if (!stat((*tab)->cmd_line[0], &sb) && ((sb.st_mode & S_IFMT) == S_IFDIR)
 		&& ft_strchr((*tab)->cmd_line[0], '/'))
 		return (ft_error_fd("Is a directory", (*tab)->cmd_line[0], 2, exec));
-	if ((*tab)->cmd_line[0][0] == '/')
+	if ((*tab)->cmd_line[0][0] == '/' && access((*tab)->cmd_line[0], F_OK))
 	{
 		ft_error_fd("No such file or directory", (*tab)->cmd_line[0], 2, exec);
 		return ;

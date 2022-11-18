@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wportilh <wportilh@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ralves-b <ralves-b@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:55:36 by ralves-b          #+#    #+#             */
-/*   Updated: 2022/10/04 23:05:07 by wportilh         ###   ########.fr       */
+/*   Updated: 2022/11/18 09:18:11 by ralves-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 static void	test_exit_exception_2(char *str)
 {
 	long	num;
-	int		check;
 
 	num = ft_atol(str);
-	check = 0;
 	if (str)
 	{
 		if ((((str[0] == '-') && (num > 0))) \
